@@ -1,0 +1,11 @@
+/bin
+/gen
+/obj
+/libs
+*.jks
+build-release.sh
+.project
+.anacodept.act
+proguard.cfg
+project.properties
+.classpath

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="AppTheme.Light" parent="@android:style/Theme.Material.Light.NoActionBar" >
+		<item name="android:colorPrimaryDark">@color/light_green_600</item>
+		<item name="android:colorPrimary">@color/light_green_400</item>
+		<item name="additionalTextStyle">@style/AdditionalTextStyle.Light</item>
+		<item name="colorNumpadButtonLetters">@color/grey_3</item>
+		<item name="contactNameStyle">@style/ContactName.Light</item>
+		<item name="drawableAddContact">@drawable/ic_add</item>
+		<item name="drawableBackspace">@drawable/ic_backspace</item>
+		<item name="drawableCallMade">@drawable/ic_call_made</item>
+		<item name="drawableCallReceived">@drawable/ic_call_received</item>
+		<item name="drawableContactImage">@drawable/ic_account_box</item>
+		<item name="drawableDialpad">@drawable/ic_dialpad</item>
+		<item name="drawableGenericButton">@drawable/bg_generic_button</item>
+		<item name="drawableNumpadButton">@drawable/button_numpad</item>
+		<item name="drawableOptions">@drawable/ic_menu</item>
+		<item name="drawablePanel">@drawable/bg_panel</item>
+	</style>
+	
+	<style name="AppTheme.Dark" parent="@android:style/Theme.Material.NoActionBar" >
+		<item name="additionalTextStyle">@style/AdditionalTextStyle.Dark</item>
+		<item name="colorNumpadButtonLetters">@color/grey_c</item>
+		<item name="contactNameStyle">@style/ContactName.Dark</item>
+		<item name="drawableAddContact">@drawable/ic_add_dark</item>
+		<item name="drawableBackspace">@drawable/ic_backspace_dark</item>
+		<item name="drawableCallMade">@drawable/ic_call_made_dark</item>
+		<item name="drawableCallReceived">@drawable/ic_call_received_dark</item>
+		<item name="drawableContactImage">@drawable/ic_account_box_dark</item>
+		<item name="drawableDialpad">@drawable/ic_dialpad_dark</item>
+		<item name="drawableGenericButton">@drawable/bg_generic_button_dark</item>
+		<item name="drawableNumpadButton">@drawable/button_numpad_dark</item>
+		<item name="drawableOptions">@drawable/ic_menu_dark</item>
+		<item name="drawablePanel">@drawable/bg_panel_dark</item>
+	</style>
+	
+</resources>

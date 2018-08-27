@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/clear_call_log"
+		android:title="@string/clear_call_log" />
+	<item android:id="@+id/fast_dial_preferences"
+		android:title="@string/fast_dial" />
+	<item android:id="@+id/dialer_preferences"
+		android:title="@string/dialer_preferences" />
+</menu>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="privacy_policy_title">Privacy policy</string>
+	<string name="privacy_policy">\tEmerald Dialer uses data provided by the user(contacts and call log data) only to provide features required for proper functioning of the application.
+\n\tEmerald Dialer doesn\'t share your data and results of its processing with the application developer(s) and other third parties.</string>
+	<string name="accept">Accept</string>
+</resources>

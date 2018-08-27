@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<declare-styleable name="NumpadButton">
+		<attr name="number" format="string"/>
+		<attr name="letters" format="string"/>
+	</declare-styleable>
+	
+	<attr name="additionalTextStyle" format="reference"/>
+	<attr name="colorNumpadButtonLetters" format="reference"/>
+	<attr name="contactNameStyle" format="reference"/>
+	<attr name="drawableAddContact" format="reference"/>
+	<attr name="drawableBackspace" format="reference"/>
+	<attr name="drawableCallMade" format="reference"/>
+	<attr name="drawableCallReceived" format="reference"/>
+	<attr name="drawableContactImage" format="reference"/>
+	<attr name="drawableDialpad" format="reference"/>
+	<attr name="drawableGenericButton" format="reference"/>
+	<attr name="drawableNumpadButton" format="reference"/>
+	<attr name="drawableOptions" format="reference"/>
+	<attr name="drawablePanel" format="reference"/>
+	
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="call_button">#8cc34c</color>
+	<color name="generic_button_ripple">#777</color>
+	<color name="generic_button_ripple_dark">#bbb</color>
+	<color name="call_button_ripple">#7cb33c</color>
+	<color name="numpad_button">#f7f7f7</color>
+	<color name="numpad_button_ripple">#ddd</color>
+	<color name="numpad_button_ripple_dark">#555</color>
+	
+	<color name="green_800">#2e7d32</color>
+	<color name="green_600">#43a047</color>
+	<color name="light_green_600">#7cb342</color>
+	<color name="light_green_400">#66bb6a</color>
+	<color name="black">#000000</color>
+	<color name="grey_3">#333</color>
+	<color name="grey_c">#CCC</color>
+	<color name="white">#FFFFFF</color>
+</resources>

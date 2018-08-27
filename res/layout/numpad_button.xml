@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+	<TextView
+		android:id="@+id/numpad_number"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentStart="true"
+		android:textSize="36sp"
+		android:layout_marginLeft="10dp"
+		android:layout_centerVertical="true"
+		android:textColor="#689f38" />
+	<LinearLayout
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_toEndOf="@id/numpad_number"
+		android:layout_alignParentEnd="true"
+		android:gravity="center"
+		android:layout_centerVertical="true"
+		>
+		<TextView
+			android:id="@+id/numpad_letters"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textColor="?attr/colorNumpadButtonLetters"
+			android:textSize="14sp" />
+	</LinearLayout>
+</merge>
