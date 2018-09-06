@@ -83,10 +83,10 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 				}
 			}
 		}
+		numberField = (EditText)findViewById(R.id.number_field);
 		parseIntent(getIntent());
 		telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
 		setButtonListeners();
-		numberField = (EditText)findViewById(R.id.number_field);
 		numberField.setCursorVisible(false);
 		numberField.requestFocus();
 		numberField.addTextChangedListener(this);

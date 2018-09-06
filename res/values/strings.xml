@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">Dialer</string>
+	<string name="app_name">Emerald Dialer</string>
 	
 	<!-- NUMPAD LETTERS -->
 	<string name="numpad_1" translatable="false"> </string>
