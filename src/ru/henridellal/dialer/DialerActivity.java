@@ -52,6 +52,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		Manifest.permission.CALL_PHONE,
 		Manifest.permission.READ_CALL_LOG,
 		Manifest.permission.READ_CONTACTS,
+		Manifest.permission.READ_PHONE_STATE,
 		Manifest.permission.WRITE_CALL_LOG
 	};
 	
@@ -75,7 +76,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		}
 		if (Build.VERSION.SDK_INT >= 23) {
 			requestPermissions(PERMISSIONS, 0);
-			for (int i = 0; i < 4; i++) {
+			for (int i = 0; i < 5; i++) {
 				if (checkSelfPermission(PERMISSIONS[i]) == PackageManager.PERMISSION_GRANTED) {
 					continue;
 				} else {
@@ -150,7 +151,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	}
 	
 	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 5; i++) {
 			if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
 				finish();
 				break;
@@ -418,7 +419,14 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		int id = view.getId();
 		switch (id) {
 			case R.id.btn_numpad_0: addSymbolInNumber('+'); break;
-			case R.id.btn_numpad_1: callNumber(telephonyManager.getVoiceMailNumber()); break;
+			case R.id.btn_numpad_1:
+				String voiceMailNumber = telephonyManager.getVoiceMailNumber();
+				if (null != voiceMailNumber) {
+					callNumber(voiceMailNumber);
+				} else {
+					addSymbolInNumber('1');
+				}
+				break;
 			case R.id.btn_numpad_2: callNumber(SpeedDial.getNumber(this, "2")); break;
 			case R.id.btn_numpad_3: callNumber(SpeedDial.getNumber(this, "3")); break;
 			case R.id.btn_numpad_4: callNumber(SpeedDial.getNumber(this, "4")); break;
