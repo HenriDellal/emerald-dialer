@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">Emerald Dialer</string>
 	
 	<!-- NUMPAD LETTERS -->
-	<string name="numpad_1" translatable="false"> </string>
 	<string name="numpad_2">ABC</string>
 	<string name="numpad_3">DEF</string>
 	<string name="numpad_4">GHI</string>
@@ -12,13 +10,8 @@
 	<string name="numpad_7">PQRS</string>
 	<string name="numpad_8">TUV</string>
 	<string name="numpad_9">WXYZ</string>
-	<string name="numpad_0" translatable="false">+</string>
-	<string name="numpad_star" translatable="false">*</string>
-	<string name="numpad_hash" translatable="false">#</string>
 	
 	<!-- REGEX PATTERNS -->
-	<string name="regex_0" translatable="false">[0\\ ]</string>
-	<string name="regex_1" translatable="false">[1\\W]</string>
 	<string name="regex_2">[2ABCabc]</string>
 	<string name="regex_3">[3DEFdef]</string>
 	<string name="regex_4">[4GHIghi]</string>
@@ -27,9 +20,6 @@
 	<string name="regex_7">[7PQRSpqrs]</string>
 	<string name="regex_8">[8TUVtuv]</string>
 	<string name="regex_9">[9WXYZwxyz]</string>
-	<string name="regex_star" translatable="false">\\Q*\\E</string>
-	<string name="regex_hash" translatable="false">\\Q#\\E</string>
-	
 	
 	<string name="create_contact">Crea nuovo contatto</string>
 	<string name="send_message">Invia un messaggio</string>
