@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	
+	<!-- NUMPAD LETTERS -->
+	<string name="numpad_2">ABC</string>
+	<string name="numpad_3">DEF</string>
+	<string name="numpad_4">GHI</string>
+	<string name="numpad_5">JKL</string>
+	<string name="numpad_6">MNO</string>
+	<string name="numpad_7">PQRS</string>
+	<string name="numpad_8">TUV</string>
+	<string name="numpad_9">WXYZ</string>
+	
+	<!-- REGEX PATTERNS -->
+	<string name="regex_2">[2ABCabc]</string>
+	<string name="regex_3">[3DEFdef]</string>
+	<string name="regex_4">[4GHIghi]</string>
+	<string name="regex_5">[5JKLjkl]</string>
+	<string name="regex_6">[6MNOmno]</string>
+	<string name="regex_7">[7PQRSpqrs]</string>
+	<string name="regex_8">[8TUVtuv]</string>
+	<string name="regex_9">[9WXYZwxyz]</string>
+	
+	<string name="create_contact">Crea nuovo contatto</string>
+	<string name="send_message">Invia un messaggio</string>
+	<string name="delete_call_log_entry_question">Vuoi eliminare questa chiamata dal registro?</string>
+	
+	<!-- SPEED DIAL -->
+	<string name="tap_for_addition">Tocca per aggiungere</string>
+	<string name="voice_mail">Segreteria</string>
+	<string name="remove_speed_dial_entry">Vuoi rimuovere questo numero?</string>
+	<string name="pick_contact_number">Scegli dalla rubrica</string>
+	
+	<!-- POPUP MENU -->
+	<string name="clear_call_log">Svuota registro chiamate</string>
+	<string name="clear_call_log_question">Vuoi svuotare il registro delle chiamate?</string>
+	<string name="fast_dial">Chiamata rapida</string>
+	<string name="dialer_preferences">Preferenze</string>
+	
+	<!-- PREFERENCES -->
+	<string name="preference_theme">Tema</string>
+	<string name="theme_entry_light">Chiaro</string>
+	<string name="theme_entry_dark">Scuro</string>
+</resources>
