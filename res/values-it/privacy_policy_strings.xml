@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="privacy_policy_title">Politica sulla privacy</string>
+	<string name="privacy_policy">\tEmerald Dialer utilizza i dati forniti dall\'utente (contatti e registro chiamate) solo per fornire le funzionalità richieste per un corretto funzionamento dell\'app.
+\n\tEmerald Dialer non condivide i tuoi dati e i risultati del loro trattamento con lo sviluppatore dell\'app e terze parti.</string>
+	<string name="accept">Accetto</string>
+</resources>
