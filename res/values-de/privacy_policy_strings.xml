@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="privacy_policy_title">Datenschutzerklärung</string>
+	<string name="privacy_policy">\tEmerald Dialer benutzt vom Nutzer bereitgestellte Daten (Kontakte und Anrufprotokolle) nur für die Funktionen der App.
+\n\tEmerald Dialer gibt ihre Daten nicht an Dritte oder die App-Entwickler weiter.</string>
+	<string name="accept">Akzeptieren</string>
+</resources>
