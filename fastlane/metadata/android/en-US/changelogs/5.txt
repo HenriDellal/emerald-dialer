@@ -1,0 +1,4 @@
+Italian translation (Thanks to unbranded (https://www.github.com/unbranded))
+German translation (Thanks to FliegendeWurst (https://www.github.com/FliegendeWurst))
+Catch exceptions when contacts or messaging application is missing.
+Prevent usage of null numbers in some parts of the code.
