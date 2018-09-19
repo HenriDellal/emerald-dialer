@@ -1,6 +1,7 @@
 package ru.henridellal.dialer;
 
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -60,6 +61,9 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 	public void onClick(View view) {
 		if (view.getId() == R.id.contact_image) {
 			String number = (String)view.getTag();
+			if (null == number) {
+				return;
+			}
 			Uri contactIdUri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
 			Cursor cursor = activityRef.get().getContentResolver().query(contactIdUri, new String[] {PhoneLookup.CONTACT_ID}, null, null, null);
 			if (cursor == null || !cursor.moveToFirst()) {
@@ -71,7 +75,11 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 			Intent intent = new Intent(Intent.ACTION_VIEW);
 			Uri uri = Uri.withAppendedPath(Contacts.CONTENT_URI, contactId);
 			intent.setDataAndType(uri, "vnd.android.cursor.dir/contact");
-			activityRef.get().startActivity(intent);
+			try {
+				activityRef.get().startActivity(intent);
+			} catch (ActivityNotFoundException e) {
+				activityRef.get().showMissingContactsAppDialog();
+			}
 		}
 	}
 	
@@ -94,10 +102,16 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 						case 0:
 							intent = new Intent(Intent.ACTION_VIEW);
 							intent.setData(Uri.parse("smsto:" + number));
-							activityRef.get().startActivity(intent);
+							try {
+								activityRef.get().startActivity(intent);
+							} catch (ActivityNotFoundException e) {}
 							break;
 						case 1:
-							activityRef.get().createContact(number);
+							try {
+								activityRef.get().createContact(number);
+							} catch (ActivityNotFoundException e) {
+								activityRef.get().showMissingContactsAppDialog();
+							}
 							break;
 					}
 				}

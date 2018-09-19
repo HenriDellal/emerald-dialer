@@ -3,6 +3,7 @@ package ru.henridellal.dialer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
+import android.content.ActivityNotFoundException;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -258,7 +259,11 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	
 	public void createContact(String number) {
 		Intent intent = new Intent(ContactsContract.Intents.SHOW_OR_CREATE_CONTACT, Uri.parse("tel:" + Uri.encode(number)));
-		startActivity(intent);
+		try {
+			startActivity(intent);
+		} catch (ActivityNotFoundException e) {
+			showMissingContactsAppDialog();
+		}
 	}
 	
 	private void dialNumber(String number) {
@@ -348,6 +353,17 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 				}
 			});
 		
+		builder.create().show();
+	}
+	
+	public void showMissingContactsAppDialog() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage(getResources().getString(R.string.contacts_app_is_missing));
+		builder.setPositiveButton(android.R.string.yes,
+			new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface di, int which) {
+				}
+			});
 		builder.create().show();
 	}
 	

@@ -23,6 +23,7 @@
 	<string name="create_contact">Добавить в контакты</string>
 	<string name="send_message">Написать сообщение</string>
 	<string name="delete_call_log_entry_question">Вы действительно хотите удалить этот звонок из журнала?</string>
+	<string name="contacts_app_is_missing">Необходимо установить приложение контактов для сохранения номера.</string>
 	
 	<!-- SPEED DIAL -->
 	<string name="tap_for_addition">Нажмите для добавления</string>

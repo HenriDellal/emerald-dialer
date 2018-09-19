@@ -1,5 +1,6 @@
 package ru.henridellal.dialer;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -119,7 +120,11 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 			Intent intent = new Intent(Intent.ACTION_VIEW);
 			Uri uri = Uri.withAppendedPath(Phone.CONTENT_URI, ((ContactImageTag)view.getTag()).contactId);
 			intent.setDataAndType(uri, "vnd.android.cursor.dir/contact");
-			activityRef.get().startActivity(intent);
+			try {
+				activityRef.get().startActivity(intent);
+			} catch (ActivityNotFoundException e) {
+				activityRef.get().showMissingContactsAppDialog();
+			}
 		}
 	}
 	
