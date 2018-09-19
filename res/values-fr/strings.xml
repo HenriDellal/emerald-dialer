@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Emerald Dialer</string>
+	
+	<!-- NUMPAD LETTERS -->
+	<string name="numpad_2">ABC</string>
+	<string name="numpad_3">DEF</string>
+	<string name="numpad_4">GHI</string>
+	<string name="numpad_5">JKL</string>
+	<string name="numpad_6">MNO</string>
+	<string name="numpad_7">PQRS</string>
+	<string name="numpad_8">TUV</string>
+	<string name="numpad_9">WXYZ</string>
+	
+	<!-- REGEX PATTERNS -->
+	<string name="regex_2">[2ABCabc]</string>
+	<string name="regex_3">[3DEFdef]</string>
+	<string name="regex_4">[4GHIghi]</string>
+	<string name="regex_5">[5JKLjkl]</string>
+	<string name="regex_6">[6MNOmno]</string>
+	<string name="regex_7">[7PQRSpqrs]</string>
+	<string name="regex_8">[8TUVtuv]</string>
+	<string name="regex_9">[9WXYZwxyz]</string>
+	
+	
+	<string name="create_contact">Créer un nouveau contact</string>
+	<string name="send_message">Envoyer un message</string>
+	<string name="delete_call_log_entry_question">Voulez-vous supprimer cet appel du journal ?</string>
+	<string name="contacts_app_is_missing">Aucune application Contacts n\'est installée pour enregistrer les contacts.</string>
+	
+	<!-- SPEED DIAL -->
+	<string name="tap_for_addition">apuyer pour ajouter</string>
+	<string name="voice_mail">Messagerie vocale</string>
+	<string name="remove_speed_dial_entry">Voulez-vous supprimer ce numéro ?</string>
+	<string name="pick_contact_number">Choisir un numéro de contact</string>
+	
+	<!-- POPUP MENU -->
+	<string name="clear_call_log">Effacer le journal des appels</string>
+	<string name="clear_call_log_question">Voulez-vous effacer le journal des appels ?</string>
+	<string name="fast_dial">Numérotation abrégée</string>
+	<string name="dialer_preferences">Préférences</string>
+	
+	<!-- PREFERENCES -->
+	<string name="preference_theme">Thème</string>
+	<string name="theme_entry_light">Leger</string>
+	<string name="theme_entry_dark">Sombre</string>
+</resources>
