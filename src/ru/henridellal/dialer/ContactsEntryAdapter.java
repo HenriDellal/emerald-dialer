@@ -57,6 +57,7 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 	private AsyncContactImageLoader mAsyncContactImageLoader;
 	private Cursor mCursor;
 	private ContactsFilter mFilter;
+	private boolean rawFiltering;
 	private SoftReference<DialerActivity> activityRef;
 	
 	public ContactsEntryAdapter(DialerActivity activity, AsyncContactImageLoader asyncContactImageLoader) {
@@ -189,6 +190,10 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 		return view;
 	}
 	
+	public void setRawFiltering(boolean rawFiltering) {
+		this.rawFiltering = rawFiltering;
+	}
+	
 	public String getPhoneNumber(int position) {
 		mCursor.moveToPosition(regexQueryResults.get(position).position);
 		return mCursor.getString(COLUMN_NUMBER);
@@ -226,10 +231,32 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 	
 	private class ContactsFilter extends Filter {
 		
-		@Override
-		protected Filter.FilterResults performFiltering(CharSequence constraint) {
-			Filter.FilterResults results = new FilterResults();
-			ArrayList<RegexQueryResult> resultsList = new ArrayList<RegexQueryResult>();
+		private void filterRaw(ArrayList<RegexQueryResult> resultsList, CharSequence constraint) {
+			mCursor.moveToFirst();
+			String constraintString = constraint.toString().toLowerCase();
+			while (!mCursor.isAfterLast()) {
+				String name = mCursor.getString(COLUMN_NAME).toLowerCase();
+				String number = mCursor.getString(COLUMN_NUMBER).toLowerCase();
+				RegexQueryResult queryResult = null;
+				int nameIndexOfConstraint = name.indexOf(constraintString);
+				int numberIndexOfConstraint = number.indexOf(constraintString);
+				if (nameIndexOfConstraint != -1) {
+					queryResult = new RegexQueryResult(mCursor.getPosition(), nameIndexOfConstraint, nameIndexOfConstraint+name.length());
+				}
+				if (numberIndexOfConstraint != -1) {
+					if (null == queryResult) {
+						queryResult = new RegexQueryResult(mCursor.getPosition(), 0, 0);
+					}
+					queryResult.setNumberPlace(numberIndexOfConstraint, numberIndexOfConstraint+constraintString.length());
+				}
+				if (null != queryResult) {
+					resultsList.add(queryResult);
+				}
+				mCursor.moveToNext();
+			}
+		}
+		
+		private void filterWithRegex(ArrayList<RegexQueryResult> resultsList, CharSequence constraint) {
 			String nameRegex = formContactNameRegex(constraint.toString());
 			String numberRegex = formNumberRegex(constraint.toString());
 			Pattern namePattern = Pattern.compile(nameRegex);
@@ -263,6 +290,18 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 				}
 				mCursor.moveToNext();
 			}
+		}
+		
+		@Override
+		protected Filter.FilterResults performFiltering(CharSequence constraint) {
+			Filter.FilterResults results = new FilterResults();
+			ArrayList<RegexQueryResult> resultsList = new ArrayList<RegexQueryResult>();
+			if (rawFiltering) {
+				filterRaw(resultsList, constraint);
+			} else {	
+				filterWithRegex(resultsList, constraint);
+			}
+			
 			Collections.sort(resultsList);
 			results.values = resultsList;
 			results.count = resultsList.size();

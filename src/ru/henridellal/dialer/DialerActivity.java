@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
@@ -20,9 +21,11 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.TypedValue;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -105,6 +108,13 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		list.setOnItemClickListener(this);
 		list.setOnItemLongClickListener(this);
 		
+		if (getResources().getConfiguration().keyboard == Configuration.KEYBOARD_QWERTY) {
+			numberField.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+			contactsEntryAdapter.setRawFiltering(true);
+			findViewById(R.id.btn_toggle_numpad).setVisibility(View.INVISIBLE);
+			findViewById(R.id.numpad).setVisibility(View.GONE);
+		}
+		
 		getLoaderManager().initLoader(0, null, this);
 		getLoaderManager().initLoader(1, null, this);
 		getLoaderManager().getLoader(0).forceLoad();
@@ -151,6 +161,29 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		}
 	}
 	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+			Object focusedViewTag = getCurrentFocus().getTag();
+			String number;
+			if (focusedViewTag instanceof LogEntryCache) {
+				LogEntryCache tag = (LogEntryCache) focusedViewTag;
+				number = tag.phoneNumber.getText().toString();
+				if (number.length() == 0) {
+					number = tag.contactName.getText().toString();
+				}
+			} else if (focusedViewTag instanceof ContactsEntryCache) {
+				ContactsEntryCache tag = (ContactsEntryCache) focusedViewTag;
+				number = tag.phoneNumber.getText().toString();
+			} else {
+				number = numberField.getText().toString(); 
+			}
+			callNumber(number);
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
 	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
 		for (int i = 0; i < 5; i++) {
 			if (grantResults[i] == PackageManager.PERMISSION_DENIED) {

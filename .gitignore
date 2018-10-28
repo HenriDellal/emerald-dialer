@@ -2,6 +2,7 @@
 /gen
 /obj
 /libs
+R.java
 *.jks
 build-release.sh
 .project
@@ -9,3 +10,4 @@ build-release.sh
 proguard.cfg
 project.properties
 .classpath
+*.apk
