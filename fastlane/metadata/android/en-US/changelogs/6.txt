@@ -1,1 +1,2 @@
 - Add initial support for physical keyboard
+- French translation (Thanks to unknowtech (https://www.github.com/unknowtech))

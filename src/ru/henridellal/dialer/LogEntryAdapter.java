@@ -136,6 +136,9 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 		}
 		String name = cursor.getString(COLUMN_NAME);
 		String phoneNumber = cursor.getString(COLUMN_NUMBER);
+		if (phoneNumber == null) {
+			phoneNumber = "";
+		}
 		String formattedNumber = PhoneNumberUtils.formatNumber(phoneNumber, Locale.getDefault().getCountry());
 		if (!TextUtils.isEmpty(name)) {
 			viewCache.contactName.setText(name);
@@ -145,6 +148,7 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 			viewCache.phoneNumber.setText("");
 		} else {
 			viewCache.contactName.setText("no number");
+			viewCache.phoneNumber.setText("");
 		}
 		long date = cursor.getLong(COLUMN_DATE);
 		viewCache.callDate.setText(DateUtils.formatSameDayTime(date, System.currentTimeMillis(), DateFormat.MEDIUM, DateFormat.SHORT));
@@ -175,8 +179,12 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 				}
 			}
 		});
-		viewCache.contactImage.setOnClickListener(this);
 		viewCache.contactImage.setImageDrawable(d);
+		if (phoneNumber.length() == 0) {
+			return;
+		}
+		viewCache.contactImage.setOnClickListener(this);
+		
 	}
 	
 	public String getPhoneNumber(int position) {
