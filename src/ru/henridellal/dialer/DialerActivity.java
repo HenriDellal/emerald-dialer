@@ -291,7 +291,8 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	}
 	
 	public void createContact(String number) {
-		Intent intent = new Intent(ContactsContract.Intents.SHOW_OR_CREATE_CONTACT, Uri.parse("tel:" + Uri.encode(number)));
+		Intent intent = new Intent(ContactsContract.Intents.Insert.ACTION, ContactsContract.Contacts.CONTENT_URI);
+		intent.putExtra(ContactsContract.Intents.Insert.PHONE, number);
 		try {
 			startActivity(intent);
 		} catch (ActivityNotFoundException e) {
