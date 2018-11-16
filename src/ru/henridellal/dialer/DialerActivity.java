@@ -326,7 +326,29 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		getContentResolver().delete(Calls.CONTENT_URI, null, null);
 		logEntryAdapter.update();
 	}
-	
+
+	private void showDeviceId() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		String deviceId;
+		
+		if (Build.VERSION.SDK_INT < 26) {
+			deviceId = telephonyManager.getDeviceId();
+		} else {
+			switch (telephonyManager.getPhoneType()) {
+			case TelephonyManager.PHONE_TYPE_GSM:
+				deviceId = telephonyManager.getImei();
+				break;
+			case TelephonyManager.PHONE_TYPE_CDMA:
+				deviceId = telephonyManager.getMeid();
+				break;
+			default:
+				deviceId = "null";
+			}
+		}
+		builder.setMessage(deviceId);
+		builder.create().show();
+	}
+
 	private void showPrivacyPolicyDialog(final SharedPreferences.Editor editor) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle(getResources().getString(R.string.privacy_policy_title));
@@ -427,12 +449,18 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	
 	@Override
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
+		String number = s.toString();
 		if (start == 0 && before == 0 && count == 0) {
 			return;
 		} else if (TextUtils.isEmpty(s) && before > 0) {
 			setCallLogMode();
 			contactsEntryAdapter.resetFilter();
 			list.setSelection(0);
+		} else if (number.equals("*#06#")) {
+			showDeviceId();
+		} else if (number.startsWith("*#*#") && number.endsWith("#*#*")) {
+			String secretCode = new StringBuilder(number).substring(4, number.length()-4);
+			sendBroadcast(new Intent("android.provider.Telephony.SECRET_CODE", Uri.parse("android_secret_code://" + secretCode)));
 		} else {
 			setContactsMode();
 			contactsEntryAdapter.getFilter().filter(s);
