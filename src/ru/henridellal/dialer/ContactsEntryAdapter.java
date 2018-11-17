@@ -98,11 +98,12 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 	
 	public void resetFilter() {
 		mFilter = null;
-		regexQueryResults.clear();
+		if (null != regexQueryResults)
+			regexQueryResults.clear();
 	}
 	@Override
 	public int getCount() {
-		return regexQueryResults.size();
+		return (null != regexQueryResults) ? regexQueryResults.size() : 0;
 	}
 
 	@Override
@@ -200,7 +201,8 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 	}
 	
 	public String formatNumber(String number) {
-		return PhoneNumberUtils.formatNumber(number, Locale.getDefault().getCountry());
+		String formattedNumber = PhoneNumberUtils.formatNumber(number, Locale.getDefault().getCountry());
+		return (null != formattedNumber) ? formattedNumber : null;  
 	}
 	
 	public String formContactNameRegex(String s) {
@@ -235,20 +237,26 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 			mCursor.moveToFirst();
 			String constraintString = constraint.toString().toLowerCase();
 			while (!mCursor.isAfterLast()) {
-				String name = mCursor.getString(COLUMN_NAME).toLowerCase();
-				String number = mCursor.getString(COLUMN_NUMBER).toLowerCase();
+				String name = mCursor.getString(COLUMN_NAME);
+				String number = mCursor.getString(COLUMN_NUMBER);
 				RegexQueryResult queryResult = null;
-				int nameIndexOfConstraint = name.indexOf(constraintString);
-				int numberIndexOfConstraint = number.indexOf(constraintString);
-				if (nameIndexOfConstraint != -1) {
-					queryResult = new RegexQueryResult(mCursor.getPosition(), nameIndexOfConstraint, nameIndexOfConstraint+name.length());
+				if (null != name) {
+					name = name.toLowerCase();
+					int nameIndexOfConstraint = name.indexOf(constraintString);
+					if (nameIndexOfConstraint != -1)
+						queryResult = new RegexQueryResult(mCursor.getPosition(), nameIndexOfConstraint, nameIndexOfConstraint+name.length());
 				}
-				if (numberIndexOfConstraint != -1) {
-					if (null == queryResult) {
-						queryResult = new RegexQueryResult(mCursor.getPosition(), 0, 0);
+				if (null != number) {
+					number = number.toLowerCase();
+					int numberIndexOfConstraint = number.indexOf(constraintString);
+					if (numberIndexOfConstraint != -1) {
+						if (null == queryResult) {
+							queryResult = new RegexQueryResult(mCursor.getPosition(), 0, 0);
+						}
+						queryResult.setNumberPlace(numberIndexOfConstraint, numberIndexOfConstraint+constraintString.length());
 					}
-					queryResult.setNumberPlace(numberIndexOfConstraint, numberIndexOfConstraint+constraintString.length());
 				}
+				
 				if (null != queryResult) {
 					resultsList.add(queryResult);
 				}
@@ -266,10 +274,10 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 			while (!mCursor.isAfterLast()) {
 				String name = mCursor.getString(COLUMN_NAME);
 				String number = mCursor.getString(COLUMN_NUMBER);
-				Matcher nameMatcher = namePattern.matcher(name);
-				Matcher numberMatcher = numberPattern.matcher(formatNumber(number));
+				Matcher nameMatcher = (null != name) ? namePattern.matcher(name) : null;
+				Matcher numberMatcher = (null != number) ? numberPattern.matcher(formatNumber(number)) : null;
 				RegexQueryResult queryResult = null;
-				if (nameMatcher.find() ) {
+				if (null != nameMatcher && nameMatcher.find()) {
 					if (nameMatcher.start() == 0) {
 						queryResult = new RegexQueryResult( mCursor.getPosition(), nameMatcher.start(), nameMatcher.end());
 					} else {
@@ -279,7 +287,7 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 						}
 					}
 				}
-				if (numberMatcher.find()) {
+				if (null != numberMatcher && numberMatcher.find()) {
 					if (null == queryResult) {
 						queryResult = new RegexQueryResult( mCursor.getPosition(), 256+numberMatcher.start(), 256+numberMatcher.start());
 					}
