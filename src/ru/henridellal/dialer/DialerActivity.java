@@ -66,6 +66,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	private EditText numberField;
 	private ListView list;
 	private LogEntryAdapter logEntryAdapter;
+	private OnCallLogScrollListener onCallLogScrollListener;
 	private TelephonyManager telephonyManager;
 	
 	@Override
@@ -96,7 +97,8 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		numberField.requestFocus();
 		numberField.addTextChangedListener(this);
 		list = (ListView) findViewById(R.id.log_entries_list);
-		
+		onCallLogScrollListener = new OnCallLogScrollListener(this);
+		list.setOnScrollListener(onCallLogScrollListener);
 		TypedValue outValue = new TypedValue();
 		getTheme().resolveAttribute(R.attr.drawableContactImage, outValue, true);
 		int defaultContactImageId = outValue.resourceId;
@@ -257,17 +259,20 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 			findViewById(buttonIds[i]).setOnLongClickListener(this);
 		}
 	}
-	
-	private void toggleNumpad() {
+	public boolean isNumpadVisible() {
 		View panel = findViewById(R.id.panel_number_input);
-		if (panel.getVisibility() == View.VISIBLE) {
+		return panel.getVisibility() == View.VISIBLE;
+	}
+
+	private void toggleNumpad() {
+		if (isNumpadVisible()) {
 			hideNumpad();
 		} else {
 			showNumpad();
 		}
 	}
 	
-	private void hideNumpad() {
+	public void hideNumpad() {
 		findViewById(R.id.panel_number_input).setVisibility(View.GONE);
 		findViewById(R.id.numpad).setVisibility(View.GONE);
 		findViewById(R.id.btn_call).setVisibility(View.INVISIBLE);
