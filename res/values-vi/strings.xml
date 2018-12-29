@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	
+	<!-- NUMPAD LETTERS -->
+	<string name="numpad_2">AĂÂBC</string>
+	<string name="numpad_3">DĐEÊ</string>
+	<string name="numpad_4">GHI</string>
+	<string name="numpad_5">KL</string>
+	<string name="numpad_6">MNOÔƠ</string>
+	<string name="numpad_7">PQRS</string>
+	<string name="numpad_8">TUƯV</string>
+	<string name="numpad_9">XY</string>
+	
+	<!-- REGEX PATTERNS -->
+	<string name="regex_2">[2AĂBCaăbcà-ãÀ-ÃẠ-ặ]</string>
+	<string name="regex_3">[3DĐEÊdđeêèéÈÉẸ-ệ]</string>
+	<string name="regex_4">[4GHIghiìíỉĩịÌÍỈĨỊ]</string>
+	<string name="regex_5">[5KLkl]</string>
+	<string name="regex_6">[6MNOmnoơƠò-õọỏÒ-ÕỌ-ợ]</string>
+	<string name="regex_7">[7PQRSpqrs]</string>
+	<string name="regex_8">[8TUVtuvùúũưÙÚŨƯỤ-ự]</string>
+	<string name="regex_9">[9XYÝxyýỲ-ỹ]</string>
+	
+	<string name="create_contact">Create new contact</string>
+	<string name="send_message">Send a message</string>
+	<string name="delete_call_log_entry_question">Do you want to delete this call from the log?</string>
+	<string name="contacts_app_is_missing">There is no contacts application installed to save contacts.</string>
+	
+	<!-- SPEED DIAL -->
+	<string name="tap_for_addition">Tap for addition</string>
+	<string name="voice_mail">Voice mail</string>
+	<string name="remove_speed_dial_entry">Do you want to remove this number?</string>
+	<string name="pick_contact_number">Pick contact number</string>
+	
+	<!-- POPUP MENU -->
+	<string name="clear_call_log">Clear call log</string>
+	<string name="clear_call_log_question">Do you want to clear the call log?</string>
+	<string name="fast_dial">Speed dial</string>
+	<string name="dialer_preferences">Preferences</string>
+	
+	<!-- PREFERENCES -->
+	<string name="preference_theme">Theme</string>
+	<string name="theme_entry_light">Light</string>
+	<string name="theme_entry_dark">Dark</string>
+</resources>

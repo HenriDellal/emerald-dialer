@@ -12,15 +12,14 @@
 	<string name="numpad_9">WXYZ</string>
 	
 	<!-- REGEX PATTERNS -->
-	<string name="regex_2">[2ABCabc]</string>
-	<string name="regex_3">[3DEFdef]</string>
-	<string name="regex_4">[4GHIghi]</string>
+	<string name="regex_2">[2AÀÂÄBCÇàâäabcç]</string>
+	<string name="regex_3">[3DEÉÈÊËFdeéèêëf]</string>
+	<string name="regex_4">[4GHIÎÏghiïî]</string>
 	<string name="regex_5">[5JKLjkl]</string>
-	<string name="regex_6">[6MNOmno]</string>
+	<string name="regex_6">[6MNOÔÖmnoôö]</string>
 	<string name="regex_7">[7PQRSpqrs]</string>
-	<string name="regex_8">[8TUVtuv]</string>
-	<string name="regex_9">[9WXYZwxyz]</string>
-	
+	<string name="regex_8">[8TUÙÛÜVtuùûüv]</string>
+	<string name="regex_9">[9WXYŸZwxyÿz]</string>
 	
 	<string name="create_contact">Créer un nouveau contact</string>
 	<string name="send_message">Envoyer un message</string>
