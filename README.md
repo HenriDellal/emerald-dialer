@@ -7,8 +7,6 @@ Emerald Dialer is a lightweight T9 dialer for Android.
       alt="Get it on F-Droid"
       height="80">](https://f-droid.org/app/ru.henridellal.dialer)
 
-[Google Play](https://play.google.com/store/apps/details?id=ru.henridellal.dialer)
-
 ## Features
 - T9 search;
 - Speed dial;
