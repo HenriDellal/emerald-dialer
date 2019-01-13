@@ -36,6 +36,7 @@
 	<string name="clear_call_log_question">Вы действительно хотите очистить журнал звонков?</string>
 	<string name="fast_dial">Быстрый набор</string>
 	<string name="dialer_preferences">Настройки</string>
+	<string name="dialer_about">О программе</string>
 	
 	<!-- PREFERENCES -->
 	<string name="preference_theme">Тема</string>

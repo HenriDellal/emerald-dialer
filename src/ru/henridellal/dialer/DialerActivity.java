@@ -492,6 +492,9 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 			case R.id.dialer_preferences:
 				startActivity(new Intent(this, DialerPreferencesActivity.class));
 				return true;
+			case R.id.dialer_about_screen:
+				startActivity(new Intent(this, AboutActivity.class));
+				return true;
 			default:
 				return false;
 		}

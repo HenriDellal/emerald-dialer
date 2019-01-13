@@ -6,4 +6,6 @@
 		android:title="@string/fast_dial" />
 	<item android:id="@+id/dialer_preferences"
 		android:title="@string/dialer_preferences" />
+	<item android:id="@+id/dialer_about_screen"
+		android:title="@string/dialer_about" />
 </menu>
