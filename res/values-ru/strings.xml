@@ -18,10 +18,17 @@
 	<string name="regex_7">[7ФХЦЧфхцч]</string>
 	<string name="regex_8">[8ШЩЪЫшщъы]</string>
 	<string name="regex_9">[9ЬЭЮЯьэюя]</string>
-	
-	
+
+	<!-- CALL INFORMATION -->
+	<string name="date">Время звонка</string>
+	<string name="duration">Длительность</string>
+
 	<string name="create_contact">Добавить в контакты</string>
 	<string name="send_message">Написать сообщение</string>
+	<string name="show_info">Сведения о звонке</string>
+	<string name="make_a_call">Позвонить</string>
+	<string name="copy_number">Скопировать номер</string>
+	<string name="delete_log_entry">Удалить запись журнала</string>
 	<string name="delete_call_log_entry_question">Вы действительно хотите удалить этот звонок из журнала?</string>
 	<string name="contacts_app_is_missing">Необходимо установить приложение контактов для сохранения номера.</string>
 	

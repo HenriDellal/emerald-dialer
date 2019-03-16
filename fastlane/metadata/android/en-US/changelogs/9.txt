@@ -1,0 +1,4 @@
+- T9 support for French and Vietnamese languages (Thanks to @sibidi and @sonbua)
+- New About screen
+- Add dialog for log entries
+- Fix permissions check

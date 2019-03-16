@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ActivityNotFoundException;
+import android.content.ClipboardManager;
+import android.content.ClipData;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,6 +23,7 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
+import android.text.format.DateUtils;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -29,11 +32,13 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.Manifest;
 
+import java.text.DateFormat;
 
 public class DialerActivity extends Activity implements View.OnClickListener, View.OnLongClickListener,
 	LoaderManager.LoaderCallbacks<Cursor>, TextWatcher, AdapterView.OnItemClickListener,
@@ -59,6 +64,11 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		Manifest.permission.READ_PHONE_STATE,
 		Manifest.permission.WRITE_CALL_LOG
 	};
+	private static final String[] CALL_INFORMATION_PROJECTION = {
+		Calls._ID,
+		Calls.DATE,
+		Calls.DURATION
+	};
 	
 	private int mode;
 	private AsyncContactImageLoader mAsyncContactImageLoader;
@@ -79,7 +89,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		if (!preferences.getBoolean("privacy_policy", false)) {
 			showPrivacyPolicyDialog(preferences.edit());
 		}
-		if (Build.VERSION.SDK_INT >= 23) {
+		if (Build.VERSION.SDK_INT >= 23 && !hasRequiredPermissions()) {
 			requestPermissions(PERMISSIONS, 0);
 			for (int i = 0; i < 5; i++) {
 				if (checkSelfPermission(PERMISSIONS[i]) == PackageManager.PERMISSION_GRANTED) {
@@ -110,9 +120,13 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		list.setOnItemClickListener(this);
 		list.setOnItemLongClickListener(this);
 		
-		if (getResources().getConfiguration().keyboard == Configuration.KEYBOARD_QWERTY) {
+		int keyboardType = getResources().getConfiguration().keyboard;
+		if (keyboardType == Configuration.KEYBOARD_QWERTY) {
 			numberField.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 			contactsEntryAdapter.setRawFiltering(true);
+			findViewById(R.id.btn_toggle_numpad).setVisibility(View.INVISIBLE);
+			findViewById(R.id.numpad).setVisibility(View.GONE);
+		} else if (keyboardType == Configuration.KEYBOARD_12KEY) {	
 			findViewById(R.id.btn_toggle_numpad).setVisibility(View.INVISIBLE);
 			findViewById(R.id.numpad).setVisibility(View.GONE);
 		}
@@ -184,6 +198,15 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);
+	}
+
+	private boolean hasRequiredPermissions() {
+		for (int i = 0; i < 5; i++) {
+			if (checkSelfPermission(PERMISSIONS[i]) != PackageManager.PERMISSION_GRANTED) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -284,6 +307,14 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		findViewById(R.id.btn_call).setVisibility(View.VISIBLE);
 	}
 	
+	private void openMessagingApp(String number) {
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.setData(Uri.parse("smsto:" + number));
+		try {
+			startActivity(intent);
+		} catch (Exception e) {}
+	}
+
 	private void callNumber(String number) {
 		if (TextUtils.isEmpty(number) || null == number) {
 			return;
@@ -393,6 +424,29 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		builder.create().show();
 	}
 	
+	private void showInformationDialog(long id) {
+		Cursor cursor = getContentResolver().query(Calls.CONTENT_URI, CALL_INFORMATION_PROJECTION, Calls._ID+"=?", new String[]{((Long)id).toString()}, null);
+		if (cursor.getCount() == 0 || null == cursor)
+			return;
+
+		cursor.moveToNext();
+		long date = cursor.getLong(1);
+		long duration = cursor.getLong(2);
+
+		DateFormat dateInstance = DateFormat.getDateInstance(DateFormat.LONG);
+		DateFormat timeInstance = DateFormat.getTimeInstance(DateFormat.MEDIUM);
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		String message = String.format("%1s: %2s, %3s\n%4s: %5s",
+				getResources().getString(R.string.date), timeInstance.format(date),
+				dateInstance.format(date), getResources().getString(R.string.duration),
+				DateUtils.formatElapsedTime(duration));
+		builder.setMessage(message);
+		builder.setCancelable(true);
+		builder.create().show();
+		cursor.close();
+	}
+
 	private void deleteCallLogEntry(long id) {
 		getContentResolver().delete(Calls.CONTENT_URI, Calls._ID+"=?", new String[]{((Long)id).toString()});
 		logEntryAdapter.update();
@@ -416,7 +470,47 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		
 		builder.create().show();
 	}
-	
+
+	private void showLogEntryDialog(final int position, final long id) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		final String number = logEntryAdapter.getPhoneNumber(position);
+		builder.setCancelable(true);
+		builder.setTitle(number);
+		String[] commands = new String[]{
+			getResources().getString(R.string.show_info),
+			getResources().getString(R.string.make_a_call),
+			getResources().getString(R.string.send_message),
+			getResources().getString(R.string.delete_log_entry),
+			getResources().getString(R.string.copy_number)
+		};
+		ArrayAdapter dialogAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, commands);
+		DialogInterface.OnClickListener onDialogItemClick = new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface di, int which) {
+				switch (which) {
+					case 0:
+						showInformationDialog(id);
+						break;
+					case 1:
+						callNumber(number);
+						break;
+					case 2:
+						openMessagingApp(number);
+						break;
+					case 3:
+						deleteCallLogEntry(id);
+						break;
+					case 4:
+						ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+						ClipData clip = ClipData.newPlainText("label", number);
+						clipboard.setPrimaryClip(clip);
+						break;
+				}
+			}
+		};
+		builder.setAdapter(dialogAdapter, onDialogItemClick);
+		builder.create().show();
+	}
+
 	public void showMissingContactsAppDialog() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage(getResources().getString(R.string.contacts_app_is_missing));
@@ -440,7 +534,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	@Override
 	public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
 		if (adapterView.getAdapter() instanceof LogEntryAdapter) {
-			deleteCallLogEntryDialog(id);
+			showLogEntryDialog(position, id);
 			return true;
 		}
 		return false;
