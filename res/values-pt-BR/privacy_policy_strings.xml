@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="privacy_policy_title">Política de privacidade</string>
+	<string name="privacy_policy">\tO Emerald Dialer usa os dados fornecidos pelo usuário(contatos e histórico de chamadas) apenas para oferecer as funções necessárias para o funcionamento da aplicação.
+\n\tO Emerald Dialer não compartilha seus dados, nem os resultados do uso dos mesmos pela aplicação, com o(s) desenvolvedor(es) nem com terceiros.</string>
+	<string name="accept">Aceitar</string>
+</resources>

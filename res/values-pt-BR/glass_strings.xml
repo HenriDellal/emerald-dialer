@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="glass_thanks">Agradecimentos</string>
+	<string name="glass_feedback">Feedback</string>
+	<string name="glass_source_code">Código fonte</string>
+	<string name="glass_support">Ajude o projeto</string>
+	<string name="glass_section_contributors">Contribuidores</string>
+	<string name="glass_section_projects">Projetos</string>
+</resources>

@@ -17,18 +17,21 @@
 		<item>FliegendeWurst</item>
 		<item>Unbranched</item>
 		<item>Unknowtech</item>
+		<item>senpi0</item>
 	</string-array>
 
 	<string-array name="glass_contributors_info">
 		<item>German translation</item>
 		<item>Italian translation</item>
 		<item>French translation</item>
+		<item>Brazilian Portuguese translation</item>
 	</string-array>
 
 	<string-array name="glass_contributors_urls" translatable="false">
 		<item>https://github.com/FliegendeWurst</item>
 		<item>https://github.com/unbranched</item>
 		<item>https://github.com/unknowtech</item>
+		<item>https://github.com/senpi0</item>
 	</string-array>
 
 	<string-array name="glass_projects_names" translatable="false">

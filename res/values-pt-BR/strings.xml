@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Emerald Dialer</string>
+	
+	<!-- NUMPAD LETTERS -->
+	<string name="numpad_1" translatable="false"> </string>
+	<string name="numpad_2">ABC</string>
+	<string name="numpad_3">DEF</string>
+	<string name="numpad_4">GHI</string>
+	<string name="numpad_5">JKL</string>
+	<string name="numpad_6">MNO</string>
+	<string name="numpad_7">PQRS</string>
+	<string name="numpad_8">TUV</string>
+	<string name="numpad_9">WXYZ</string>
+	<string name="numpad_0" translatable="false">+</string>
+	<string name="numpad_star" translatable="false">*</string>
+	<string name="numpad_hash" translatable="false">#</string>
+	
+	<!-- REGEX PATTERNS -->
+	<string name="regex_0" translatable="false">[0\\ ]</string>
+	<string name="regex_1" translatable="false">[1\\W]</string>
+	<string name="regex_2">[2ABCabc]</string>
+	<string name="regex_3">[3DEFdef]</string>
+	<string name="regex_4">[4GHIghi]</string>
+	<string name="regex_5">[5JKLjkl]</string>
+	<string name="regex_6">[6MNOmno]</string>
+	<string name="regex_7">[7PQRSpqrs]</string>
+	<string name="regex_8">[8TUVtuv]</string>
+	<string name="regex_9">[9WXYZwxyz]</string>
+	<string name="regex_star" translatable="false">\\Q*\\E</string>
+	<string name="regex_hash" translatable="false">\\Q#\\E</string>
+	
+	<!-- CALL INFORMATION -->
+	<string name="date">Data</string>
+	<string name="duration">Duração</string>
+	
+	<string name="create_contact">Criar um novo contato</string>
+	<string name="send_message">Enviar uma mensagem</string>
+	<string name="show_info">Informações da chamada</string>
+	<string name="make_a_call">Chamar</string>
+	<string name="copy_number">Copiar número</string>
+	<string name="delete_log_entry">Apagar do histórico</string>
+			
+	<string name="delete_call_log_entry_question">Você deseja remover esta chamada do histórico de chamadas?</string>
+	<string name="contacts_app_is_missing">Não foi possível encontrar uma aplicação de contatos para salvar novos contatos.</string>
+	
+	<!-- SPEED DIAL -->
+	<string name="tap_for_addition">Toque para adicionar</string>
+	<string name="voice_mail">Correio de voz</string>
+	<string name="remove_speed_dial_entry">Você quer remover este número??</string>
+	<string name="pick_contact_number">Selecionar número de um contato</string>
+	
+	<!-- POPUP MENU -->
+	<string name="clear_call_log">Apagar histórico de chamadas</string>
+	<string name="clear_call_log_question">Você deseja apagar todo o histórico de chamadas?</string>
+	<string name="fast_dial">Discagem rápida</string>
+	<string name="dialer_preferences">Preferências</string>
+	<string name="dialer_about">Sobre...</string>
+	
+	<!-- PREFERENCES -->
+	<string name="preference_theme">Tema</string>
+	<string name="theme_entry_light">Claro</string>
+	<string name="theme_entry_dark">Escuro</string>
+</resources>

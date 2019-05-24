@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="glass_text">Emerald Dialer (v%s)
+\n
+\nCopyright 2018-2019 Anri Dellal
+\n
+\nLicensed under GPL-v3.0-only
+\nQuer ajudar? Reporte erros e mande sugestões pelo GitHub (https://www.github.com/HenriDellal/emerald-dialer/issues) ou envie uma mensagem para anridellal@gmail.com
+</string>
+
+</resources>
