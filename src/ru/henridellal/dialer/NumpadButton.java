@@ -47,4 +47,9 @@ public class NumpadButton extends RelativeLayout {
 		((TextView)findViewById(R.id.numpad_number)).setText(mChar);
 		((TextView)findViewById(R.id.numpad_letters)).setText(mLetters);
 	}
+
+	public void setLetters(String letters) {
+		mLetters = letters;
+		((TextView)findViewById(R.id.numpad_letters)).setText(mLetters);
+	}
 }

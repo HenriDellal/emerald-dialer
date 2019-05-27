@@ -4,8 +4,27 @@
 		<item>@string/theme_entry_light</item>
 		<item>@string/theme_entry_dark</item>
 	</string-array>
-	<string-array name="theme_values">
+	<string-array name="theme_values" translatable="false">
 		<item>light</item>
 		<item>dark</item>
 	</string-array>
+	<string-array name="t9_locale_entries" translatable="false">
+		<item>Default</item>
+		<item>Deutsch</item>
+		<item>English</item>
+		<item>French</item>
+		<item>Italiano</item>
+		<item>Русский</item>
+		<item>Vietnamese</item>
+	</string-array>
+	<string-array name="t9_locale_values" translatable="false">
+		<item>system</item>
+		<item>de</item>
+		<item>en</item>
+		<item>fr</item>
+		<item>it</item>
+		<item>ru</item>
+		<item>vn</item>
+	</string-array>
+
 </resources>

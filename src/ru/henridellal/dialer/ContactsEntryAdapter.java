@@ -1,6 +1,7 @@
 package ru.henridellal.dialer;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -60,18 +61,19 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 	private boolean rawFiltering;
 	private SoftReference<DialerActivity> activityRef;
 	
-	public ContactsEntryAdapter(DialerActivity activity, AsyncContactImageLoader asyncContactImageLoader) {
+	public ContactsEntryAdapter(DialerActivity activity, AsyncContactImageLoader asyncContactImageLoader, Context t9LocaleContext) {
 		super();
 		activityRef = new SoftReference<DialerActivity>(activity);
-		initT9NumberPatterns();
+		initT9NumberPatterns(null != t9LocaleContext ?
+				t9LocaleContext.getResources()
+				: activityRef.get().getResources());
 		regexQueryResults = new ArrayList<RegexQueryResult>();
 		mAsyncContactImageLoader = asyncContactImageLoader;
 		span = new ForegroundColorSpan(activity.getResources().getColor(R.color.green_600));
 		boldStyleSpan = new StyleSpan(Typeface.BOLD);
 	}
 	
-	private void initT9NumberPatterns() {
-		Resources res = activityRef.get().getResources();
+	private void initT9NumberPatterns(Resources res) {
 		t9NumberPatterns = new HashMap<Character, String>();
 		for (char i = '0'; i <= '9'; i++) {
 			t9NumberPatterns.put(new Character(i), res.getString(t9NumberPatternIds[Character.getNumericValue(i)]));

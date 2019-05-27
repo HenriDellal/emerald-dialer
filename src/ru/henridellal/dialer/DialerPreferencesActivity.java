@@ -52,7 +52,8 @@ public class DialerPreferencesActivity extends PreferenceActivity implements Sha
 			listPreference.setSummary(listPreference.getEntry());
 		}
 	
-		if ("theme".equals(key)) {
+		if ("theme".equals(key)
+			|| "t9_locale".equals(key)) {
 			restartTriggered = true;
 		}
 	}

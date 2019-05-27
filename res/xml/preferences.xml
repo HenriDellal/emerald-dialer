@@ -6,4 +6,10 @@
 		android:entryValues="@array/theme_values"
 		android:title="@string/preference_theme"
 		android:defaultValue="light"/>
+	<ListPreference
+		android:key="t9_locale"
+		android:entries="@array/t9_locale_entries"
+		android:entryValues="@array/t9_locale_values"
+		android:title="@string/preference_t9_locale"
+		android:defaultValue="system"/>
 </PreferenceScreen>

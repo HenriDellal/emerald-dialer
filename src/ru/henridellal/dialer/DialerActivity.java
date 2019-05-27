@@ -6,12 +6,14 @@ import android.app.LoaderManager;
 import android.content.ActivityNotFoundException;
 import android.content.ClipboardManager;
 import android.content.ClipData;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
@@ -39,6 +41,7 @@ import android.widget.PopupMenu;
 import android.Manifest;
 
 import java.text.DateFormat;
+import java.util.Locale;
 
 public class DialerActivity extends Activity implements View.OnClickListener, View.OnLongClickListener,
 	LoaderManager.LoaderCallbacks<Cursor>, TextWatcher, AdapterView.OnItemClickListener,
@@ -115,11 +118,35 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		
 		mAsyncContactImageLoader = new AsyncContactImageLoader(this, getResources().getDrawable(defaultContactImageId, getTheme()));
 		logEntryAdapter = new LogEntryAdapter(this, null, mAsyncContactImageLoader);
-		contactsEntryAdapter = new ContactsEntryAdapter(this, mAsyncContactImageLoader);
 		list.setAdapter(logEntryAdapter);
 		list.setOnItemClickListener(this);
 		list.setOnItemLongClickListener(this);
-		
+		String t9Locale = preferences.getString("t9_locale", "system");
+		Context t9LocaleContext = null;
+		if (!t9Locale.equals("system")) {
+			Configuration t9Configuration = getResources().getConfiguration();
+			t9Configuration.setLocale(new Locale(t9Locale, t9Locale));
+			t9LocaleContext = createConfigurationContext(t9Configuration);
+			Resources t9Resources = t9LocaleContext.getResources();
+			// For numpad buttons (2...9)
+			int[] numpadLettersIds = new int[] {
+				R.string.numpad_2,
+				R.string.numpad_3,
+				R.string.numpad_4,
+				R.string.numpad_5,
+				R.string.numpad_6,
+				R.string.numpad_7,
+				R.string.numpad_8,
+				R.string.numpad_9
+			};
+			for (int i = 2; i <= 9; i++) {
+				((NumpadButton)(findViewById(buttonIds[i])))
+						.setLetters(t9Resources.getString(numpadLettersIds[i-2]));
+			}
+
+		}
+
+		contactsEntryAdapter = new ContactsEntryAdapter(this, mAsyncContactImageLoader, t9LocaleContext);
 		int keyboardType = getResources().getConfiguration().keyboard;
 		if (keyboardType == Configuration.KEYBOARD_QWERTY) {
 			numberField.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);

@@ -1,0 +1,2 @@
+- Brazilian Portuguese translation (Thanks to @senpi0).
+- T9 Language option added.
