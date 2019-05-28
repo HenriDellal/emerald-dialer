@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- NUMPAD LETTERS -->
+	<string name="numpad_2">דהו</string>
+	<string name="numpad_3">אבג</string>
+	<string name="numpad_4">מםנן</string>
+	<string name="numpad_5">יכךל</string>
+	<string name="numpad_6">זחט</string>
+	<string name="numpad_7">רשת</string>
+	<string name="numpad_8">צץק</string>
+	<string name="numpad_9">סעפף</string>
+	
+	<!-- REGEX PATTERNS -->
+	<string name="regex_2">[2דהו]</string>
+	<string name="regex_3">[3אבג]</string>
+	<string name="regex_4">[4מםנן]</string>
+	<string name="regex_5">[5יכךל]</string>
+	<string name="regex_6">[6זחט]</string>
+	<string name="regex_7">[7רשת]</string>
+	<string name="regex_8">[8צץק]</string>
+	<string name="regex_9">[9סעפף]</string>
+	
+</resources>
