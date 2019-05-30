@@ -50,7 +50,10 @@
 	</RelativeLayout>
 	<TableLayout
 		android:id="@id/numpad"
+		android:layout_marginLeft="@dimen/numpad_side_margin"
+		android:layout_marginRight="@dimen/numpad_side_margin"
 		android:layout_width="fill_parent"
+		android:layout_gravity="center"
 		android:layout_height="wrap_content"
 		android:layout_above="@+id/panel_bottom"
 		android:stretchColumns="*" >
