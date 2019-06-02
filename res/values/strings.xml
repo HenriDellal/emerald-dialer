@@ -48,6 +48,7 @@
 	<string name="tap_for_addition">Tap for addition</string>
 	<string name="voice_mail">Voice mail</string>
 	<string name="remove_speed_dial_entry">Do you want to remove this number?</string>
+	<string name="remove">Remove</string>
 	<string name="pick_contact_number">Pick contact number</string>
 	
 	<!-- POPUP MENU -->

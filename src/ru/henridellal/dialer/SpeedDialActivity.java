@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -47,22 +49,36 @@ public class SpeedDialActivity extends Activity implements AdapterView.OnItemCli
 	public SpeedDialAdapter getAdapter() {
 		return mAdapter;
 	}
-	
-	private void clearSpeedDialSlotDialog(final String order, String contactInfo) {
+
+	private void speedDialSlotDialog(final String order, final String contactInfo) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle(contactInfo);
-		builder.setMessage(getResources().getString(R.string.remove_speed_dial_entry));
-		builder.setPositiveButton(android.R.string.yes,
+		// TODO Fix localization with String.format
+		builder.setTitle(order + ": " + contactInfo);
+		String[] items = new String[] {
+				getResources().getString(R.string.remove),
+				getResources().getString(R.string.make_a_call)
+		};
+		builder.setItems(items,
 			new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface di, int which) {
-					SpeedDial.clearSlot(SpeedDialActivity.this, order);
-					getAdapter().update();
-				}
-			});
-		builder.setNegativeButton(android.R.string.no,
-			new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface di, int which) {
-					
+					switch (which) {
+						case 0:
+							SpeedDial.clearSlot(SpeedDialActivity.this, order);
+							getAdapter().update();
+							break;
+						case 1:
+							//TODO avoid duplication, see DialerActivity.callNumber
+							if (TextUtils.isEmpty(contactInfo) || null == contactInfo) {
+								return;
+							}
+							
+							Uri uri = Uri.parse("tel:" + Uri.encode(contactInfo));
+							Intent intent = new Intent(Intent.ACTION_CALL, uri);
+							startActivity(intent);
+							finish();
+
+							break;
+					}
 				}
 			});
 		
@@ -114,7 +130,7 @@ public class SpeedDialActivity extends Activity implements AdapterView.OnItemCli
 		String order = ((TextView)view.findViewById(R.id.entry_order)).getText().toString();
 		if (SpeedDial.getNumber(this, order).length() != 0) {
 			String speedDialData = ((TextView)view.findViewById(R.id.entry_title)).getText().toString();
-			clearSpeedDialSlotDialog(order, speedDialData);
+			speedDialSlotDialog(order, speedDialData);
 			return true;
 		}
 		return false;

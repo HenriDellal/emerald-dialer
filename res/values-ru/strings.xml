@@ -36,6 +36,7 @@
 	<string name="tap_for_addition">Нажмите для добавления</string>
 	<string name="voice_mail">Голосовая почта</string>
 	<string name="remove_speed_dial_entry">Вы действительно хотите удалить этот номер?</string>
+	<string name="remove">Удалить</string>
 	<string name="pick_contact_number">Выбрать номер контакта</string>
 	
 	<!-- POPUP MENU -->
