@@ -48,7 +48,7 @@
 
 	<string-array name="glass_projects_urls" translatable="false">
 		<item>https://bitbucket.org/dnaq/dialer2</item>
-		<item>https://github.org/HenriDellal/glass</item>
+		<item>https://github.com/HenriDellal/glass</item>
 	</string-array>
 
 </resources>
