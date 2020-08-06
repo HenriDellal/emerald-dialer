@@ -1,4 +1,5 @@
 # Emerald Dialer
+[![codebeat badge](https://codebeat.co/badges/6a02664d-9f84-4fee-b44a-c5212a04d047)](https://codebeat.co/projects/github-com-henridellal-emerald-dialer-master)
 
 Emerald Dialer is a lightweight T9 dialer for Android. 
 
