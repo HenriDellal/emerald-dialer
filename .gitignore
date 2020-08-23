@@ -1,3 +1,7 @@
+/app/build
+/build
+.gradle
+.idea
 /bin
 /gen
 /obj
