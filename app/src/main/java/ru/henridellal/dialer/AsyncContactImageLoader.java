@@ -15,10 +15,10 @@ import android.provider.ContactsContract.PhoneLookup;
 
 class AsyncContactImageLoader {
 	public interface ImageCallback {
-		public void imageLoaded(Drawable imageDrawable, String phoneNumber);
+		void imageLoaded(Drawable imageDrawable, String phoneNumber);
 	}
 
-	private class BackgroundImageLoader extends Thread {
+	private static class BackgroundImageLoader extends Thread {
 		public Handler mHandler;
 		
 		public BackgroundImageLoader() {

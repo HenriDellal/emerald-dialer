@@ -9,8 +9,6 @@ import android.view.View;
 import android.widget.ListView;
 
 public class PickContactNumberActivity extends ListActivity {
-	
-	private PickContactNumberAdapter pickContactNumberAdapter;
 	private String speedDialSlot;
 	
 	private static final String[] PROJECTION = new String[] {
@@ -26,7 +24,7 @@ public class PickContactNumberActivity extends ListActivity {
 		Intent intent = getIntent();
 		speedDialSlot = intent.getStringExtra(SpeedDialActivity.SPEED_DIAL_SLOT);
 		Cursor contactsCursor = getContentResolver().query(Phone.CONTENT_URI, PROJECTION, Phone.HAS_PHONE_NUMBER+"=1", null, Phone.DISPLAY_NAME);
-		pickContactNumberAdapter = new PickContactNumberAdapter(this, contactsCursor, 0);
+		PickContactNumberAdapter pickContactNumberAdapter = new PickContactNumberAdapter(this, contactsCursor, 0);
 		setListAdapter(pickContactNumberAdapter);
 	}
 	

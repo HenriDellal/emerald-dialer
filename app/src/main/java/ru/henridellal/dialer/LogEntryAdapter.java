@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.CallLog.Calls;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.PhoneLookup;
@@ -65,7 +66,8 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 				return;
 			}
 			Uri contactIdUri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
-			Cursor cursor = activityRef.get().getContentResolver().query(contactIdUri, new String[] {PhoneLookup.CONTACT_ID}, null, null, null);
+			String[] projection = new String[] {(Build.VERSION.SDK_INT >= 24) ? PhoneLookup.CONTACT_ID : PhoneLookup._ID};
+			Cursor cursor = activityRef.get().getContentResolver().query(contactIdUri, projection, null, null, null);
 			if (cursor == null || !cursor.moveToFirst()) {
 				unknownNumberDialog(number);
 				return;
@@ -136,7 +138,7 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 		}
 		String name = cursor.getString(COLUMN_NAME);
 		String phoneNumber = cursor.getString(COLUMN_NUMBER);
-		if (phoneNumber == null) {
+		if (null == phoneNumber) {
 			phoneNumber = "";
 		}
 		String formattedNumber = PhoneNumberUtils.formatNumber(phoneNumber, Locale.getDefault().getCountry());

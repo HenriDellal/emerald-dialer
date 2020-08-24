@@ -26,7 +26,7 @@
 	<string name="clear_call_log_question">Vuoi svuotare il registro delle chiamate?</string>
 	<string name="fast_dial">Chiamata rapida</string>
 	<string name="dialer_preferences">Preferenze</string>
-	<string name="dialer_about">Al riguardo...</string>
+	<string name="dialer_about">Al riguardo…</string>
 
 	<!-- PREFERENCES -->
 	<string name="preference_theme">Tema</string>

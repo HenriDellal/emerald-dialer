@@ -26,7 +26,7 @@
 	<string name="clear_call_log_question">Você deseja apagar todo o histórico de chamadas?</string>
 	<string name="fast_dial">Discagem rápida</string>
 	<string name="dialer_preferences">Preferências</string>
-	<string name="dialer_about">Sobre...</string>
+	<string name="dialer_about">Sobre…</string>
 	
 	<!-- PREFERENCES -->
 	<string name="preference_theme">Tema</string>

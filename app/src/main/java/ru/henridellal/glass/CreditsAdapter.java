@@ -35,7 +35,7 @@ public class CreditsAdapter extends ArrayAdapter<CreditsEntry> {
 			objects.add(projectsTitle);
 			objects.addAll(projects);
 		}
-		addAllCompat(objects);
+		addAll(objects);
 	}
 
 	@Override
@@ -85,13 +85,4 @@ public class CreditsAdapter extends ArrayAdapter<CreditsEntry> {
 		return 2;
 	}
 
-	public void addAllCompat(ArrayList<CreditsEntry> objects) {
-		if (Build.VERSION.SDK_INT >= 11) {
-			addAll(objects);
-		} else {
-			for (int i = 0; i < objects.size(); i++) {
-				add(objects.get(i));
-			}
-		}
-	}
 }

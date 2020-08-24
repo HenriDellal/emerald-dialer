@@ -39,6 +39,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.Manifest;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.util.Locale;
@@ -95,9 +96,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		if (Build.VERSION.SDK_INT >= 23 && !hasRequiredPermissions()) {
 			requestPermissions(PERMISSIONS, 0);
 			for (int i = 0; i < 5; i++) {
-				if (checkSelfPermission(PERMISSIONS[i]) == PackageManager.PERMISSION_GRANTED) {
-					continue;
-				} else {
+				if (checkSelfPermission(PERMISSIONS[i]) != PackageManager.PERMISSION_GRANTED) {
 					finish();
 				}
 			}
@@ -627,10 +626,12 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		switch (id) {
 			case R.id.btn_numpad_0: addSymbolInNumber('+'); break;
 			case R.id.btn_numpad_1:
-				String voiceMailNumber = telephonyManager.getVoiceMailNumber();
-				if (null != voiceMailNumber) {
-					callNumber(voiceMailNumber);
-				} else {
+				String voiceMailNumber;
+				try {
+					voiceMailNumber = telephonyManager.getVoiceMailNumber();
+					if (null != voiceMailNumber) callNumber(voiceMailNumber);
+				} catch (SecurityException exception) {
+					Toast.makeText(this, R.string.permission_not_granted, Toast.LENGTH_SHORT).show();
 					addSymbolInNumber('1');
 				}
 				break;

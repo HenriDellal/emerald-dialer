@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
 	<string name="glass_app_version" translatable="false">1.0.8</string>
-	<string name="glass_text">Emerald Dialer (v%s)
+	<string name="glass_text" tools:ignore="MissingTranslation">Emerald Dialer (v%s)
 \n
 \nCopyright 2018-2019 Anri Dellal
 \n

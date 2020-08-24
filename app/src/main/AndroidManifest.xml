@@ -10,6 +10,8 @@
     <uses-permission-sdk-23 android:name="android.permission.READ_CONTACTS" />
     <uses-permission-sdk-23 android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission-sdk-23 android:name="android.permission.WRITE_CALL_LOG" />
+
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
 	
 	<uses-permission android:name="android.permission.CALL_PHONE" /> 
     <uses-permission android:name="android.permission.READ_CALL_LOG" />

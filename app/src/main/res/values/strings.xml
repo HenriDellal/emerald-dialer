@@ -56,7 +56,7 @@
 	<string name="clear_call_log_question">Do you want to clear the call log?</string>
 	<string name="fast_dial">Speed dial</string>
 	<string name="dialer_preferences">Preferences</string>
-	<string name="dialer_about">About...</string>
+	<string name="dialer_about">About…</string>
 	
 	<!-- PREFERENCES -->
 	<string name="preference_theme">Theme</string>
@@ -64,5 +64,6 @@
 	<string name="theme_entry_dark">Dark</string>
 
 	<string name="preference_t9_locale">T9 Language</string>
+	<string name="permission_not_granted">Permission not granted for this operation</string>
 
 </resources>

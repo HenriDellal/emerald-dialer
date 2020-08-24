@@ -12,6 +12,7 @@ build-release.sh
 .project
 .anacodept.act
 proguard.cfg
+local.properties
 project.properties
 .classpath
 *.apk

@@ -23,21 +23,7 @@ public class RegexQueryResult implements Comparable<RegexQueryResult> {
 		if (null == obj) {
 			throw new NullPointerException();
 		}
-		if (!(obj instanceof RegexQueryResult)) {
-			throw new ClassCastException();
-		}
-		if (this.start > obj.start) {
-			return 1;
-		} else if (this.start == obj.start) {
-			if (this.position == obj.position) {
-				return 0;
-			} else if (this.position > obj.position) {
-				return 1;
-			} else {
-				return -1;
-			}
-		} else {
-			return -1;
-		}
+		int result = Integer.compare(this.start, obj.start);
+		return (result != 0) ? result : Integer.compare(this.position, obj.position);
 	}
 }

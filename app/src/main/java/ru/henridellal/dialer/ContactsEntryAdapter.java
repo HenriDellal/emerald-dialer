@@ -203,8 +203,7 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 	}
 	
 	public String formatNumber(String number) {
-		String formattedNumber = PhoneNumberUtils.formatNumber(number, Locale.getDefault().getCountry());
-		return (null != formattedNumber) ? formattedNumber : null;  
+		return PhoneNumberUtils.formatNumber(number, Locale.getDefault().getCountry());
 	}
 	
 	public String formContactNameRegex(String s) {
