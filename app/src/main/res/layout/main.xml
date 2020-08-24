@@ -9,8 +9,7 @@
 		android:layout_height="fill_parent"
 		android:layout_alignParentTop="true"
 		android:layout_above="@+id/panel_number_input"
-		android:fastScrollEnabled="true"
-	/>
+		android:fastScrollEnabled="true"/>
 	<RelativeLayout
 		android:id="@id/panel_number_input"
 		android:layout_width="fill_parent"
@@ -18,7 +17,7 @@
 		android:layout_above="@+id/numpad"
 		android:background="?attr/drawablePanel" >
 		<ImageButton
-			android:layout_alignParentLeft="true"
+			android:layout_alignParentStart="true"
 			android:layout_width="48dp"
 			android:layout_height="48dp"
 			android:padding="8dp"
@@ -26,7 +25,7 @@
 			android:src="?attr/drawableAddContact"
 			android:background="?attr/drawableGenericButton" />
 		<ImageButton
-			android:layout_alignParentRight="true"
+			android:layout_alignParentEnd="true"
 			android:layout_width="48dp"
 			android:layout_height="48dp"
 			android:padding="8dp"
@@ -37,8 +36,8 @@
 			android:textSize="22sp"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_toRightOf="@id/btn_add_contact"
-			android:layout_toLeftOf="@id/btn_remove_number"
+			android:layout_toEndOf="@id/btn_add_contact"
+			android:layout_toStartOf="@id/btn_remove_number"
 			android:id="@+id/number_field"
 			android:inputType="phone"
 			android:textStyle="bold"
@@ -144,17 +143,17 @@
 			android:layout_width="64dp"
 			android:layout_height="64dp"
 			android:layout_gravity="center_vertical"
-			android:layout_alignParentLeft="true"
+			android:layout_alignParentStart="true"
 			android:padding="16dp"
 			android:src="?attr/drawableDialpad"
 			android:background="?attr/drawableGenericButton" />
-		/>
+
 		<ImageButton
 			android:id="@+id/btn_options"
 			android:layout_width="64dp"
 			android:layout_height="64dp"
 			android:layout_gravity="center_vertical"
-			android:layout_alignParentRight="true"
+			android:layout_alignParentEnd="true"
 			android:padding="16dp"
 			android:src="?attr/drawableOptions"
 			android:background="?attr/drawableGenericButton" />
@@ -171,26 +170,13 @@
 				android:id="@+id/btn_call"
 				android:layout_width="0dp"
 				android:layout_height="40dp"
-				android:layout_toLeftOf="@id/btn_options"
-				android:layout_toRightOf="@+id/btn_toggle_numpad"
+				android:layout_toStartOf="@id/btn_options"
+				android:layout_toEndOf="@+id/btn_toggle_numpad"
 				android:layout_margin="12dp"
 				android:gravity="center"
 				android:textColor="#FFF"
 				android:background="@drawable/bg_call_button"
 				android:src="@drawable/ic_phone"
 			/>
-			<!--<Button
-				android:id="@+id/btn_call_second_sim"
-				android:layout_width="0dp"
-				android:layout_height="40dp"
-				android:layout_weight="1"
-				android:gravity="center"
-				android:layout_margin="6dp"
-				android:text="2"
-				android:textColor="#FFF"
-				android:background="@drawable/bg_call_button"
-				android:drawableLeft="@drawable/ic_phone"
-			/>
-		</LinearLayout>-->
 	</RelativeLayout>
 </RelativeLayout>
