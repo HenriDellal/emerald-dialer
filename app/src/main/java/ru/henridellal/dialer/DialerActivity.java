@@ -1,5 +1,6 @@
 package ru.henridellal.dialer;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
@@ -226,6 +227,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		return super.onKeyDown(keyCode, event);
 	}
 
+	@SuppressLint("NewApi")
 	private boolean hasRequiredPermissions() {
 		for (int i = 0; i < 5; i++) {
 			if (checkSelfPermission(PERMISSIONS[i]) != PackageManager.PERMISSION_GRANTED) {

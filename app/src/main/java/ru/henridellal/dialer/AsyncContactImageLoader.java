@@ -64,7 +64,7 @@ class AsyncContactImageLoader {
 	}
 	
 	Drawable loadImageForNumber(String number) {
-		if (null == number) {
+		if (null == number || number.isEmpty()) {
 			return mDefaultDrawable;
 		}
 		Uri uri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
