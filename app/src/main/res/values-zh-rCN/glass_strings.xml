@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="glass_thanks">感谢</string>
+	<string name="glass_feedback">反馈</string>
+	<string name="glass_source_code">源代码</string>
+	<string name="glass_support">支持我们</string>
+	<string name="glass_section_contributors">贡献者们</string>
+	<string name="glass_section_projects">项目</string>
+</resources>
