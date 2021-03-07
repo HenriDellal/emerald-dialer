@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Emerald Dialer</string>
+	
+	<!-- NUMPAD LETTERS -->
+	<string name="numpad_1" translatable="false"> </string>
+	<string name="numpad_2">ABC</string>
+	<string name="numpad_3">DEF</string>
+	<string name="numpad_4">GHI</string>
+	<string name="numpad_5">JKL</string>
+	<string name="numpad_6">MNO</string>
+	<string name="numpad_7">PQRS</string>
+	<string name="numpad_8">TUV</string>
+	<string name="numpad_9">WXYZ</string>
+	<string name="numpad_0" translatable="false">+</string>
+	<string name="numpad_star" translatable="false">*</string>
+	<string name="numpad_hash" translatable="false">#</string>
+	
+	<!-- REGEX PATTERNS -->
+	<string name="regex_0" translatable="false">[0\\ ]</string>
+	<string name="regex_1" translatable="false">[1\\W]</string>
+	<string name="regex_2">[2ABCabc]</string>
+	<string name="regex_3">[3DEFdef]</string>
+	<string name="regex_4">[4GHIghi]</string>
+	<string name="regex_5">[5JKLjkl]</string>
+	<string name="regex_6">[6MNOmno]</string>
+	<string name="regex_7">[7PQRSpqrs]</string>
+	<string name="regex_8">[8TUVtuv]</string>
+	<string name="regex_9">[9WXYZwxyz]</string>
+	<string name="regex_star" translatable="false">\\Q*\\E</string>
+	<string name="regex_hash" translatable="false">\\Q#\\E</string>
+	
+	<!-- CALL INFORMATION -->
+	<string name="date">日期</string>
+	<string name="duration">持续时间</string>
+	
+	<string name="create_contact">创建新联系人</string>
+	<string name="send_message">发送一条消息</string>
+	<string name="show_info">通话信息</string>
+	<string name="make_a_call">通话</string>
+	<string name="copy_number">复制号码</string>
+	<string name="delete_log_entry">删除记录项</string>
+			
+	<string name="delete_call_log_entry_question">你想从记录中删除这则通话吗？</string>
+	<string name="contacts_app_is_missing">没有安装联系人应用程序来保存联系人。</string>
+	
+	<!-- SPEED DIAL -->
+	<string name="tap_for_addition">轻按新增</string>
+	<string name="voice_mail">语音邮件</string>
+	<string name="remove_speed_dial_entry">你想删除这个号码吗？</string>
+	<string name="remove">删除</string>
+	<string name="pick_contact_number">选择联系人号码</string>
+	
+	<!-- POPUP MENU -->
+	<string name="clear_call_log">清除通话记录</string>
+	<string name="clear_call_log_question">你想清除通话记录吗？</string>
+	<string name="fast_dial">快速拨号</string>
+	<string name="dialer_preferences">首选项</string>
+	<string name="dialer_about">关于…</string>
+	
+	<!-- PREFERENCES -->
+	<string name="preference_theme">主题</string>
+	<string name="theme_entry_light">浅色</string>
+	<string name="theme_entry_dark">深色</string>
+
+	<string name="preference_t9_locale">T9 语言</string>
+	<string name="permission_not_granted">没有授予此操作需要的权限</string>
+
+</resources>
