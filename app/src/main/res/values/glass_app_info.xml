@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="glass_app_version" translatable="false">1.0.8</string>
+	<string name="glass_app_version" translatable="false">1.0.9</string>
 	<string name="glass_text" tools:ignore="MissingTranslation">Emerald Dialer (v%s)
 \n
-\nCopyright 2018-2019 Anri Dellal
+\nCopyright 2021 Anri Dellal
 \n
 \nLicensed under GPL-v3.0-only
-\nWant to help? Report bugs and submit suggestions via GitHub (https://www.github.com/HenriDellal/emerald-dialer/issues) or send a letter to anridellal@gmail.com
+\nWant to help? Report bugs and submit suggestions via GitHub (https://www.github.com/HenriDellal/emerald-dialer/issues)
 </string>
 	<string name="glass_feedback_url" translatable="false"></string>
 	<string name="glass_source_code_url" translatable="false">https://github.com/HenriDellal/emerald-dialer</string>
@@ -18,7 +18,9 @@
 		<item>Unbranched</item>
 		<item>Unknowtech</item>
 		<item>senpi0</item>
+		<item>Or Schapira</item>
 		<item>sr093906</item>
+		<item>tdafos</item>
 	</string-array>
 
 	<string-array name="glass_contributors_info">
@@ -26,7 +28,9 @@
 		<item>Italian translation</item>
 		<item>French translation</item>
 		<item>Brazilian Portuguese translation</item>
+		<item>Hebrew T9 keymap</item>
 		<item>Chinese translation</item>
+		<item>Greek translation</item>
 	</string-array>
 
 	<string-array name="glass_contributors_urls" translatable="false">
@@ -34,7 +38,9 @@
 		<item>https://github.com/unbranched</item>
 		<item>https://github.com/unknowtech</item>
 		<item>https://github.com/senpi0</item>
-		<item></item>
+		<item>https://github.com/schapira</item>
+		<item>https://github.com/sr093906</item>
+		<item>https://github.com/tdafos</item>
 	</string-array>
 
 	<string-array name="glass_projects_names" translatable="false">

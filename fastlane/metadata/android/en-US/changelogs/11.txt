@@ -1,0 +1,2 @@
+- Chinese translation (Thanks to @sr093906)
+- Greek translation (Thanks to @tdafos)
