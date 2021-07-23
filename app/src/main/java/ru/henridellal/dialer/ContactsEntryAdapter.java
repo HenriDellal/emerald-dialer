@@ -176,19 +176,6 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 			}
 		});
 		viewCache.contactImage.setImageDrawable(d);
-		/*String thumbnailUri = mCursor.getString(COLUMN_THUMBNAIL_URI);
-		if ( null == thumbnailUri) {
-			viewCache.contactImage.setImageDrawable(null);
-		} else {
-		try {
-		InputStream input = activityRef.get().getContentResolver().openInputStream(Uri.parse(thumbnailUri));
-		Drawable mDrawable = Drawable.createFromStream(input, thumbnailUri);
-		viewCache.contactImage.setImageDrawable(mDrawable);
-		input.close();
-		} catch (Exception e) {
-			viewCache.contactImage.setImageDrawable(null);
-		}
-		}*/
 		viewCache.contactImage.setOnClickListener(this);
 		return view;
 	}

@@ -59,6 +59,18 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 				R.id.btn_add_contact, R.id.btn_remove_number,
 				R.id.btn_toggle_numpad, R.id.btn_options,
 				R.id.btn_call };
+
+	private static final int[] numpadLettersIds = new int[] {
+			R.string.numpad_2,
+			R.string.numpad_3,
+			R.string.numpad_4,
+			R.string.numpad_5,
+			R.string.numpad_6,
+			R.string.numpad_7,
+			R.string.numpad_8,
+			R.string.numpad_9
+	};
+
 	private static final int CALL_LOG_MODE = 0;
 	private static final int CONTACTS_MODE = 1;
 	private static final String BUNDLE_KEY_NUMBER = "number";
@@ -94,14 +106,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		if (!preferences.getBoolean("privacy_policy", false)) {
 			showPrivacyPolicyDialog(preferences.edit());
 		}
-		if (Build.VERSION.SDK_INT >= 23 && !hasRequiredPermissions()) {
-			requestPermissions(PERMISSIONS, 0);
-			for (int i = 0; i < 5; i++) {
-				if (checkSelfPermission(PERMISSIONS[i]) != PackageManager.PERMISSION_GRANTED) {
-					finish();
-				}
-			}
-		}
+		checkPermissions();
 		numberField = (EditText)findViewById(R.id.number_field);
 		parseIntent(getIntent());
 		telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
@@ -121,49 +126,63 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		list.setAdapter(logEntryAdapter);
 		list.setOnItemClickListener(this);
 		list.setOnItemLongClickListener(this);
+		Context t9LocaleContext = getT9LocaleContext(preferences);
+		if (null != t9LocaleContext) {
+			Resources t9Resources = t9LocaleContext.getResources();
+			for (int i = 2; i <= 9; i++) {
+				((NumpadButton)(findViewById(buttonIds[i])))
+						.setLetters(t9Resources.getString(numpadLettersIds[i-2]));
+			}
+		}
+		contactsEntryAdapter = new ContactsEntryAdapter(this, mAsyncContactImageLoader, t9LocaleContext);
+		initPhysicalKeyboard();
+		initLoaders();
+	}
+
+	private void checkPermissions() {
+		if (Build.VERSION.SDK_INT >= 23 && !hasRequiredPermissions()) {
+			requestPermissions(PERMISSIONS, 0);
+			for (int i = 0; i < 5; i++) {
+				if (checkSelfPermission(PERMISSIONS[i]) != PackageManager.PERMISSION_GRANTED) {
+					finish();
+				}
+			}
+		}
+	}
+
+	private Context getT9LocaleContext(SharedPreferences preferences) {
 		String t9Locale = preferences.getString("t9_locale", "system");
 		Context t9LocaleContext = null;
 		if (!t9Locale.equals("system")) {
 			Configuration t9Configuration = getResources().getConfiguration();
 			t9Configuration.setLocale(new Locale(t9Locale, t9Locale));
 			t9LocaleContext = createConfigurationContext(t9Configuration);
-			Resources t9Resources = t9LocaleContext.getResources();
-			// For numpad buttons (2...9)
-			int[] numpadLettersIds = new int[] {
-				R.string.numpad_2,
-				R.string.numpad_3,
-				R.string.numpad_4,
-				R.string.numpad_5,
-				R.string.numpad_6,
-				R.string.numpad_7,
-				R.string.numpad_8,
-				R.string.numpad_9
-			};
-			for (int i = 2; i <= 9; i++) {
-				((NumpadButton)(findViewById(buttonIds[i])))
-						.setLetters(t9Resources.getString(numpadLettersIds[i-2]));
-			}
 
 		}
+		return t9LocaleContext;
+	}
 
-		contactsEntryAdapter = new ContactsEntryAdapter(this, mAsyncContactImageLoader, t9LocaleContext);
+	private void initPhysicalKeyboard() {
 		int keyboardType = getResources().getConfiguration().keyboard;
 		if (keyboardType == Configuration.KEYBOARD_QWERTY) {
 			numberField.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 			contactsEntryAdapter.setRawFiltering(true);
 			findViewById(R.id.btn_toggle_numpad).setVisibility(View.INVISIBLE);
 			findViewById(R.id.numpad).setVisibility(View.GONE);
-		} else if (keyboardType == Configuration.KEYBOARD_12KEY) {	
+		} else if (keyboardType == Configuration.KEYBOARD_12KEY) {
 			findViewById(R.id.btn_toggle_numpad).setVisibility(View.INVISIBLE);
 			findViewById(R.id.numpad).setVisibility(View.GONE);
 		}
-		
-		getLoaderManager().initLoader(0, null, this);
-		getLoaderManager().initLoader(1, null, this);
-		getLoaderManager().getLoader(0).forceLoad();
-		getLoaderManager().getLoader(1).forceLoad();
 	}
-	
+
+	private void initLoaders() {
+		LoaderManager manager = getLoaderManager();
+		manager.initLoader(0, null, this);
+		manager.initLoader(1, null, this);
+		manager.getLoader(0).forceLoad();
+		manager.getLoader(1).forceLoad();
+	}
+
 	@Override
 	protected void onSaveInstanceState(Bundle bundle) {
 		bundle.putCharSequence(BUNDLE_KEY_NUMBER, numberField.getText());
