@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- NUMPAD LETTERS -->
+	<string name="numpad_2">ΑΒΓ</string>
+	<string name="numpad_3">ΔΕΖ</string>
+	<string name="numpad_4">ΗΘΙ</string>
+	<string name="numpad_5">ΚΛΜ</string>
+	<string name="numpad_6">ΝΞΟ</string>
+	<string name="numpad_7">ΠΡΣ</string>
+	<string name="numpad_8">ΤΥΦ</string>
+	<string name="numpad_9">ΧΨΩ</string>
+	
+	<!-- REGEX PATTERNS -->
+	<string name="regex_2">[2ABCabcΑΒΓαβγά]</string>
+	<string name="regex_3">[3DEFdefΔΕΖδεζέ]</string>
+	<string name="regex_4">[4GHIghiΗΘΙηθιήίϊΐ]</string>
+	<string name="regex_5">[5JKLjklΚΛΜκλμ]</string>
+	<string name="regex_6">[6MNOmnoΝΞΟνξοό]</string>
+	<string name="regex_7">[7PQRSpqrsΠΡΣπρσς]</string>
+	<string name="regex_8">[8TUVtuvΤΥΦτυφύϋ]</string>
+	<string name="regex_9">[9WXYZwxyzΧΨΩχψωώ]</string>
+	
+	<!-- CALL INFORMATION -->
+	<string name="create_contact">Δημ. νέας επαφής</string>
+	<string name="send_message">Αποστολή μυνήματος</string>
+	<string name="show_info">Πληροφορίες κλήσης</string>
+	<string name="make_a_call">Κλήση</string>
+	<string name="copy_number">Αντιγραφή αριθμού</string>
+	<string name="delete_log_entry">Διαγραφή εγγραφής</string>
+			
+	<string name="delete_call_log_entry_question">Θέλετε να σβήσετε αυτή την κλήση από το αρχείο?</string>
+	<string name="contacts_app_is_missing">Δεν υπάρχει πρόγραμμα διαχείρισης επαφών για να σώσει την επαφή.</string>
+	
+	<!-- SPEED DIAL -->
+	<string name="tap_for_addition">Πιέστε για προσθήκη</string>
+	<string name="remove_speed_dial_entry">Θέλετε την διαγραφή του αριθμού?</string>
+	<string name="remove">Διαγραφή</string>
+	<string name="pick_contact_number">Επιλέξτε αριθμό</string>
+	
+	<!-- POPUP MENU -->
+	<string name="clear_call_log">Διαγραφή αρχείου κλήσεων</string>
+	<string name="clear_call_log_question">Θέλετε να διαγράψετε το αρχείο κλήσης?</string>
+	<string name="fast_dial">Ταχεία κλήση</string>
+	<string name="dialer_preferences">Επιλογές</string>
+	<string name="dialer_about">Σχετικά…</string>
+	
+	<!-- PREFERENCES -->
+	<string name="preference_t9_locale">Γλώσσα T9</string>
+	<string name="permission_not_granted">Δεν έχετε παραχωρήσει άδεια για αυτή την λειτουργία</string>
+
+</resources>
