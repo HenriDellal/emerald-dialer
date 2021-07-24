@@ -17,6 +17,7 @@
 		<item>Italiano</item>
 		<item>Русский</item>
 		<item>Vietnamese</item>
+		<item>Chinese (Pinyin method)</item>
 	</string-array>
 	<string-array name="t9_locale_values" translatable="false">
 		<item>system</item>
@@ -27,6 +28,7 @@
 		<item>it</item>
 		<item>ru</item>
 		<item>vn</item>
+		<item>zh</item>
 	</string-array>
 
 </resources>

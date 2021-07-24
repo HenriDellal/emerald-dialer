@@ -1,0 +1,3 @@
+- Chinese translation (Thanks to @sr093906)
+- Greek translation (Thanks to @tdafos)
+- Added Chinese T9 input method

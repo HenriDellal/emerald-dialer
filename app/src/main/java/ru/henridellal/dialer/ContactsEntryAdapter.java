@@ -14,12 +14,17 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
+
+import com.pinyinsearch.model.PinyinSearchUnit;
+import com.pinyinsearch.util.PinyinUtil;
+import com.pinyinsearch.util.T9Util;
 
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
@@ -50,6 +55,12 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 	private static final int COLUMN_LOOKUP_KEY = 1;
 	private static final int COLUMN_NAME = 2;
 	private static final int COLUMN_NUMBER = 3;
+
+	public static final int FILTERING_MODE_REGEX = 0;
+	public static final int FILTERING_MODE_RAW = 1;
+	public static final int FILTERING_MODE_PINYIN = 2;
+	private int filteringMode;
+
 	private ForegroundColorSpan span;
 	private StyleSpan boldStyleSpan;
 	
@@ -58,7 +69,6 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 	private AsyncContactImageLoader mAsyncContactImageLoader;
 	private Cursor mCursor;
 	private ContactsFilter mFilter;
-	private boolean rawFiltering;
 	private SoftReference<DialerActivity> activityRef;
 	
 	public ContactsEntryAdapter(DialerActivity activity, AsyncContactImageLoader asyncContactImageLoader, Context t9LocaleContext) {
@@ -180,8 +190,8 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 		return view;
 	}
 	
-	public void setRawFiltering(boolean rawFiltering) {
-		this.rawFiltering = rawFiltering;
+	public void setFilteringMode(int filteringMode) {
+		this.filteringMode = filteringMode;
 	}
 	
 	public String getPhoneNumber(int position) {
@@ -220,7 +230,45 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 	}
 	
 	private class ContactsFilter extends Filter {
-		
+
+		private void filterPinyin(ArrayList<RegexQueryResult> resultsList, CharSequence constraint) {
+			mCursor.moveToFirst();
+			String constraintString = constraint.toString().toLowerCase();
+			while (!mCursor.isAfterLast()) {
+				String name = mCursor.getString(COLUMN_NAME);
+				String number = mCursor.getString(COLUMN_NUMBER);
+				RegexQueryResult queryResult = null;
+				if (null != name) {
+					PinyinSearchUnit psu = new PinyinSearchUnit(name);
+					PinyinUtil.parse(psu);
+					T9Util.match(psu, constraintString);
+					String keyword = psu.getMatchKeyword().toString();
+
+					int pinyinIndexOfConstraint = TextUtils.isEmpty(keyword) ? -1 : name.indexOf(keyword);
+
+					if (pinyinIndexOfConstraint != -1) {
+						queryResult = new RegexQueryResult(mCursor.getPosition(), pinyinIndexOfConstraint, pinyinIndexOfConstraint+keyword.length());
+					}
+
+				}
+				if (null != number) {
+					number = number.toLowerCase();
+					int numberIndexOfConstraint = number.indexOf(constraintString);
+					if (numberIndexOfConstraint != -1) {
+						if (null == queryResult) {
+							queryResult = new RegexQueryResult(mCursor.getPosition(), Integer.MAX_VALUE, Integer.MAX_VALUE);
+						}
+						queryResult.setNumberPlace(numberIndexOfConstraint, numberIndexOfConstraint+constraintString.length());
+					}
+
+				}
+				if (null != queryResult) {
+					resultsList.add(queryResult);
+				}
+				mCursor.moveToNext();
+			}
+		}
+
 		private void filterRaw(ArrayList<RegexQueryResult> resultsList, CharSequence constraint) {
 			mCursor.moveToFirst();
 			String constraintString = constraint.toString().toLowerCase();
@@ -232,7 +280,7 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 					name = name.toLowerCase();
 					int nameIndexOfConstraint = name.indexOf(constraintString);
 					if (nameIndexOfConstraint != -1)
-						queryResult = new RegexQueryResult(mCursor.getPosition(), nameIndexOfConstraint, nameIndexOfConstraint+name.length());
+						queryResult = new RegexQueryResult(mCursor.getPosition(), nameIndexOfConstraint, nameIndexOfConstraint+constraintString.length());
 				}
 				if (null != number) {
 					number = number.toLowerCase();
@@ -292,12 +340,17 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 		protected Filter.FilterResults performFiltering(CharSequence constraint) {
 			Filter.FilterResults results = new FilterResults();
 			ArrayList<RegexQueryResult> resultsList = new ArrayList<RegexQueryResult>();
-			if (rawFiltering) {
-				filterRaw(resultsList, constraint);
-			} else {	
-				filterWithRegex(resultsList, constraint);
+			switch (filteringMode) {
+				case FILTERING_MODE_RAW:
+					filterRaw(resultsList, constraint);
+					break;
+				case FILTERING_MODE_PINYIN:
+					filterPinyin(resultsList, constraint);
+					break;
+				case FILTERING_MODE_REGEX:
+					filterWithRegex(resultsList, constraint);
+					break;
 			}
-			
 			Collections.sort(resultsList);
 			results.values = resultsList;
 			results.count = resultsList.size();

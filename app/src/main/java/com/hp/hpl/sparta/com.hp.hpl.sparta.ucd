@@ -1,0 +1,393 @@
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" size="1421,1644" id="HPLEABeobsparta0" metadata="nsuml-1.4" initialized="true">
+  <children xsi:type="editmodel:ClassEditModel" location="451,1252" size="114,158" id="EOBN610Ceobsparta84" packageIndication="1" runTimeClassModel="EOBN610Ceobsparta90;EOBN610Ceobsparta113;EOBN610Ceobsparta92;EOBN610Ceobsparta104;EOBN610Ceobsparta85;EOBN610Ceobsparta88;EOBN610Ceobsparta97;EOBN610Ceobsparta110;EOBN610Ceobsparta94;EOBN610Ceobsparta107;EOBN610Ceobsparta99;EOBN610Ceobsparta101">
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="92,112" viewSorter="Name">
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta94"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta104"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta101"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta110"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta99"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta97"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta113"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="1223,1410" size="90,94" id="EOBN610Ceobsparta120" packageIndication="1" runTimeClassModel="EOBN610Ceobsparta131;EOBN610Ceobsparta126;EOBN610Ceobsparta121">
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="61,48" viewSorter="Name">
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta121"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta131"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta126"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="EOBN610Ceobsparta2034" connectionRouterKind="Manual" source="//@children.1" target="//@children.3" targetEnd="//@children.1/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="245,1252" size="156,142" id="EOBN610Ceobsparta674" packageIndication="1" runTimeClassModel="EOBN610Ceobsparta695;EOBN610Ceobsparta686;EOBN610Ceobsparta677;EOBN610Ceobsparta681;EOBN610Ceobsparta690;EOBN610Ceobsparta675;EOBN610Ceobsparta683;EOBN610Ceobsparta679">
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="110,96" viewSorter="Name">
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta683"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta690"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta686"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta679"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta695"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta681"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" location="1227,1252" size="81,108" targetConnections="//@children.1/@sourceConnections.0" id="EOBN610Ceobsparta3" packageIndication="1" runTimeClassModel="EOBN610Ceobsparta1277;EOBN610Ceobsparta1267;EOBN610Ceobsparta1272">
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="61,48" viewSorter="Name">
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1267"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1277"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1272"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="878,1409" size="62,26" id="EOBN610Ceobsparta1285" packageIndication="1" runTimeClassModel="EOBN610Ceobsparta1286;EOBN610Ceobsparta1372;EOBN610Ceobsparta1383;EOBN610Ceobsparta1354;EOBN610Ceobsparta1343;EOBN610Ceobsparta1332;EOBN610Ceobsparta1349;EOBN610Ceobsparta1323;EOBN610Ceobsparta1300;EOBN610Ceobsparta1390;EOBN610Ceobsparta1367;EOBN610Ceobsparta1290;EOBN610Ceobsparta1309;EOBN610Ceobsparta1338;EOBN610Ceobsparta1295;EOBN610Ceobsparta1303;EOBN610Ceobsparta1378;EOBN610Ceobsparta1317;EOBN610Ceobsparta1306;EOBN610Ceobsparta1313;EOBN610Ceobsparta1328;EOBN610Ceobsparta1358;EOBN610Ceobsparta1362">
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="50,1252" size="145,382" id="EOBN610Ceobsparta207" packageIndication="1" runTimeClassModel="EOBN610Ceobsparta1568;EOBN610Ceobsparta1576;EOBN610Ceobsparta1510;EOBN610Ceobsparta1515;EOBN610Ceobsparta1592;EOBN610Ceobsparta1513;EOBN610Ceobsparta1616;EOBN610Ceobsparta1563;EOBN610Ceobsparta1604;EOBN610Ceobsparta1541;EOBN610Ceobsparta1549;EOBN610Ceobsparta1588;EOBN610Ceobsparta1508;EOBN610Ceobsparta1527;EOBN610Ceobsparta1537;EOBN610Ceobsparta1517;EOBN610Ceobsparta1559;EOBN610Ceobsparta1572;EOBN610Ceobsparta1620;EOBN610Ceobsparta1528;EOBN610Ceobsparta1565;EOBN610Ceobsparta1600;EOBN610Ceobsparta1612;EOBN610Ceobsparta1622;EOBN610Ceobsparta1608;EOBN610Ceobsparta1553;EOBN610Ceobsparta1529;EOBN610Ceobsparta1521;EOBN610Ceobsparta1596;EOBN610Ceobsparta1580;EOBN610Ceobsparta1624;EOBN610Ceobsparta1519;EOBN610Ceobsparta1545;EOBN610Ceobsparta1556;EOBN610Ceobsparta1584;EOBN610Ceobsparta1523;EOBN610Ceobsparta1533;EOBN610Ceobsparta1526">
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="125,336" viewSorter="Name">
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1533"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1537"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1622"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1624"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1620"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1616"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1612"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1541"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1580"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1549"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1600"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1592"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1596"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1576"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1608"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1565"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1559"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1584"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1545"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1604"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1588"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="419,409" size="119,254" id="EOBN610Ceobsparta1" packageIndication="1" runTimeClassModel="EOBN610Ceobsparta11;EOBN610Ceobsparta39;EOBN610Ceobsparta17;EOBN610Ceobsparta25;EOBN610Ceobsparta2;EOBN610Ceobsparta33;EOBN610Ceobsparta35;EOBN610Ceobsparta51;EOBN610Ceobsparta23;EOBN610Ceobsparta45;EOBN610Ceobsparta31;EOBN610Ceobsparta8;EOBN610Ceobsparta20;EOBN610Ceobsparta42;EOBN610Ceobsparta5;EOBN610Ceobsparta37;EOBN610Ceobsparta15;EOBN610Ceobsparta29">
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="99,208" viewSorter="Name">
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta17"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta15"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta45"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta37"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta42"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta33"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta31"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta23"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta29"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta20"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta35"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta39"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta25"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" connectionRouterKind="Manual" source="//@children.6" target="//@children.10" targetEnd="//@children.6/@sourceConnections.0/@children.1" sourceEnd="//@children.6/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="119,158"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" connectionRouterKind="Manual" source="//@children.6" target="//@children.9" targetEnd="//@children.6/@sourceConnections.1/@children.1" sourceEnd="//@children.6/@sourceConnections.1/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="59,0"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="41,377" size="152,158" id="EOBN610Ceobsparta141" packageIndication="1" runTimeClassModel="EOBN610Ceobsparta144;EOBN610Ceobsparta149;EOBN610Ceobsparta156;EOBN610Ceobsparta153;EOBN610Ceobsparta151;EOBN610Ceobsparta159;EOBN610Ceobsparta147;EOBN610Ceobsparta142">
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="99,112" viewSorter="Name">
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta159"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta151"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta156"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta147"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta144"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta149"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta153"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.8/@sourceConnections.0" id="EOBN610Ceobsparta1856" connectionRouterKind="GeneralizationManhattan" source="//@children.7" target="//@children.9" targetEnd="//@children.7/@sourceConnections.0/@children.1" sourceEnd="//@children.7/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="76,0" anchorKind="FixedAtEdge"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="59,172" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="205,384" size="148,536" id="EOBN610Ceobsparta1868" packageIndication="1" runTimeClassModel="EOBN610Ceobsparta1927;EOBN610Ceobsparta1886;EOBN610Ceobsparta1917;EOBN610Ceobsparta1906;EOBN610Ceobsparta1956;EOBN610Ceobsparta1920;EOBN610Ceobsparta1959;EOBN610Ceobsparta1936;EOBN610Ceobsparta1908;EOBN610Ceobsparta1947;EOBN610Ceobsparta1878;EOBN610Ceobsparta1950;EOBN610Ceobsparta1970;EOBN610Ceobsparta1890;EOBN610Ceobsparta1898;EOBN610Ceobsparta1914;EOBN610Ceobsparta1891;EOBN610Ceobsparta1962;EOBN610Ceobsparta1952;EOBN610Ceobsparta1924;EOBN610Ceobsparta1930;EOBN610Ceobsparta1872;EOBN610Ceobsparta1910;EOBN610Ceobsparta1943;EOBN610Ceobsparta1954;EOBN610Ceobsparta1874;EOBN610Ceobsparta1882;EOBN610Ceobsparta1933;EOBN610Ceobsparta1894;EOBN610Ceobsparta1901;EOBN610Ceobsparta1939;EOBN610Ceobsparta1912">
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="110,368" viewSorter="Name">
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1898"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1962"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1954"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1959"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1906"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1908"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1910"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1912"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1914"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1950"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1917"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1901"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1924"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1920"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1927"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1930"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1933"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1936"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1939"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1947"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1943"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1952"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1956"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="128,112" viewSorter="Name">
+      <children xsi:type="editmodel:ClassEditModel" size="128,110" id="EOBN610Ceobsparta1970" packageIndication="1" runTimeClassModel="EOBN610Ceobsparta1978;EOBN610Ceobsparta1976;EOBN610Ceobsparta1974;EOBN610Ceobsparta1972">
+        <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+        <children xsi:type="editmodel:CompartmentEditModel" size="108,64" viewSorter="Name">
+          <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1972"/>
+          <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1974"/>
+          <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1976"/>
+          <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1978"/>
+        </children>
+        <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+      </children>
+    </children>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="EOBN610Ceobsparta1871" connectionRouterKind="Manual" source="//@children.8" target="//@children.7/@sourceConnections.0" targetEnd="//@children.8/@sourceConnections.0/@children.1" sourceEnd="//@children.8/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="74,0" anchorKind="FixedAtEdge"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" location="114,37" size="119,172" targetConnections="//@children.7/@sourceConnections.0 //@children.6/@sourceConnections.1" id="EOBN610Ceobsparta727" packageIndication="1" runTimeClassModel="EOBN610Ceobsparta1253;EOBN610Ceobsparta1244;EOBN610Ceobsparta1256;EOBN610Ceobsparta1241;EOBN610Ceobsparta1250;EOBN610Ceobsparta1246;EOBN610Ceobsparta1248">
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="99,112" viewSorter="Name">
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1256"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1248"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1253"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1244"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1241"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1246"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1250"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" location="410,272" size="130,76" targetConnections="//@children.6/@sourceConnections.0" id="EOBN610Ceobsparta358" packageIndication="1" runTimeClassModel="EOBN610Ceobsparta360">
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="84,16" viewSorter="Name">
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta360"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" connectionRouterKind="Manual" source="//@children.10" target="//@children.12/@sourceConnections.0" targetEnd="//@children.10/@sourceConnections.0/@children.1" sourceEnd="//@children.10/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="65,0" anchorKind="FixedAtEdge"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="570,272" size="131,110" id="EOBN610Ceobsparta716" packageIndication="1" runTimeClassModel="EOBN610Ceobsparta733;EOBN610Ceobsparta717;EOBN610Ceobsparta747;EOBN610Ceobsparta731;EOBN610Ceobsparta752;EOBN610Ceobsparta719;EOBN610Ceobsparta744;EOBN610Ceobsparta721;EOBN610Ceobsparta757;EOBN610Ceobsparta737;EOBN610Ceobsparta735">
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="105,64" viewSorter="Name">
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta721"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta735"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta733"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta731"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" connectionRouterKind="Manual" source="//@children.11" target="//@children.12/@sourceConnections.0" targetEnd="//@children.11/@sourceConnections.0/@children.1" sourceEnd="//@children.11/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="65,0" anchorKind="FixedAtEdge"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="731,272" size="133,190" id="EOBN610Ceobsparta718" packageIndication="1" runTimeClassModel="EOBN610Ceobsparta920;EOBN610Ceobsparta1123;EOBN610Ceobsparta964;EOBN610Ceobsparta1042;EOBN610Ceobsparta932;EOBN610Ceobsparta829;EOBN610Ceobsparta1101;EOBN610Ceobsparta985;EOBN610Ceobsparta813;EOBN610Ceobsparta914;EOBN610Ceobsparta991;EOBN610Ceobsparta861;EOBN610Ceobsparta1048;EOBN610Ceobsparta1081;EOBN610Ceobsparta1107;EOBN610Ceobsparta1020;EOBN610Ceobsparta940;EOBN610Ceobsparta789;EOBN610Ceobsparta1054;EOBN610Ceobsparta958;EOBN610Ceobsparta960;EOBN610Ceobsparta857;EOBN610Ceobsparta1112;EOBN610Ceobsparta1038;EOBN610Ceobsparta1068;EOBN610Ceobsparta1052;EOBN610Ceobsparta845;EOBN610Ceobsparta1099;EOBN610Ceobsparta849;EOBN610Ceobsparta1024;EOBN610Ceobsparta833;EOBN610Ceobsparta1077;EOBN610Ceobsparta899;EOBN610Ceobsparta907;EOBN610Ceobsparta1120;EOBN610Ceobsparta1032;EOBN610Ceobsparta805;EOBN610Ceobsparta1010;EOBN610Ceobsparta841;EOBN610Ceobsparta787;EOBN610Ceobsparta873;EOBN610Ceobsparta1117;EOBN610Ceobsparta853;EOBN610Ceobsparta1034;EOBN610Ceobsparta1056;EOBN610Ceobsparta1040;EOBN610Ceobsparta962;EOBN610Ceobsparta903;EOBN610Ceobsparta901;EOBN610Ceobsparta1018;EOBN610Ceobsparta837;EOBN610Ceobsparta869;EOBN610Ceobsparta825;EOBN610Ceobsparta975;EOBN610Ceobsparta981;EOBN610Ceobsparta865;EOBN610Ceobsparta1109;EOBN610Ceobsparta1046;EOBN610Ceobsparta809;EOBN610Ceobsparta1085;EOBN610Ceobsparta1066;EOBN610Ceobsparta1044;EOBN610Ceobsparta1064;EOBN610Ceobsparta971;EOBN610Ceobsparta791;EOBN610Ceobsparta1114;EOBN610Ceobsparta1070;EOBN610Ceobsparta1062;EOBN610Ceobsparta973;EOBN610Ceobsparta890;EOBN610Ceobsparta1060;EOBN610Ceobsparta918;EOBN610Ceobsparta1015;EOBN610Ceobsparta995;EOBN610Ceobsparta801;EOBN610Ceobsparta795;EOBN610Ceobsparta978;EOBN610Ceobsparta1125;EOBN610Ceobsparta902;EOBN610Ceobsparta1008;EOBN610Ceobsparta929;EOBN610Ceobsparta877;EOBN610Ceobsparta1072;EOBN610Ceobsparta911;EOBN610Ceobsparta1050;EOBN610Ceobsparta889;EOBN610Ceobsparta916;EOBN610Ceobsparta909;EOBN610Ceobsparta1079;EOBN610Ceobsparta905;EOBN610Ceobsparta1006;EOBN610Ceobsparta1091;EOBN610Ceobsparta1028;EOBN610Ceobsparta1089;EOBN610Ceobsparta799;EOBN610Ceobsparta947;EOBN610Ceobsparta1012;EOBN610Ceobsparta1001;EOBN610Ceobsparta1083;EOBN610Ceobsparta1095;EOBN610Ceobsparta1026;EOBN610Ceobsparta897;EOBN610Ceobsparta1104;EOBN610Ceobsparta885;EOBN610Ceobsparta1075;EOBN610Ceobsparta1022;EOBN610Ceobsparta931;EOBN610Ceobsparta1058;EOBN610Ceobsparta968;EOBN610Ceobsparta926;EOBN610Ceobsparta817;EOBN610Ceobsparta893;EOBN610Ceobsparta821;EOBN610Ceobsparta1030;EOBN610Ceobsparta956;EOBN610Ceobsparta922;EOBN610Ceobsparta881;EOBN610Ceobsparta1087;EOBN610Ceobsparta1036;EOBN610Ceobsparta892;EOBN610Ceobsparta928;EOBN610Ceobsparta966">
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="106,144" viewSorter="Name">
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta932"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta940"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta947"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta964"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta962"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta960"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1112"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta958"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta956"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.10/@sourceConnections.0 //@children.11/@sourceConnections.0 //@children.12/@sourceConnections.1" id="EOBN610Ceobsparta1722" connectionRouterKind="GeneralizationManhattan" source="//@children.12" target="//@children.13" targetEnd="//@children.12/@sourceConnections.0/@children.1" sourceEnd="//@children.12/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="66,0" anchorKind="FixedAtEdge"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="56,108" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="EOBN610Ceobsparta1722" connectionRouterKind="Manual" source="//@children.12" target="//@children.12/@sourceConnections.0" targetEnd="//@children.12/@sourceConnections.1/@children.1" sourceEnd="//@children.12/@sourceConnections.1/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="66,0" anchorKind="FixedAtEdge"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" location="579,50" size="113,108" targetConnections="//@children.12/@sourceConnections.0" id="EOBN610Ceobsparta12" packageIndication="1" runTimeClassModel="EOBN610Ceobsparta1434;EOBN610Ceobsparta1432;EOBN610Ceobsparta1436;EOBN610Ceobsparta1438">
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="93,48" viewSorter="Name">
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1438"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1436"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1434"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="914,604" size="141,598" id="EOBN610Ceobsparta9" packageIndication="1" runTimeClassModel="EOBN610Ceobsparta177;EOBN610Ceobsparta256;EOBN610Ceobsparta240;EOBN610Ceobsparta251;EOBN610Ceobsparta192;EOBN610Ceobsparta204;EOBN610Ceobsparta227;EOBN610Ceobsparta215;EOBN610Ceobsparta197;EOBN610Ceobsparta237;EOBN610Ceobsparta239;EOBN610Ceobsparta175;EOBN610Ceobsparta190;EOBN610Ceobsparta221;EOBN610Ceobsparta230;EOBN610Ceobsparta218;EOBN610Ceobsparta224;EOBN610Ceobsparta182;EOBN610Ceobsparta253;EOBN610Ceobsparta209;EOBN610Ceobsparta233;EOBN610Ceobsparta244;EOBN610Ceobsparta178;EOBN610Ceobsparta201;EOBN610Ceobsparta194;EOBN610Ceobsparta247;EOBN610Ceobsparta185;EOBN610Ceobsparta170;EOBN610Ceobsparta235;EOBN610Ceobsparta199;EOBN610Ceobsparta188">
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="121,352" viewSorter="Name">
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta188"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta185"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta239"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta190"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta244"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta256"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta199"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta192"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta251"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta237"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta201"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta194"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta247"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta197"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta253"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta227"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta233"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta230"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta221"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta215"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta224"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta218"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="78,190" viewSorter="Name">
+      <children xsi:type="editmodel:ClassEditModel" size="74,110" id="EOBN610Ceobsparta235" packageIndication="1" runTimeClassModel="EOBN610Ceobsparta261;EOBN610Ceobsparta269;EOBN610Ceobsparta263;EOBN610Ceobsparta271;EOBN610Ceobsparta259;EOBN610Ceobsparta274;EOBN610Ceobsparta262;EOBN610Ceobsparta266">
+        <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+        <children xsi:type="editmodel:CompartmentEditModel" size="54,64" viewSorter="Name">
+          <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta263"/>
+          <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta266"/>
+          <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta269"/>
+          <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta271"/>
+        </children>
+        <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+        <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="EOBN610Ceobsparta2039" connectionRouterKind="Manual" source="//@children.14/@children.2/@children.0" target="//@children.14/@children.2/@children.1" targetEnd="//@children.14/@children.2/@children.0/@sourceConnections.0/@children.1" sourceEnd="//@children.14/@children.2/@children.0/@sourceConnections.0/@children.0">
+          <children xsi:type="editmodel:AssociationEndEditModel"/>
+          <children xsi:type="editmodel:AssociationEndEditModel"/>
+        </sourceConnections>
+      </children>
+      <children xsi:type="editmodel:InterfaceEditModel" size="78,76" targetConnections="//@children.14/@children.2/@children.0/@sourceConnections.0" id="EOBN610Ceobsparta240" packageIndication="1" runTimeClassModel="EOBN610Ceobsparta307">
+        <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+        <children xsi:type="editmodel:CompartmentEditModel" size="54,16" viewSorter="Name">
+          <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta307"/>
+        </children>
+        <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+      </children>
+    </children>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.18/@sourceConnections.0 //@children.17/@sourceConnections.0" connectionRouterKind="GeneralizationManhattan" source="//@children.14" target="//@children.16" targetEnd="//@children.14/@sourceConnections.0/@children.1" sourceEnd="//@children.14/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="70,0" anchorKind="FixedAtEdge"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="77,414" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" location="1121,50" size="83,40" targetConnections="//@children.16/@sourceConnections.0" id="EOBN610Ceobsparta287" packageIndication="1" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="1085,140" size="155,414" targetConnections="//@children.14/@sourceConnections.0" id="EOBN610Ceobsparta58" packageIndication="1" runTimeClassModel="EOBN610Ceobsparta616;EOBN610Ceobsparta635;EOBN610Ceobsparta613;EOBN610Ceobsparta588;EOBN610Ceobsparta632;EOBN610Ceobsparta575;EOBN610Ceobsparta591;EOBN610Ceobsparta563;EOBN610Ceobsparta608;EOBN610Ceobsparta622;EOBN610Ceobsparta597;EOBN610Ceobsparta565;EOBN610Ceobsparta602;EOBN610Ceobsparta625;EOBN610Ceobsparta594;EOBN610Ceobsparta578;EOBN610Ceobsparta627;EOBN610Ceobsparta599;EOBN610Ceobsparta586;EOBN610Ceobsparta604;EOBN610Ceobsparta584;EOBN610Ceobsparta580;EOBN610Ceobsparta569;EOBN610Ceobsparta619;EOBN610Ceobsparta567;EOBN610Ceobsparta571;EOBN610Ceobsparta573;EOBN610Ceobsparta582;EOBN610Ceobsparta629">
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="135,368" viewSorter="Name">
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta625"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta586"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta584"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta578"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta580"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta582"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta594"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta608"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta573"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta597"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta599"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta588"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta575"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta591"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta629"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta627"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta632"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta602"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta619"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta613"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta622"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta616"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta604"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="EOBN610Ceobsparta1697" connectionRouterKind="Manual" source="//@children.16" target="//@children.15" targetEnd="//@children.16/@sourceConnections.0/@children.1" sourceEnd="//@children.16/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="1270,604" size="141,286" id="EOBN610Ceobsparta59" packageIndication="1" runTimeClassModel="EOBN610Ceobsparta1454;EOBN610Ceobsparta1476;EOBN610Ceobsparta1456;EOBN610Ceobsparta1488;EOBN610Ceobsparta1482;EOBN610Ceobsparta1451;EOBN610Ceobsparta1447;EOBN610Ceobsparta1491;EOBN610Ceobsparta1468;EOBN610Ceobsparta1479;EOBN610Ceobsparta1470;EOBN610Ceobsparta1473;EOBN610Ceobsparta1448;EOBN610Ceobsparta1459;EOBN610Ceobsparta1485;EOBN610Ceobsparta1462">
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="121,240" viewSorter="Name">
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1448"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1451"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1462"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1459"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1456"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1454"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1491"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1468"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1470"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1476"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1473"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1485"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1479"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1488"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta1482"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="EOBN610Ceobsparta60" connectionRouterKind="Manual" source="//@children.17" target="//@children.14/@sourceConnections.0" targetEnd="//@children.17/@sourceConnections.0/@children.1" sourceEnd="//@children.17/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="70,0" anchorKind="FixedAtEdge"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="1085,604" size="155,478" id="EOBN610Ceobsparta6" packageIndication="1" runTimeClassModel="EOBN610Ceobsparta421;EOBN610Ceobsparta419;EOBN610Ceobsparta458;EOBN610Ceobsparta386;EOBN610Ceobsparta407;EOBN610Ceobsparta417;EOBN610Ceobsparta443;EOBN610Ceobsparta440;EOBN610Ceobsparta428;EOBN610Ceobsparta390;EOBN610Ceobsparta382;EOBN610Ceobsparta486;EOBN610Ceobsparta401;EOBN610Ceobsparta388;EOBN610Ceobsparta483;EOBN610Ceobsparta412;EOBN610Ceobsparta461;EOBN610Ceobsparta450;EOBN610Ceobsparta434;EOBN610Ceobsparta477;EOBN610Ceobsparta474;EOBN610Ceobsparta398;EOBN610Ceobsparta464;EOBN610Ceobsparta446;EOBN610Ceobsparta454;EOBN610Ceobsparta471;EOBN610Ceobsparta384;EOBN610Ceobsparta403;EOBN610Ceobsparta468;EOBN610Ceobsparta410;EOBN610Ceobsparta431;EOBN610Ceobsparta396;EOBN610Ceobsparta405;EOBN610Ceobsparta380;EOBN610Ceobsparta394;EOBN610Ceobsparta437;EOBN610Ceobsparta424;EOBN610Ceobsparta415;EOBN610Ceobsparta480">
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="135,432" viewSorter="Name">
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta398"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta401"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta434"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta431"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta437"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta403"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta407"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta405"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta483"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta421"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta419"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta415"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta417"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta410"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta428"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta443"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta446"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta450"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta424"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta412"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta458"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta461"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta474"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta477"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta468"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta480"/>
+      <children xsi:type="editmodel:MethodEditModel" id="EOBN610Ceobsparta471"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" viewSorter="Name"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" connectionRouterKind="Manual" source="//@children.18" target="//@children.14/@sourceConnections.0" targetEnd="//@children.18/@sourceConnections.0/@children.1" sourceEnd="//@children.18/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="77,0" anchorKind="FixedAtEdge"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+  </children>
+</editmodel:ClassDiagramEditModel>

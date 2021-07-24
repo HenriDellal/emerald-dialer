@@ -126,15 +126,25 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		list.setAdapter(logEntryAdapter);
 		list.setOnItemClickListener(this);
 		list.setOnItemLongClickListener(this);
-		Context t9LocaleContext = getT9LocaleContext(preferences);
+
+		String t9LocalePref = preferences.getString("t9_locale", "system");
+		Context t9LocaleContext = getT9LocaleContext(t9LocalePref);
+		Locale t9Locale;
 		if (null != t9LocaleContext) {
 			Resources t9Resources = t9LocaleContext.getResources();
 			for (int i = 2; i <= 9; i++) {
 				((NumpadButton)(findViewById(buttonIds[i])))
 						.setLetters(t9Resources.getString(numpadLettersIds[i-2]));
 			}
+			t9Locale = new Locale(t9LocalePref, t9LocalePref);
+		} else {
+			t9Locale = Locale.getDefault();
 		}
+
 		contactsEntryAdapter = new ContactsEntryAdapter(this, mAsyncContactImageLoader, t9LocaleContext);
+		if (t9Locale.getLanguage().startsWith("zh")) {
+			contactsEntryAdapter.setFilteringMode(ContactsEntryAdapter.FILTERING_MODE_PINYIN);
+		}
 		initPhysicalKeyboard();
 		initLoaders();
 	}
@@ -150,14 +160,12 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		}
 	}
 
-	private Context getT9LocaleContext(SharedPreferences preferences) {
-		String t9Locale = preferences.getString("t9_locale", "system");
+	private Context getT9LocaleContext(String t9LocalePref) {
 		Context t9LocaleContext = null;
-		if (!t9Locale.equals("system")) {
+		if (!t9LocalePref.equals("system")) {
 			Configuration t9Configuration = getResources().getConfiguration();
-			t9Configuration.setLocale(new Locale(t9Locale, t9Locale));
+			t9Configuration.setLocale(new Locale(t9LocalePref, t9LocalePref));
 			t9LocaleContext = createConfigurationContext(t9Configuration);
-
 		}
 		return t9LocaleContext;
 	}
@@ -166,7 +174,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		int keyboardType = getResources().getConfiguration().keyboard;
 		if (keyboardType == Configuration.KEYBOARD_QWERTY) {
 			numberField.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
-			contactsEntryAdapter.setRawFiltering(true);
+			contactsEntryAdapter.setFilteringMode(ContactsEntryAdapter.FILTERING_MODE_RAW);
 			findViewById(R.id.btn_toggle_numpad).setVisibility(View.INVISIBLE);
 			findViewById(R.id.numpad).setVisibility(View.GONE);
 		} else if (keyboardType == Configuration.KEYBOARD_12KEY) {

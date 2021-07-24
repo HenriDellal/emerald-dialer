@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="glass_app_version" translatable="false">1.0.9</string>
+	<string name="glass_app_version" translatable="false">1.0.10</string>
 	<string name="glass_text" tools:ignore="MissingTranslation">Emerald Dialer (v%s)
 \n
 \nCopyright 2021 Anri Dellal
@@ -46,6 +46,9 @@
 	<string-array name="glass_projects_names" translatable="false">
 		<item>Dialer2</item>
 		<item>glass</item>
+		<item>pinyin4j</item>
+		<item>PinyinSearch</item>
+		<item>sparta-xml</item>
 	</string-array>
 
 	<string-array name="glass_projects_info" translatable="false">
@@ -53,11 +56,20 @@
 \nLicensed under the Apache License 2.0.</item>
 		<item>Copyright 2019 Anri Dellal
 \nLicensed under the Apache License 2.0.</item>
+		<item>Copyright 2006 Li Min
+\nLicensed under GNU GPL.</item>
+		<item>Copyright 2014 handsomezhou
+\nLicensed under the Apache License 2.0.</item>
+		<item>Copyright 2002 Hewlett-Packard Company.
+\nLicensed under GNU LGPL-2.1-or-later</item>
 	</string-array>
 
 	<string-array name="glass_projects_urls" translatable="false">
 		<item>https://bitbucket.org/dnaq/dialer2</item>
 		<item>https://github.com/HenriDellal/glass</item>
+		<item>http://pinyin4j.sourceforge.net/</item>
+		<item>https://github.com/handsomezhou/PinyinSearchLibrary</item>
+		<item>https://sourceforge.net/projects/sparta-xml/</item>
 	</string-array>
 
 </resources>
