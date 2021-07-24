@@ -1,19 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+	<string name="glass_app_version" translatable="false">1.0.9</string>
 	<string name="glass_text" tools:ignore="MissingTranslation">Emerald Dialer (v%s)
 \n
-\n版权所有 2018-2019 Anri Dellal
+\n版权所有 2021 Anri Dellal
 \n
 \n仅在 GPL-v3.0 下授权
 \n想帮忙吗？通过 GitHub 提交错误和提交建议 (https://www.github.com/HenriDellal/emerald-dialer/issues) 或发一封邮件到 anridellal@gmail.com
 </string>
+	<string name="glass_feedback_url" translatable="false"></string>
+	<string name="glass_source_code_url" translatable="false">https://github.com/HenriDellal/emerald-dialer</string>
+	<string name="glass_support_url" translatable="false"></string>
+
+	<string-array name="glass_contributors_names" translatable="false">
+		<item>FliegendeWurst</item>
+		<item>Unbranched</item>
+		<item>Unknowtech</item>
+		<item>senpi0</item>
+		<item>Or Schapira</item>
+		<item>sr093906</item>
+		<item>tdafos</item>
+	</string-array>
+
 	<string-array name="glass_contributors_info">
 		<item>德语翻译</item>
 		<item>意大利语翻译</item>
 		<item>法语翻译</item>
 		<item>巴西葡萄牙语翻译</item>
+		<item>希伯来语 T9 键盘映射</item>
 		<item>简体中文翻译</item>
+		<item>希腊语翻译</item>
+	</string-array>
+
+	<string-array name="glass_contributors_urls" translatable="false">
+		<item>https://github.com/FliegendeWurst</item>
+		<item>https://github.com/unbranched</item>
+		<item>https://github.com/unknowtech</item>
+		<item>https://github.com/senpi0</item>
+		<item>https://github.com/schapira</item>
+		<item>https://github.com/sr093906</item>
+		<item>https://github.com/tdafos</item>
+	</string-array>
+
+	<string-array name="glass_projects_names" translatable="false">
+		<item>Dialer2</item>
+		<item>glass</item>
+	</string-array>
+
+	<string-array name="glass_projects_info" translatable="false">
+		<item>Copyright 2011 dnaq productions
+\nLicensed under the Apache License 2.0.</item>
+		<item>Copyright 2019 Anri Dellal
+\nLicensed under the Apache License 2.0.</item>
+	</string-array>
+
+	<string-array name="glass_projects_urls" translatable="false">
+		<item>https://bitbucket.org/dnaq/dialer2</item>
+		<item>https://github.com/HenriDellal/glass</item>
 	</string-array>
 
 </resources>
