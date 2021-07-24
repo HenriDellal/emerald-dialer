@@ -3,7 +3,7 @@
 
 	<string name="glass_text" tools:ignore="MissingTranslation">Emerald Dialer (v%s)
 \n
-\n版权所有 2018-2019 Anri Dellal
+\n版权所有 2021 Anri Dellal
 \n
 \n仅在 GPL-v3.0 下授权
 \n想帮忙吗？通过 GitHub 提交错误和提交建议 (https://www.github.com/HenriDellal/emerald-dialer/issues) 或发一封邮件到 anridellal@gmail.com
@@ -13,7 +13,8 @@
 		<item>意大利语翻译</item>
 		<item>法语翻译</item>
 		<item>巴西葡萄牙语翻译</item>
+		<item>希伯来语 T9 键盘映射</item>
 		<item>简体中文翻译</item>
+		<item>希腊语翻译</item>
 	</string-array>
-
 </resources>
