@@ -53,18 +53,19 @@ public class QwertyUtil {
 		//search by pinyin characters
 		int pinyinUnitsLength = pinyinSearchUnit.getPinyinUnits().size();
 		StringBuffer searchBuffer = new StringBuffer();
+		boolean found = false;
 		for (int i = 0; i < pinyinUnitsLength; i++) {
 			int j = 0;
 			pinyinSearchUnit.getMatchKeyword().delete(0,pinyinSearchUnit.getMatchKeyword().length());
 			searchBuffer.delete(0, searchBuffer.length());
 			searchBuffer.append(searchLowerCase);
-			boolean found = findPinyinUnits(pinyinSearchUnit.getPinyinUnits(), i, j, pinyinSearchUnit.getBaseData(),searchBuffer, pinyinSearchUnit.getMatchKeyword());
-			if (true == found) {
-				return true;
+			found = findPinyinUnits(pinyinSearchUnit.getPinyinUnits(), i, j, pinyinSearchUnit.getBaseData(),searchBuffer, pinyinSearchUnit.getMatchKeyword());
+			if (found) {
+				break;
 			}
 		}
 
-		return false;
+		return found;
 	}
 
 	/**
@@ -106,7 +107,7 @@ public class QwertyUtil {
 				searchBuffer.delete(0, 1);// delete the match character
 				matchKeyword.append(baseData.charAt(pyUnit.getStartPosition()));
 				boolean found = findPinyinUnits(pinyinUnits,pinyinUnitIndex + 1, 0, baseData, searchBuffer,matchKeyword);
-				if (true == found) {
+				if (found) {
 					return true;
 				} else {
 					searchBuffer.insert(0, pinyinBaseUnit.getPinyin().charAt(0));
@@ -126,7 +127,7 @@ public class QwertyUtil {
 				searchBuffer.delete(0, pinyinBaseUnit.getPinyin().length());
 				matchKeyword.append(baseData.charAt(pyUnit.getStartPosition()));
 				boolean found = findPinyinUnits(pinyinUnits,pinyinUnitIndex+1, 0, baseData, searchBuffer,matchKeyword);
-				if (true == found) {
+				if (found) {
 					return true;
 				} else {
 					searchBuffer.insert(0, pinyinBaseUnit.getPinyin());
@@ -134,7 +135,7 @@ public class QwertyUtil {
 				}
 			} else { // mismatch
 				boolean found = findPinyinUnits(pinyinUnits, pinyinUnitIndex,qwertyPinyinUnitIndex+1, baseData, searchBuffer,matchKeyword);
-				if (found == true) {
+				if (found) {
 					return true;
 				}
 			}
@@ -152,7 +153,7 @@ public class QwertyUtil {
 				searchBuffer.delete(0, pinyinBaseUnit.getPinyin().length());
 				matchKeyword.append(baseData.substring(startIndex+pyUnit.getStartPosition(),startIndex+pyUnit.getStartPosition()+pinyinBaseUnit.getPinyin().length()));
 				boolean found = findPinyinUnits(pinyinUnits,pinyinUnitIndex+1, 0, baseData, searchBuffer,matchKeyword);
-				if (true == found) {
+				if (found) {
 					return true;
 				} else {
 					searchBuffer.insert(0, pinyinBaseUnit.getPinyin());
@@ -175,7 +176,7 @@ public class QwertyUtil {
 							searchBuffer.delete(0, subStr.length());
 							matchKeyword.append(baseData.substring(i+pyUnit.getStartPosition(),i+pyUnit.getStartPosition()+subStr.length()));
 							boolean found = findPinyinUnits(pinyinUnits,pinyinUnitIndex+1, 0, baseData,searchBuffer, matchKeyword);
-							if (true == found) {
+							if (found) {
 								return true;
 							} else {
 								searchBuffer.insert(0, pinyinBaseUnit.getPinyin().substring(i));
@@ -188,14 +189,14 @@ public class QwertyUtil {
 
 					// in fact,if pyUnit.isPinyin()==false, pyUnit.getQwertyPinyinUnitIndex().size()==1. The function of findPinyinUnits() will return false.
 					boolean found = findPinyinUnits(pinyinUnits,pinyinUnitIndex, qwertyPinyinUnitIndex + 1, baseData,searchBuffer, matchKeyword);
-					if (true == found) {
+					if (found) {
 						return true;
 					}
 				}
 			} else { // mismatch
 				// in fact,if pyUnit.isPinyin()==false, pyUnit.getQwertyPinyinUnitIndex().size()==1. The function of findPinyinUnits() will return false.
 				boolean found = findPinyinUnits(pinyinUnits, pinyinUnitIndex,qwertyPinyinUnitIndex+1, baseData, searchBuffer,matchKeyword);
-				if (true == found) {
+				if (found) {
 					return true;
 				}
 			}

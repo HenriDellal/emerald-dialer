@@ -36,7 +36,9 @@ public class PinyinUtil {
 	 * @param pinyinSearchUnit
 	 */
 	public static void parse(PinyinSearchUnit pinyinSearchUnit) {
-		if ((null==pinyinSearchUnit)||(CommonUtil.isEmpty(pinyinSearchUnit.getBaseData()))||(null==pinyinSearchUnit.getPinyinUnits())) {
+		if ((null == pinyinSearchUnit) || null == pinyinSearchUnit.getBaseData()
+				|| pinyinSearchUnit.getBaseData().length() == 0
+				|| null == pinyinSearchUnit.getPinyinUnits()) {
 			return;
 		}
 
@@ -66,7 +68,7 @@ public class PinyinUtil {
 			}
 
 			if (null == pinyinStr) {
-				if (true == lastChineseCharacters) {
+				if (lastChineseCharacters) {
 					pyUnit = new PinyinUnit();
 					lastChineseCharacters = false;
 					startPosition = i;
@@ -74,7 +76,7 @@ public class PinyinUtil {
 				}
 				nonPinyinString.append(ch);
 			} else {
-				if (false == lastChineseCharacters) {
+				if (!lastChineseCharacters) {
 					// add continuous non-kanji characters to PinyinUnit
 					originalString = nonPinyinString.toString();
 					String[] str = { nonPinyinString.toString() };
@@ -92,13 +94,12 @@ public class PinyinUtil {
 			}
 		}
 
-		if (false == lastChineseCharacters) {
+		if (!lastChineseCharacters) {
 			// add continuous non-kanji characters to PinyinUnit
 			originalString = nonPinyinString.toString();
 			String[] str = { nonPinyinString.toString() };
 			addPinyinUnit(pinyinSearchUnit.getPinyinUnits(), pyUnit, false, originalString, str,startPosition);
 			nonPinyinString.delete(0, nonPinyinString.length());
-			lastChineseCharacters = true;
 		}
 
 	}
@@ -194,12 +195,11 @@ public class PinyinUtil {
 			}
 			
 			for(PinyinUnit pu:pinyinUnit){
-				if(pu.isPinyin()){
-					sortKeyBuffer.append(pu.getPinyinBaseUnitIndex().get(0).getPinyin()).append(splitSymbol);
-					sortKeyBuffer.append(pu.getPinyinBaseUnitIndex().get(0).getOriginalString()).append(splitSymbol);
-				}else{
-					sortKeyBuffer.append(pu.getPinyinBaseUnitIndex().get(0).getOriginalString()).append(splitSymbol);
+				PinyinBaseUnit pinyinBaseUnit = pu.getPinyinBaseUnitIndex().get(0);
+				if(pu.isPinyin()) {
+					sortKeyBuffer.append(pinyinBaseUnit.getPinyin()).append(splitSymbol);
 				}
+				sortKeyBuffer.append(pinyinBaseUnit.getOriginalString()).append(splitSymbol);
 			}
 			
 			return sortKeyBuffer.toString();
@@ -222,7 +222,7 @@ public class PinyinUtil {
 			e.printStackTrace();
 		}
 		
-		return (null==pinyinStr)?(false):(true);
+		return null != pinyinStr;
 	}
 	
 	private static void addPinyinUnit(List<PinyinUnit> pinyinUnit,PinyinUnit pyUnit, boolean pinyin, String originalString,String[] string, int startPosition) {
@@ -233,9 +233,6 @@ public class PinyinUtil {
 
 		initPinyinUnit(pyUnit, pinyin, originalString, string, startPosition);
 		pinyinUnit.add(pyUnit);
-
-		return;
-
 	}
 
 	private static void initPinyinUnit(PinyinUnit pinyinUnit, boolean pinyin,String originalString, String[] string, int startPosition) {
@@ -252,7 +249,7 @@ public class PinyinUtil {
 
 		PinyinBaseUnit pinyinBaseUnit = null;
 
-		if (false == pinyin || strLength <= 1) {// no more than one pinyin
+		if (!pinyin || strLength <= 1) {// no more than one pinyin
 			for (i = 0; i < strLength; i++) {
 				pinyinBaseUnit = new PinyinBaseUnit();
 				initPinyinBaseUnit(pinyinBaseUnit, originalString, string[i]);
@@ -287,8 +284,8 @@ public class PinyinUtil {
 			return;
 		}
 
-		pinyinBaseUnit.setOriginalString(new String(originalString));
-		pinyinBaseUnit.setPinyin(new String(pinyin));
+		pinyinBaseUnit.setOriginalString(originalString);
+		pinyinBaseUnit.setPinyin(pinyin);
 		int pinyinLength = pinyin.length();
 		StringBuffer numBuffer = new StringBuffer();
 		numBuffer.delete(0, numBuffer.length());
@@ -298,9 +295,7 @@ public class PinyinUtil {
 			numBuffer.append(ch);
 		}
 
-		pinyinBaseUnit.setNumber(new String(numBuffer.toString()));
+		pinyinBaseUnit.setNumber(numBuffer.toString());
 		numBuffer.delete(0, numBuffer.length());
-
-		return;
 	}
 }
