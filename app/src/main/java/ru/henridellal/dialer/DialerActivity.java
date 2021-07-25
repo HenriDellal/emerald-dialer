@@ -141,7 +141,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 			t9Locale = Locale.getDefault();
 		}
 
-		contactsEntryAdapter = new ContactsEntryAdapter(this, mAsyncContactImageLoader, t9LocaleContext);
+		contactsEntryAdapter = new ContactsEntryAdapter(this, mAsyncContactImageLoader, t9LocaleContext, t9Locale);
 		if (t9Locale.getLanguage().startsWith("zh")) {
 			contactsEntryAdapter.setFilteringMode(ContactsEntryAdapter.FILTERING_MODE_PINYIN);
 		}

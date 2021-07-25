@@ -69,9 +69,10 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 	private AsyncContactImageLoader mAsyncContactImageLoader;
 	private Cursor mCursor;
 	private ContactsFilter mFilter;
+	private Locale t9Locale;
 	private SoftReference<DialerActivity> activityRef;
 	
-	public ContactsEntryAdapter(DialerActivity activity, AsyncContactImageLoader asyncContactImageLoader, Context t9LocaleContext) {
+	public ContactsEntryAdapter(DialerActivity activity, AsyncContactImageLoader asyncContactImageLoader, Context t9LocaleContext, Locale t9Locale) {
 		super();
 		activityRef = new SoftReference<DialerActivity>(activity);
 		initT9NumberPatterns(null != t9LocaleContext ?
@@ -81,6 +82,7 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 		mAsyncContactImageLoader = asyncContactImageLoader;
 		span = new ForegroundColorSpan(activity.getResources().getColor(R.color.green_600));
 		boldStyleSpan = new StyleSpan(Typeface.BOLD);
+		this.t9Locale = t9Locale;
 	}
 	
 	private void initT9NumberPatterns(Resources res) {
@@ -165,7 +167,7 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 			viewCache.contactName.setText(name);
 		}
 		String phoneNumber = mCursor.getString(COLUMN_NUMBER);
-		if (!TextUtils.isEmpty(phoneNumber) && queryResult.numberStart != queryResult.numberEnd) {
+		if (null != phoneNumber && !TextUtils.isEmpty(phoneNumber) && queryResult.numberStart != queryResult.numberEnd) {
 			SpannableString numberSpanned = new SpannableString(formatNumber(phoneNumber));
 			numberSpanned.setSpan(span, queryResult.numberStart, queryResult.numberEnd, 0);
 			viewCache.phoneNumber.setText(numberSpanned);
@@ -200,7 +202,9 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 	}
 	
 	public String formatNumber(String number) {
-		return PhoneNumberUtils.formatNumber(number, Locale.getDefault().getCountry());
+		PhoneNumberUtils.normalizeNumber(number);
+		String result = PhoneNumberUtils.formatNumber(number, t9Locale.getCountry());
+		return (null != result) ? result : number;
 	}
 	
 	public String formContactNameRegex(String s) {
