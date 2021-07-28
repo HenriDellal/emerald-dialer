@@ -104,7 +104,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		setContentView(R.layout.main);
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		if (!preferences.getBoolean("privacy_policy", false)) {
-			showPrivacyPolicyDialog(preferences.edit());
+			PrivacyPolicyDialog.show(this, preferences.edit());
 		}
 		checkPermissions();
 		numberField = (EditText)findViewById(R.id.number_field);
@@ -119,7 +119,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		TypedValue outValue = new TypedValue();
 		getTheme().resolveAttribute(R.attr.drawableContactImage, outValue, true);
 		int defaultContactImageId = outValue.resourceId;
-		
+
 		mAsyncContactImageLoader = new AsyncContactImageLoader(this, getResources().getDrawable(defaultContactImageId, getTheme()));
 		logEntryAdapter = new LogEntryAdapter(this, null, mAsyncContactImageLoader);
 		list.setAdapter(logEntryAdapter);
@@ -236,7 +236,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 			case R.id.btn_numpad_star: addSymbolInNumber('*'); break;
 			case R.id.btn_numpad_hash: addSymbolInNumber('#'); break;
 			case R.id.btn_remove_number: removeSymbolInNumber(); break;
-			case R.id.btn_toggle_numpad: toggleNumpad(); break;
+			case R.id.btn_toggle_numpad: Numpad.toggle(this); break;
 			case R.id.btn_call: callNumber(numberField.getText().toString()); break;
 			case R.id.btn_add_contact: createContact(numberField.getText().toString()); break;
 			case R.id.btn_options: showPopupMenu(findViewById(R.id.btn_options)); break;
@@ -286,18 +286,13 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	}
 	
 	private void parseIntent(Intent intent) {
-		if (Intent.ACTION_VIEW.equals(intent.getAction())
-				|| Intent.ACTION_DIAL.equals(intent.getAction())) {
-			Uri data = intent.getData();
-			if (data != null) {
-				String scheme = data.getScheme();
-				if (scheme != null && scheme.equals("tel")) {
-					String number = data.getSchemeSpecificPart();
-					if (number != null) {
-						dialNumber(number);
-					}
-				}
-			}
+		Uri data;
+		String action = intent.getAction();
+		boolean isActionCorrect = Intent.ACTION_VIEW.equals(action) || Intent.ACTION_DIAL.equals(action);
+		if (isActionCorrect
+				&& null != (data = intent.getData())
+				&& "tel".equals(data.getScheme())) {
+			dialNumber(data.getSchemeSpecificPart());
 		}
 	}
 	
@@ -349,30 +344,6 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 			findViewById(buttonIds[i]).setOnLongClickListener(this);
 		}
 	}
-	public boolean isNumpadVisible() {
-		View panel = findViewById(R.id.panel_number_input);
-		return panel.getVisibility() == View.VISIBLE;
-	}
-
-	private void toggleNumpad() {
-		if (isNumpadVisible()) {
-			hideNumpad();
-		} else {
-			showNumpad();
-		}
-	}
-	
-	public void hideNumpad() {
-		findViewById(R.id.panel_number_input).setVisibility(View.GONE);
-		findViewById(R.id.numpad).setVisibility(View.GONE);
-		findViewById(R.id.btn_call).setVisibility(View.INVISIBLE);
-	}
-	
-	private void showNumpad() {
-		findViewById(R.id.panel_number_input).setVisibility(View.VISIBLE);
-		findViewById(R.id.numpad).setVisibility(View.VISIBLE);
-		findViewById(R.id.btn_call).setVisibility(View.VISIBLE);
-	}
 	
 	private void openMessagingApp(String number) {
 		Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -404,7 +375,10 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	}
 	
 	private void dialNumber(String number) {
-		showNumpad();
+		if (null == number)
+			return;
+
+		Numpad.show(this);
 		numberField.setText(number);
 		numberField.setCursorVisible(true);
 	}
@@ -425,7 +399,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		list.setAdapter(logEntryAdapter);
 	}
 	
-	private void clearCallLog() {
+	public void clearCallLog() {
 		getContentResolver().delete(Calls.CONTENT_URI, null, null);
 		logEntryAdapter.update();
 	}
@@ -451,49 +425,10 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		builder.setMessage(deviceId);
 		builder.create().show();
 	}
-
-	private void showPrivacyPolicyDialog(final SharedPreferences.Editor editor) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle(getResources().getString(R.string.privacy_policy_title));
-		builder.setMessage(getResources().getString(R.string.privacy_policy));
-		builder.setPositiveButton(R.string.accept,
-			new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface di, int which) {
-					editor.putBoolean("privacy_policy", true).commit();
-				}
-			});
-		builder.setNegativeButton(android.R.string.no,
-			new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface di, int which) {
-					finish();
-				}
-			});
-		
-		builder.create().show();
-	}
-	
-	private void clearCallLogDialog() {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(getResources().getString(R.string.clear_call_log_question));
-		builder.setPositiveButton(android.R.string.yes,
-			new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface di, int which) {
-					clearCallLog();
-				}
-			});
-		builder.setNegativeButton(android.R.string.no,
-			new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface di, int which) {
-					
-				}
-			});
-		
-		builder.create().show();
-	}
 	
 	private void showInformationDialog(long id) {
 		Cursor cursor = getContentResolver().query(Calls.CONTENT_URI, CALL_INFORMATION_PROJECTION, Calls._ID+"=?", new String[]{((Long)id).toString()}, null);
-		if (cursor.getCount() == 0 || null == cursor)
+		if (null == cursor || cursor.getCount() == 0)
 			return;
 
 		cursor.moveToNext();
@@ -645,7 +580,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	public boolean onMenuItemClick(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.clear_call_log:
-				clearCallLogDialog();
+				ClearCallLogDialog.show(this);
 				return true;
 			case R.id.fast_dial_preferences:
 				startActivity(new Intent(this, SpeedDialActivity.class));

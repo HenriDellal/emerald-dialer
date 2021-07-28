@@ -16,8 +16,8 @@ public class OnCallLogScrollListener implements OnScrollListener {
 	}
 
 	public void onScrollStateChanged(AbsListView view, int scrollState) {
-		if (scrollState != SCROLL_STATE_IDLE && activity.isNumpadVisible()) {
-			activity.hideNumpad();
+		if (scrollState != SCROLL_STATE_IDLE && Numpad.isVisible(activity)) {
+			Numpad.hide(activity);
 		}
 	}
 }
