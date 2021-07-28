@@ -116,7 +116,6 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		numberField.addTextChangedListener(this);
 		list = (ListView) findViewById(R.id.log_entries_list);
 		onCallLogScrollListener = new OnCallLogScrollListener(this);
-		list.setOnScrollListener(onCallLogScrollListener);
 		TypedValue outValue = new TypedValue();
 		getTheme().resolveAttribute(R.attr.drawableContactImage, outValue, true);
 		int defaultContactImageId = outValue.resourceId;
@@ -147,6 +146,19 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		}
 		initPhysicalKeyboard();
 		initLoaders();
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		list.setOnScrollListener(null);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		boolean isPortrait = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+		list.setOnScrollListener(isPortrait ? onCallLogScrollListener : null);
 	}
 
 	private void checkPermissions() {

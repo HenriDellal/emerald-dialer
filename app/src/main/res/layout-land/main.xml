@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent" >
+	<ListView
+		android:id="@+id/log_entries_list"
+		android:layout_width="0dp"
+		android:layout_height="fill_parent"
+		android:layout_weight="3"
+		android:fastScrollEnabled="true"
+	/>
+	<RelativeLayout
+		android:layout_width="0dp"
+		android:layout_weight="2"
+		android:orientation="vertical"
+		android:layout_height="match_parent">
+		<RelativeLayout
+			android:id="@id/panel_number_input"
+			android:layout_width="fill_parent"
+			android:layout_height="48dp"
+			android:layout_alignParentTop="true"
+			android:background="?attr/drawablePanel" >
+			<ImageButton
+				android:layout_alignParentLeft="true"
+				android:layout_width="48dp"
+				android:layout_height="48dp"
+				android:padding="8dp"
+				android:id="@+id/btn_add_contact"
+				android:src="?attr/drawableAddContact"
+				android:background="?attr/drawableGenericButton" />
+			<ImageButton
+				android:layout_alignParentRight="true"
+				android:layout_width="48dp"
+				android:layout_height="48dp"
+				android:padding="8dp"
+				android:id="@+id/btn_remove_number"
+				android:src="?attr/drawableBackspace"
+				android:background="?attr/drawableGenericButton" />
+			<EditText
+				android:textSize="22sp"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_toRightOf="@id/btn_add_contact"
+				android:layout_toLeftOf="@id/btn_remove_number"
+				android:id="@+id/number_field"
+				android:inputType="phone"
+				android:textStyle="bold"
+				android:textIsSelectable="true"
+				android:layout_marginTop="8dp"
+				android:background="@android:color/transparent"
+				android:gravity="center"
+				/>
+		</RelativeLayout>
+		<TableLayout
+			android:id="@id/numpad"
+			android:layout_marginLeft="@dimen/numpad_side_margin"
+			android:layout_marginRight="@dimen/numpad_side_margin"
+			android:layout_width="fill_parent"
+			android:layout_gravity="center"
+			android:layout_height="0dp"
+			android:layout_below="@id/panel_number_input"
+			android:layout_above="@id/panel_bottom"
+			android:stretchColumns="*" >
+			<TableRow
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content" >
+				<ru.henridellal.dialer.NumpadButton
+					android:id="@+id/btn_numpad_1"
+					app:number="1"
+					app:letters="@string/numpad_1"
+					android:background="?attr/drawableNumpadButton" />
+				<ru.henridellal.dialer.NumpadButton
+					android:id="@+id/btn_numpad_2"
+					app:number="2"
+					app:letters="@string/numpad_2"
+					android:background="?attr/drawableNumpadButton" />
+				<ru.henridellal.dialer.NumpadButton
+					android:id="@+id/btn_numpad_3"
+					app:number="3"
+					app:letters="@string/numpad_3"
+					android:background="?attr/drawableNumpadButton" />
+			</TableRow>
+			<TableRow
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content" >
+				<ru.henridellal.dialer.NumpadButton
+					android:id="@+id/btn_numpad_4"
+					app:number="4"
+					app:letters="@string/numpad_4"
+					android:background="?attr/drawableNumpadButton" />
+				<ru.henridellal.dialer.NumpadButton
+					android:id="@+id/btn_numpad_5"
+					app:number="5"
+					app:letters="@string/numpad_5"
+					android:background="?attr/drawableNumpadButton" />
+				<ru.henridellal.dialer.NumpadButton
+					android:id="@+id/btn_numpad_6"
+					app:number="6"
+					app:letters="@string/numpad_6"
+					android:background="?attr/drawableNumpadButton" />
+			</TableRow>
+			<TableRow
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content" >
+				<ru.henridellal.dialer.NumpadButton
+					android:id="@+id/btn_numpad_7"
+					app:number="7"
+					app:letters="@string/numpad_7"
+					android:background="?attr/drawableNumpadButton" />
+				<ru.henridellal.dialer.NumpadButton
+					android:id="@+id/btn_numpad_8"
+					app:number="8"
+					app:letters="@string/numpad_8"
+					android:background="?attr/drawableNumpadButton" />
+				<ru.henridellal.dialer.NumpadButton
+					android:id="@+id/btn_numpad_9"
+					app:number="9"
+					app:letters="@string/numpad_9"
+					android:background="?attr/drawableNumpadButton" />
+			</TableRow>
+			<TableRow
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content" >
+				<ru.henridellal.dialer.NumpadButton
+					android:id="@+id/btn_numpad_star"
+					app:number="@string/numpad_star"
+					android:background="?attr/drawableNumpadButton" />
+				<ru.henridellal.dialer.NumpadButton
+					android:id="@+id/btn_numpad_0"
+					app:number="0"
+					app:letters="@string/numpad_0"
+					android:background="?attr/drawableNumpadButton" />
+				<ru.henridellal.dialer.NumpadButton
+					android:id="@+id/btn_numpad_hash"
+					app:number="@string/numpad_hash"
+					android:background="?attr/drawableNumpadButton" />
+			</TableRow>
+		</TableLayout>
+		<RelativeLayout
+			android:id="@id/panel_bottom"
+			android:layout_width="fill_parent"
+			android:layout_height="64dp"
+			android:background="?attr/drawablePanel"
+			android:layout_alignParentBottom="true"
+			>
+			<ImageButton
+				android:id="@+id/btn_toggle_numpad"
+				android:layout_width="0dp"
+				android:layout_height="64dp"
+				android:layout_gravity="center_vertical"
+				android:layout_alignParentLeft="true"
+				android:padding="16dp"
+				android:src="?attr/drawableDialpad"
+				android:background="?attr/drawableGenericButton"
+				android:visibility="invisible" />
+			<ImageButton
+				android:id="@+id/btn_options"
+				android:layout_width="64dp"
+				android:layout_height="64dp"
+				android:layout_gravity="center_vertical"
+				android:layout_alignParentRight="true"
+				android:padding="16dp"
+				android:src="?attr/drawableOptions"
+				android:background="?attr/drawableGenericButton" />
+			<ImageButton
+				android:id="@+id/btn_call"
+				android:layout_width="0dp"
+				android:layout_height="40dp"
+				android:layout_toLeftOf="@id/btn_options"
+				android:layout_toRightOf="@+id/btn_toggle_numpad"
+				android:layout_margin="12dp"
+				android:gravity="center"
+				android:textColor="#FFF"
+				android:background="@drawable/bg_call_button"
+				android:src="@drawable/ic_phone" />
+		</RelativeLayout>
+	</RelativeLayout>
+</LinearLayout>
