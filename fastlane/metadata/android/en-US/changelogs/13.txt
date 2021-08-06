@@ -1,0 +1,2 @@
+- Add landscape layout;
+- Fix phone number formatting and highlighting.
