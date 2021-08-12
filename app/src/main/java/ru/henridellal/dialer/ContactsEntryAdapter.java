@@ -169,7 +169,8 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 		String phoneNumber = mCursor.getString(COLUMN_NUMBER);
 		if (null != phoneNumber && !TextUtils.isEmpty(phoneNumber) && queryResult.numberStart != queryResult.numberEnd) {
 			SpannableString numberSpanned = new SpannableString(formatNumber(phoneNumber));
-			numberSpanned.setSpan(span, queryResult.numberStart, queryResult.numberEnd, 0);
+			if (queryResult.numberEnd <= numberSpanned.length())
+				numberSpanned.setSpan(span, queryResult.numberStart, queryResult.numberEnd, 0);
 			viewCache.phoneNumber.setText(numberSpanned);
 		} else {
 			viewCache.phoneNumber.setText(formatNumber(phoneNumber));
