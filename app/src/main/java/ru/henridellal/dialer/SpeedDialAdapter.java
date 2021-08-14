@@ -65,7 +65,7 @@ public class SpeedDialAdapter extends BaseAdapter {
 		if (null == contactName) {
 			result = !number.equals("") ? number : contextRef.get().getResources().getString(R.string.tap_for_addition);
 		} else {
-			result = contactName+" ("+number+")";
+			result = String.format("%s (%s)", contactName, number);
 		}
 		((TextView)view.findViewById(R.id.entry_title)).setText(result);
 		return view;

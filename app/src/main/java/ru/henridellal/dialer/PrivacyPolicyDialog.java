@@ -16,7 +16,7 @@ public class PrivacyPolicyDialog {
 						editor.putBoolean("privacy_policy", true).commit();
 					}
 				});
-		builder.setNegativeButton(android.R.string.no,
+		builder.setNegativeButton(android.R.string.cancel,
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface di, int which) {
 						activity.finish();

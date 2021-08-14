@@ -212,7 +212,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	@Override
 	protected void onRestoreInstanceState(Bundle bundle) {
 		CharSequence savedNumber = bundle.getCharSequence(BUNDLE_KEY_NUMBER);
-		if (savedNumber != null || !TextUtils.isEmpty(savedNumber)) {
+		if (savedNumber != null && !TextUtils.isEmpty(savedNumber)) {
 			numberField.setText(savedNumber.toString());
 			numberField.setCursorVisible(true);
 			numberField.setSelection(savedNumber.length());
@@ -516,7 +516,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	public void showMissingContactsAppDialog() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage(getResources().getString(R.string.contacts_app_is_missing));
-		builder.setPositiveButton(android.R.string.yes,
+		builder.setPositiveButton(android.R.string.ok,
 			new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface di, int which) {
 				}
@@ -578,22 +578,25 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	
 	@Override
 	public boolean onMenuItemClick(MenuItem item) {
+		Class<? extends Activity> activityClass;
 		switch (item.getItemId()) {
 			case R.id.clear_call_log:
 				ClearCallLogDialog.show(this);
 				return true;
 			case R.id.fast_dial_preferences:
-				startActivity(new Intent(this, SpeedDialActivity.class));
-				return true;
+				activityClass = SpeedDialActivity.class;
+				break;
 			case R.id.dialer_preferences:
-				startActivity(new Intent(this, DialerPreferencesActivity.class));
-				return true;
+				activityClass = DialerPreferencesActivity.class;
+				break;
 			case R.id.dialer_about_screen:
-				startActivity(new Intent(this, AboutActivity.class));
-				return true;
+				activityClass = AboutActivity.class;
+				break;
 			default:
 				return false;
 		}
+		startActivity(new Intent(this, activityClass));
+		return true;
 	}
 	
 	@Override
