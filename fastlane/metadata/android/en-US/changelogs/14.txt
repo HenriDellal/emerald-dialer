@@ -1,0 +1,3 @@
+- Fix number formatting bug;
+- Fix theming bug;
+- Refactoring

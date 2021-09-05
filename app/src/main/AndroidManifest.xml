@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="ru.henridellal.dialer"
-    android:versionCode="13"
+    android:versionCode="14"
 	android:versionName="@string/glass_app_version" >
 
 	<uses-permission-sdk-23 android:name="android.permission.CALL_PHONE" />
