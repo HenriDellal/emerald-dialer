@@ -108,6 +108,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		}
 		checkPermissions();
 		numberField = (EditText)findViewById(R.id.number_field);
+		numberField.setShowSoftInputOnFocus(false);
 		parseIntent(getIntent());
 		telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
 		setButtonListeners();
