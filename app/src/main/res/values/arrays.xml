@@ -17,6 +17,7 @@
 		<item>עִבְרִית‎</item>
 		<item>Italiano</item>
 		<item>Русский</item>
+		<item>Українська</item>
 		<item>Vietnamese</item>
 		<item>Chinese (Pinyin method)</item>
 	</string-array>
@@ -29,6 +30,7 @@
 		<item>iw</item>
 		<item>it</item>
 		<item>ru</item>
+		<item>uk</item>
 		<item>vn</item>
 		<item>zh</item>
 	</string-array>

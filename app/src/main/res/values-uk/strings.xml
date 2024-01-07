@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="numpad_2">АБВГҐ</string>
+    <string name="numpad_3">ДЕЄЖЗ</string>
+    <string name="numpad_4">ИІЇЙКЛ</string>
+    <string name="numpad_5">МНОП</string>
+    <string name="numpad_6">РСТУ</string>
+    <string name="numpad_7">ФХЦЧ</string>
+    <string name="numpad_8">ШЩЪЫ</string>
+    <string name="numpad_9">ЬЭЮЯ</string>
+
+    <string name="regex_2">[2АБВГҐабвгґ]</string>
+    <string name="regex_3">[3ДЕЄËЖЗдеєëжз]</string>
+    <string name="regex_4">[4ИІЇЙКЛиіїйкл]</string>
+    <string name="regex_5">[5МНОПмноп]</string>
+    <string name="regex_6">[6РСТУрсту]</string>
+    <string name="regex_7">[7ФХЦЧфхцч]</string>
+    <string name="regex_8">[8ШЩЪЫшщъы]</string>
+    <string name="regex_9">[9ЬЭЮЯьэюя]</string>
+</resources>
