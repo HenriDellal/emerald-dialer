@@ -1,0 +1,4 @@
+- Fix crashes during number dialing
+- Fix keyboard appearance
+- Add Greek translation and T9 (Thanks to tdafos)
+- Add Arabic, Ukrainian T9
