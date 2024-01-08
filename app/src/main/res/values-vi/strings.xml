@@ -12,14 +12,12 @@
 	<string name="numpad_9">XY</string>
 	
 	<!-- REGEX PATTERNS -->
-	<string name="regex_2">[2AĂBCaăbcà-ãÀ-ÃẠ-ặ]</string>
-	<string name="regex_3">[3DĐEÊdđeêèéÈÉẸ-ệ]</string>
-	<string name="regex_4">[4GHIghiìíỉĩịÌÍỈĨỊ]</string>
-	<string name="regex_5">[5KLkl]</string>
-	<string name="regex_6">[6MNOmnoơƠò-õọỏÒ-ÕỌ-ợ]</string>
-	<string name="regex_7">[7PQRSpqrs]</string>
-	<string name="regex_8">[8TUVtuvùúũưÙÚŨƯỤ-ự]</string>
-	<string name="regex_9">[9XYÝxyýỲ-ỹ]</string>
+	<string name="local_regex_2">[Ăăà-ãÀ-ÃẠ-ặ]</string>
+	<string name="local_regex_3">[DĐÊdđêèéÈÉẸ-ệ]</string>
+	<string name="local_regex_4">[ìíỉĩịÌÍỈĨỊ]</string>
+	<string name="local_regex_6">[ơƠò-õọỏÒ-ÕỌ-ợ]</string>
+	<string name="local_regex_8">[ùúũưÙÚŨƯỤ-ự]</string>
+	<string name="local_regex_9">[ÝýỲ-ỹ]</string>
 	
 	<string name="create_contact">Create new contact</string>
 	<string name="send_message">Send a message</string>

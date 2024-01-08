@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static ru.henridellal.dialer.ContactsEntryAdapter.COLUMN_LOOKUP_KEY;
 import static ru.henridellal.dialer.ContactsEntryAdapter.COLUMN_NAME;
 import static ru.henridellal.dialer.ContactsEntryAdapter.COLUMN_NUMBER;
 import static ru.henridellal.dialer.ContactsEntryAdapter.FILTERING_MODE_PINYIN;
@@ -28,6 +29,22 @@ public class ContactsEntryFilter extends Filter {
 		super();
 		this.adapter = adapter;
 		this.mode = mode;
+	}
+
+	private int getId(Cursor cursor) {
+		return cursor.getInt(0);
+	}
+
+	private String getLookupKey(Cursor cursor) {
+		return cursor.getString(COLUMN_LOOKUP_KEY);
+	}
+
+	private String getName(Cursor cursor) {
+		return cursor.getString(COLUMN_NAME);
+	}
+
+	private String getNumber(Cursor cursor) {
+		return cursor.getString(COLUMN_NUMBER);
 	}
 
 	private void filterPinyin(ArrayList<RegexQueryResult> resultsList, CharSequence constraint) {
@@ -47,7 +64,15 @@ public class ContactsEntryFilter extends Filter {
 				int pinyinIndexOfConstraint = TextUtils.isEmpty(keyword) ? -1 : name.indexOf(keyword);
 
 				if (pinyinIndexOfConstraint != -1) {
-					queryResult = new RegexQueryResult(cursor.getPosition(), pinyinIndexOfConstraint, pinyinIndexOfConstraint+keyword.length());
+					queryResult = new RegexQueryResult(
+							cursor.getPosition(),
+							pinyinIndexOfConstraint,
+							pinyinIndexOfConstraint+keyword.length(),
+							getId(cursor),
+							getLookupKey(cursor),
+							getName(cursor),
+							getNumber(cursor)
+					);
 				}
 
 			}
@@ -56,7 +81,15 @@ public class ContactsEntryFilter extends Filter {
 				int numberIndexOfConstraint = number.indexOf(constraintString);
 				if (numberIndexOfConstraint != -1) {
 					if (null == queryResult) {
-						queryResult = new RegexQueryResult(cursor.getPosition(), Integer.MAX_VALUE, Integer.MAX_VALUE);
+						queryResult = new RegexQueryResult(
+								cursor.getPosition(),
+								Integer.MAX_VALUE,
+								Integer.MAX_VALUE,
+								getId(cursor),
+								getLookupKey(cursor),
+								getName(cursor),
+								getNumber(cursor)
+						);
 					}
 					queryResult.setNumberPlace(numberIndexOfConstraint, numberIndexOfConstraint+constraintString.length());
 				}
@@ -81,14 +114,30 @@ public class ContactsEntryFilter extends Filter {
 				name = name.toLowerCase();
 				int nameIndexOfConstraint = name.indexOf(constraintString);
 				if (nameIndexOfConstraint != -1)
-					queryResult = new RegexQueryResult(cursor.getPosition(), nameIndexOfConstraint, nameIndexOfConstraint+constraintString.length());
+					queryResult = new RegexQueryResult(
+							cursor.getPosition(),
+							nameIndexOfConstraint,
+							nameIndexOfConstraint+constraintString.length(),
+							getId(cursor),
+							getLookupKey(cursor),
+							getName(cursor),
+							getNumber(cursor)
+					);
 			}
 			if (null != number) {
 				number = number.toLowerCase();
 				int numberIndexOfConstraint = number.indexOf(constraintString);
 				if (numberIndexOfConstraint != -1) {
 					if (null == queryResult) {
-						queryResult = new RegexQueryResult(cursor.getPosition(), 0, 0);
+						queryResult = new RegexQueryResult(
+								cursor.getPosition(),
+								0,
+								0,
+								getId(cursor),
+								getLookupKey(cursor),
+								getName(cursor),
+								getNumber(cursor)
+						);
 					}
 					queryResult.setNumberPlace(numberIndexOfConstraint, numberIndexOfConstraint+constraintString.length());
 				}
@@ -117,17 +166,41 @@ public class ContactsEntryFilter extends Filter {
 			RegexQueryResult queryResult = null;
 			if (null != nameMatcher && nameMatcher.find()) {
 				if (nameMatcher.start() == 0) {
-					queryResult = new RegexQueryResult( cursor.getPosition(), nameMatcher.start(), nameMatcher.end());
+					queryResult = new RegexQueryResult(
+							cursor.getPosition(),
+							nameMatcher.start(),
+							nameMatcher.end(),
+							getId(cursor),
+							getLookupKey(cursor),
+							getName(cursor),
+							getNumber(cursor)
+					);
 				} else {
 					Matcher wordStartMatcher = wordStartPattern.matcher(name);
 					if (wordStartMatcher.find()) {
-						queryResult = new RegexQueryResult( cursor.getPosition(), wordStartMatcher.start(), wordStartMatcher.end());
+						queryResult = new RegexQueryResult(
+								cursor.getPosition(),
+								wordStartMatcher.start(),
+								wordStartMatcher.end(),
+								getId(cursor),
+								getLookupKey(cursor),
+								getName(cursor),
+								getNumber(cursor)
+						);
 					}
 				}
 			}
 			if (null != numberMatcher && numberMatcher.find()) {
 				if (null == queryResult) {
-					queryResult = new RegexQueryResult( cursor.getPosition(), 256+numberMatcher.start(), 256+numberMatcher.start());
+					queryResult = new RegexQueryResult(
+							cursor.getPosition(),
+							256+numberMatcher.start(),
+							256+numberMatcher.start(),
+							getId(cursor),
+							getLookupKey(cursor),
+							getName(cursor),
+							getNumber(cursor)
+					);
 				}
 				queryResult.setNumberPlace(numberMatcher.start(), numberMatcher.end());
 			}

@@ -11,13 +11,13 @@
 	<string name="numpad_9">סעפף</string>
 	
 	<!-- REGEX PATTERNS -->
-	<string name="regex_2">[2דהו]</string>
-	<string name="regex_3">[3אבג]</string>
-	<string name="regex_4">[4מםנן]</string>
-	<string name="regex_5">[5יכךל]</string>
-	<string name="regex_6">[6זחט]</string>
-	<string name="regex_7">[7רשת]</string>
-	<string name="regex_8">[8צץק]</string>
-	<string name="regex_9">[9סעפף]</string>
+	<string name="local_regex_2">[דהו]</string>
+	<string name="local_regex_3">[אבג]</string>
+	<string name="local_regex_4">[מםנן]</string>
+	<string name="local_regex_5">[יכךל]</string>
+	<string name="local_regex_6">[זחט]</string>
+	<string name="local_regex_7">[רשת]</string>
+	<string name="local_regex_8">[צץק]</string>
+	<string name="local_regex_9">[סעפף]</string>
 	
 </resources>

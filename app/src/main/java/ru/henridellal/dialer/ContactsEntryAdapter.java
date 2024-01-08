@@ -59,12 +59,19 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 
 	private int filteringMode;
 
-	private static final int[] t9NumberPatternIds = new int[]{
-			R.string.regex_0, R.string.regex_1,
-			R.string.regex_2, R.string.regex_3,
-			R.string.regex_4, R.string.regex_5,
-			R.string.regex_6, R.string.regex_7,
-			R.string.regex_8, R.string.regex_9 };
+	private static final int[] t9CommonPatternIds = new int[]{
+			R.string.common_regex_0, R.string.common_regex_1,
+			R.string.common_regex_2, R.string.common_regex_3,
+			R.string.common_regex_4, R.string.common_regex_5,
+			R.string.common_regex_6, R.string.common_regex_7,
+			R.string.common_regex_8, R.string.common_regex_9 };
+
+	private static final int[] t9LocalPatternIds = new int[]{
+			R.string.local_regex_0, R.string.local_regex_1,
+			R.string.local_regex_2, R.string.local_regex_3,
+			R.string.local_regex_4, R.string.local_regex_5,
+			R.string.local_regex_6, R.string.local_regex_7,
+			R.string.local_regex_8, R.string.local_regex_9 };
 
 	private Map<Character, String> t9NumberPatterns;
 
@@ -75,7 +82,11 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 	public void initT9NumberPatterns(Resources res) {
 		t9NumberPatterns = new HashMap<Character, String>();
 		for (char i = '0'; i <= '9'; i++) {
-			t9NumberPatterns.put(new Character(i), res.getString(t9NumberPatternIds[Character.getNumericValue(i)]));
+			String commonPattern = res.getString(t9CommonPatternIds[Character.getNumericValue(i)]);
+			String localPattern = res.getString(t9LocalPatternIds[Character.getNumericValue(i)]);
+			String pattern = (localPattern.isEmpty()) ?
+					commonPattern : String.format("(%1s|%2s)", commonPattern, localPattern);
+			t9NumberPatterns.put(new Character(i), pattern);
 		}
 		t9NumberPatterns.put(new Character('*'), res.getString(R.string.regex_star));
 		t9NumberPatterns.put(new Character('#'), res.getString(R.string.regex_hash));
@@ -160,30 +171,29 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 		}
 		final RegexQueryResult queryResult = regexQueryResults.get(position);
 		final ContactsEntryCache viewCache = (ContactsEntryCache) view.getTag();
-		mCursor.moveToPosition(queryResult.position);
-		String name = mCursor.getString(COLUMN_NAME);
-		if (!TextUtils.isEmpty(name) && queryResult.start != queryResult.end) {
-			SpannableString nameSpanned = new SpannableString(name);
+
+		if (!TextUtils.isEmpty(queryResult.name) && queryResult.start != queryResult.end) {
+			SpannableString nameSpanned = new SpannableString(queryResult.name);
 			nameSpanned.setSpan(span, queryResult.start, queryResult.end, 0);
 			nameSpanned.setSpan(boldStyleSpan, queryResult.start, queryResult.end, 0);
 			viewCache.contactName.setText(nameSpanned);
 		} else {
-			viewCache.contactName.setText(name);
+			viewCache.contactName.setText(queryResult.name);
 		}
-		String phoneNumber = mCursor.getString(COLUMN_NUMBER);
-		if (null != phoneNumber && !TextUtils.isEmpty(phoneNumber) && queryResult.numberStart != queryResult.numberEnd) {
-			SpannableString numberSpanned = new SpannableString(formatNumber(phoneNumber));
+
+		if (null != queryResult.number && !TextUtils.isEmpty(queryResult.number)
+				&& queryResult.numberStart != queryResult.numberEnd) {
+			SpannableString numberSpanned = new SpannableString(formatNumber(queryResult.number));
 			if (queryResult.numberEnd <= numberSpanned.length())
 				numberSpanned.setSpan(span, queryResult.numberStart, queryResult.numberEnd, 0);
 			viewCache.phoneNumber.setText(numberSpanned);
 		} else {
-			viewCache.phoneNumber.setText(formatNumber(phoneNumber));
+			viewCache.phoneNumber.setText(formatNumber(queryResult.number));
 		}
-		
-		String lookupKey = mCursor.getString(COLUMN_LOOKUP_KEY);
-		ContactImageTag tag = new ContactImageTag(String.valueOf(mCursor.getInt(0)), lookupKey);
+
+		ContactImageTag tag = new ContactImageTag(String.valueOf(queryResult.id), queryResult.lookupKey);
 		viewCache.contactImage.setTag(tag); // set a tag for the callback to be able to check, so we don't set the contact image of a reused view
-		Drawable d = mAsyncContactImageLoader.loadDrawableForContact(lookupKey, new ImageCallback() {
+		Drawable d = mAsyncContactImageLoader.loadDrawableForContact(queryResult.lookupKey, new ImageCallback() {
 			
 			@Override
 			public void imageLoaded(Drawable imageDrawable, String lookupKey) {

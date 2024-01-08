@@ -10,14 +10,14 @@
 	<string name="numpad_8">ШЩЪЫ</string>
 	<string name="numpad_9">ЬЭЮЯ</string>
 	
-	<string name="regex_2">[2АБВГабвг]</string>
-	<string name="regex_3">[3ДЕËЖЗдеëжз]</string>
-	<string name="regex_4">[4ИЙКЛийкл]</string>
-	<string name="regex_5">[5МНОПмноп]</string>
-	<string name="regex_6">[6РСТУрсту]</string>
-	<string name="regex_7">[7ФХЦЧфхцч]</string>
-	<string name="regex_8">[8ШЩЪЫшщъы]</string>
-	<string name="regex_9">[9ЬЭЮЯьэюя]</string>
+	<string name="local_regex_2">[АБВГабвг]</string>
+	<string name="local_regex_3">[ДЕËЖЗдеëжз]</string>
+	<string name="local_regex_4">[ИЙКЛийкл]</string>
+	<string name="local_regex_5">[МНОПмноп]</string>
+	<string name="local_regex_6">[РСТУрсту]</string>
+	<string name="local_regex_7">[ФХЦЧфхцч]</string>
+	<string name="local_regex_8">[ШЩЪЫшщъы]</string>
+	<string name="local_regex_9">[ЬЭЮЯьэюя]</string>
 
 	<!-- CALL INFORMATION -->
 	<string name="date">Время звонка</string>

@@ -11,14 +11,14 @@
 	<string name="numpad_9">ΧΨΩ</string>
 	
 	<!-- REGEX PATTERNS -->
-	<string name="regex_2">[2ABCabcΑΒΓαβγά]</string>
-	<string name="regex_3">[3DEFdefΔΕΖδεζέ]</string>
-	<string name="regex_4">[4GHIghiΗΘΙηθιήίϊΐ]</string>
-	<string name="regex_5">[5JKLjklΚΛΜκλμ]</string>
-	<string name="regex_6">[6MNOmnoΝΞΟνξοό]</string>
-	<string name="regex_7">[7PQRSpqrsΠΡΣπρσς]</string>
-	<string name="regex_8">[8TUVtuvΤΥΦτυφύϋ]</string>
-	<string name="regex_9">[9WXYZwxyzΧΨΩχψωώ]</string>
+	<string name="local_regex_2">[ΑΒΓαβγά]</string>
+	<string name="local_regex_3">[ΔΕΖδεζέ]</string>
+	<string name="local_regex_4">[ΗΘΙηθιήίϊΐ]</string>
+	<string name="local_regex_5">[ΚΛΜκλμ]</string>
+	<string name="local_regex_6">[ΝΞΟνξοό]</string>
+	<string name="local_regex_7">[ΠΡΣπρσς]</string>
+	<string name="local_regex_8">[ΤΥΦτυφύϋ]</string>
+	<string name="local_regex_9">[ΧΨΩχψωώ]</string>
 	
 	<!-- CALL INFORMATION -->
 	<string name="create_contact">Δημ. νέας επαφής</string>
