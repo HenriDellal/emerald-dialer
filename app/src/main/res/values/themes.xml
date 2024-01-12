@@ -1,37 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 	<style name="AppTheme.Light" parent="@android:style/Theme.Material.Light.NoActionBar" >
 		<item name="android:colorPrimaryDark">@color/light_green_600</item>
 		<item name="android:colorPrimary">@color/light_green_400</item>
 		<item name="additionalTextStyle">@style/AdditionalTextStyle.Light</item>
+		<item name="colorCallButton">@color/call_button</item>
+		<item name="colorGenericButtonRipple">@color/generic_button_ripple</item>
 		<item name="colorNumpadButtonLetters">@color/grey_3</item>
+		<item name="colorStroke">@color/stroke_light</item>
 		<item name="contactNameStyle">@style/ContactName.Light</item>
 		<item name="drawableAddContact">@drawable/ic_add</item>
 		<item name="drawableBackspace">@drawable/ic_backspace</item>
-		<item name="drawableCallMade">@drawable/ic_call_made</item>
-		<item name="drawableCallReceived">@drawable/ic_call_received</item>
+		<item name="drawableCallOutgoing">@drawable/ic_call_outgoing</item>
+		<item name="drawableCallMissed">@drawable/ic_call_missed</item>
+		<item name="drawableCallIncoming">@drawable/ic_call_incoming</item>
+		<item name="drawableCallRejected">@drawable/ic_call_rejected</item>
 		<item name="drawableContactImage">@drawable/ic_account_box</item>
 		<item name="drawableDialpad">@drawable/ic_dialpad</item>
-		<item name="drawableGenericButton">@drawable/bg_generic_button</item>
-		<item name="drawableNumpadButton">@drawable/button_numpad</item>
+		<item name="drawableIconPhone">@drawable/ic_phone</item>
 		<item name="drawableOptions">@drawable/ic_menu</item>
-		<item name="drawablePanel">@drawable/bg_panel</item>
 	</style>
 	
 	<style name="AppTheme.Dark" parent="@android:style/Theme.Material.NoActionBar" >
 		<item name="additionalTextStyle">@style/AdditionalTextStyle.Dark</item>
+		<item name="colorCallButton">@color/call_button_dark</item>
+		<item name="colorGenericButtonRipple">@color/generic_button_ripple_dark</item>
 		<item name="colorNumpadButtonLetters">@color/grey_c</item>
+		<item name="colorStroke">@color/stroke_dark</item>
 		<item name="contactNameStyle">@style/ContactName.Dark</item>
 		<item name="drawableAddContact">@drawable/ic_add_dark</item>
 		<item name="drawableBackspace">@drawable/ic_backspace_dark</item>
-		<item name="drawableCallMade">@drawable/ic_call_made_dark</item>
-		<item name="drawableCallReceived">@drawable/ic_call_received_dark</item>
+		<item name="drawableCallOutgoing">@drawable/ic_call_outgoing_dark</item>
+		<item name="drawableCallMissed">@drawable/ic_call_missed_dark</item>
+		<item name="drawableCallIncoming">@drawable/ic_call_incoming_dark</item>
+		<item name="drawableCallRejected">@drawable/ic_call_rejected_dark</item>
 		<item name="drawableContactImage">@drawable/ic_account_box_dark</item>
 		<item name="drawableDialpad">@drawable/ic_dialpad_dark</item>
-		<item name="drawableGenericButton">@drawable/bg_generic_button_dark</item>
-		<item name="drawableNumpadButton">@drawable/button_numpad_dark</item>
+		<item name="drawableIconPhone">@drawable/ic_phone_dark</item>
 		<item name="drawableOptions">@drawable/ic_menu_dark</item>
-		<item name="drawablePanel">@drawable/bg_panel_dark</item>
 	</style>
-	
+
+	<style name="AppTheme.Night" parent="AppTheme.Dark" >
+		<item name="android:colorBackground">#121212</item>
+		<item name="android:colorBackgroundFloating" tools:targetApi="m">#121212</item>
+		<item name="colorStroke">@color/stroke_dark</item>
+	</style>
+	<style name="AppTheme.Amoled" parent="AppTheme.Dark" >
+		<item name="android:colorBackground">#000000</item>
+		<item name="android:colorBackgroundFloating" tools:targetApi="m">#000000</item>
+		<item name="colorStroke">@color/stroke_amoled</item>
+	</style>
 </resources>

@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -15,6 +16,7 @@ import android.provider.ContactsContract.PhoneLookup;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +26,9 @@ import android.widget.CursorAdapter;
 import java.lang.System;
 import java.lang.ref.SoftReference;
 import java.text.DateFormat;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import ru.henridellal.dialer.AsyncContactImageLoader.ImageCallback;
 
@@ -41,21 +45,37 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 	private static final int COLUMN_NUMBER = 2;
 	private static final int COLUMN_DATE = 3;
 	private static final int COLUMN_TYPE = 4;
+
+	private static Map<Integer, Integer> callTypes = new HashMap<Integer, Integer>();
+
+	static {
+		callTypes.put(Calls.INCOMING_TYPE, R.attr.drawableCallIncoming);
+		callTypes.put(Calls.MISSED_TYPE, R.attr.drawableCallMissed);
+		callTypes.put(Calls.OUTGOING_TYPE, R.attr.drawableCallOutgoing);
+		if (Build.VERSION.SDK_INT >= 24) {
+			callTypes.put(Calls.REJECTED_TYPE, R.attr.drawableCallRejected);
+		}
+	}
+
+	private Map<Integer, Integer> callTypeDrawableIds;
 	
 	private AsyncContactImageLoader mAsyncContactImageLoader;
-	private int callMadeDrawableId;
-	private int callReceivedDrawableId;
 	private SoftReference<DialerActivity> activityRef;
-	
+	private boolean isRtlLayout;
+
 	public LogEntryAdapter(DialerActivity activity, Cursor cursor, AsyncContactImageLoader loader) {
 		super(activity, cursor, 0);
 		activityRef = new SoftReference<DialerActivity>(activity);
 		mAsyncContactImageLoader = loader;
-		TypedValue outValue = new TypedValue();
-		activity.getTheme().resolveAttribute(R.attr.drawableCallMade, outValue, true);
-		callMadeDrawableId = outValue.resourceId;
-		activity.getTheme().resolveAttribute(R.attr.drawableCallReceived, outValue, true);
-		callReceivedDrawableId = outValue.resourceId;
+		TypedValue tv = new TypedValue();
+		Resources.Theme theme = activity.getTheme();
+		callTypeDrawableIds = new HashMap<Integer, Integer>();
+		for (Map.Entry<Integer, Integer> entry : callTypes.entrySet()) {
+			theme.resolveAttribute(entry.getValue(), tv, true);
+			callTypeDrawableIds.put(entry.getKey(), tv.resourceId);
+		}
+
+		isRtlLayout = TextUtils.getLayoutDirectionFromLocale(Locale.getDefault()) == View.LAYOUT_DIRECTION_RTL;
 	}
 	
 	@Override
@@ -141,7 +161,12 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 		if (null == phoneNumber) {
 			phoneNumber = "";
 		}
+
 		String formattedNumber = PhoneNumberUtils.formatNumber(phoneNumber, Locale.getDefault().getCountry());
+		if (isRtlLayout) {
+			formattedNumber = RTLUtil.format(formattedNumber);
+			Log.d(DialerApp.LOG_TAG, formattedNumber);
+		}
 		if (!TextUtils.isEmpty(name)) {
 			viewCache.contactName.setText(name);
 			viewCache.phoneNumber.setText(formattedNumber);
@@ -157,18 +182,8 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 	
 		int id = cursor.getInt(COLUMN_TYPE);
 		int callTypeDrawableId = 0;
-		switch (id) {
-			case Calls.INCOMING_TYPE:
-				callTypeDrawableId = callReceivedDrawableId;
-				break;
-			case Calls.OUTGOING_TYPE:
-				callTypeDrawableId = callMadeDrawableId;
-				break;
-			case Calls.MISSED_TYPE:
-				callTypeDrawableId = R.drawable.ic_call_missed;
-				break;
-		}
-		if (callTypeDrawableId != 0) {
+		
+		if ((callTypeDrawableId = getCallTypeDrawableId(id)) != 0) {
 			viewCache.callTypeImage.setImageDrawable(context.getResources().getDrawable(callTypeDrawableId, context.getTheme()));
 		}
 		viewCache.contactImage.setTag(phoneNumber); // set a tag for the callback to be able to check, so we don't set the contact image of a reused view
@@ -193,5 +208,10 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 		Cursor cursor = getCursor();
 		cursor.moveToPosition(position);
 		return cursor.getString(COLUMN_NUMBER);
+	}
+
+	private int getCallTypeDrawableId(int type) {
+		return (callTypeDrawableIds.containsKey(type)) ?
+			callTypeDrawableIds.get(type) : 0;
 	}
 }

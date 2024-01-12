@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<color name="call_button">#8cc34c</color>
-	<color name="generic_button_ripple">#777</color>
-	<color name="generic_button_ripple_dark">#bbb</color>
+	<color name="call_button_dark">#AED582</color>
+	<color name="generic_button_ripple">#ddd</color>
+	<color name="generic_button_ripple_dark">#555</color>
 	<color name="call_button_ripple">#7cb33c</color>
-	<color name="numpad_button">#f7f7f7</color>
-	<color name="numpad_button_ripple">#ddd</color>
-	<color name="numpad_button_ripple_dark">#555</color>
 	
 	<color name="green_800">#2e7d32</color>
 	<color name="green_600">#43a047</color>
@@ -16,4 +14,9 @@
 	<color name="grey_3">#333</color>
 	<color name="grey_c">#CCC</color>
 	<color name="white">#FFFFFF</color>
+
+	<color name="stroke_light">#BCBCBC</color>
+	<color name="stroke_dark">#555</color>
+	<color name="stroke_night">#333</color>
+	<color name="stroke_amoled">#303030</color>
 </resources>

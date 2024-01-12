@@ -6,17 +6,20 @@
 	</declare-styleable>
 	
 	<attr name="additionalTextStyle" format="reference"/>
+	<attr name="colorCallButton" format="reference"/>
+	<attr name="colorGenericButtonRipple" format="reference"/>
 	<attr name="colorNumpadButtonLetters" format="reference"/>
+	<attr name="colorStroke" format="reference"/>
 	<attr name="contactNameStyle" format="reference"/>
 	<attr name="drawableAddContact" format="reference"/>
 	<attr name="drawableBackspace" format="reference"/>
-	<attr name="drawableCallMade" format="reference"/>
-	<attr name="drawableCallReceived" format="reference"/>
+	<attr name="drawableCallIncoming" format="reference"/>
+	<attr name="drawableCallMissed" format="reference"/>
+	<attr name="drawableCallOutgoing" format="reference"/>
+	<attr name="drawableCallRejected" format="reference"/>
 	<attr name="drawableContactImage" format="reference"/>
 	<attr name="drawableDialpad" format="reference"/>
-	<attr name="drawableGenericButton" format="reference"/>
-	<attr name="drawableNumpadButton" format="reference"/>
+	<attr name="drawableIconPhone" format="reference"/>
 	<attr name="drawableOptions" format="reference"/>
-	<attr name="drawablePanel" format="reference"/>
 	
 </resources>

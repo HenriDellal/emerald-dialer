@@ -7,22 +7,22 @@
 		android:id="@+id/contact_entry_image"
 		android:layout_width="48dp"
 		android:layout_height="48dp"
-		android:layout_alignParentLeft="true"
+		android:layout_alignParentStart="true"
 		android:layout_alignParentTop="true"
 	/>
 	<TextView
 		style="?attr/contactNameStyle"
 		android:id="@+id/contact_entry_name"
-		android:layout_toRightOf="@id/contact_entry_image"
+		android:layout_toEndOf="@id/contact_entry_image"
 		android:layout_alignTop="@id/contact_entry_image"
-		android:layout_marginLeft="8dp"
+		android:layout_marginStart="8dp"
 		android:textSize="16sp"
 	/>
 	<TextView
 		style="?attr/additionalTextStyle"
 		android:id="@+id/contact_phone_number"
 		android:layout_alignBottom="@id/contact_entry_image"
-		android:layout_alignLeft="@id/contact_entry_name"
+		android:layout_alignStart="@id/contact_entry_name"
 		android:textSize="12sp"
 	/>
 </RelativeLayout>
