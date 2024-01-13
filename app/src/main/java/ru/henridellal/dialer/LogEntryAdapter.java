@@ -187,7 +187,7 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 			viewCache.callTypeImage.setImageDrawable(context.getResources().getDrawable(callTypeDrawableId, context.getTheme()));
 		}
 		viewCache.contactImage.setTag(phoneNumber); // set a tag for the callback to be able to check, so we don't set the contact image of a reused view
-		Drawable d = mAsyncContactImageLoader.loadDrawableForNumber(phoneNumber, new ImageCallback() {
+		Drawable d = mAsyncContactImageLoader.loadDrawable(phoneNumber, new ImageCallback() {
 			
 			@Override
 			public void imageLoaded(Drawable imageDrawable, String number) {
@@ -195,7 +195,7 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 					viewCache.contactImage.setImageDrawable(imageDrawable);
 				}
 			}
-		});
+		}, AsyncContactImageLoader.QUERY_TYPE_PHONE_NUMBER);
 		viewCache.contactImage.setImageDrawable(d);
 		if (phoneNumber.length() == 0) {
 			return;

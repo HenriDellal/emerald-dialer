@@ -32,7 +32,10 @@ class AsyncContactImageLoader {
 		}
 	}
 	private static final int IMAGECACHE_INITIAL_CAPACITY = 256; // this is just a guess, should be tuned for a good number of contacts 
-	
+
+	public static final int QUERY_TYPE_LOOKUP_KEY = 0;
+	public static final int QUERY_TYPE_PHONE_NUMBER = 1;
+
 	private final Context mContext;
 	private final Drawable mDefaultDrawable;
 	private final HashMap<String, SoftReference<Drawable>> mImageCache;
@@ -78,8 +81,8 @@ class AsyncContactImageLoader {
 		
 	}
 
-	public Drawable loadDrawableForContact(final String lookupKey, final ImageCallback imageCallback) {
-		SoftReference<Drawable> softReference = mImageCache.get(lookupKey);
+	public Drawable loadDrawable(final String query, final ImageCallback icb, final int queryType) {
+		SoftReference<Drawable> softReference = mImageCache.get(query);
 		Drawable drawable = softReference != null ? softReference.get() : null;
 		if (drawable != null) {
 			return drawable;
@@ -88,40 +91,33 @@ class AsyncContactImageLoader {
 			
 			@Override
 			public void run() { // Run in the background thread
-				final Drawable d = loadImageForContact(lookupKey);
+				final Drawable d = loadDrawable(query, queryType);
+				if (null == d) return;
+
 				AsyncContactImageLoader.this.mHandler.post(new Runnable() {
 					
 					@Override
 					public void run() { // Run in the UI-thread
-						mImageCache.put(lookupKey, new SoftReference<Drawable>(d));
-						imageCallback.imageLoaded(d, lookupKey);
+						mImageCache.put(query, new SoftReference<Drawable>(d));
+						icb.imageLoaded(d, query);
 					}
 				});
 			}
 		});
 		return mDefaultDrawable;
 	}
-	public Drawable loadDrawableForNumber(final String number, final ImageCallback imageCallback) {
-		SoftReference<Drawable> softReference = mImageCache.get(number);
-		Drawable drawable = softReference != null ? softReference.get() : null;
-		if (drawable != null) {
-			return drawable;
-		}
-		mBackgroundImageLoader.mHandler.postAtFrontOfQueue(new Runnable() {
-			
-			@Override
-			public void run() { // Run in the background thread
-				final Drawable d = loadImageForNumber(number);
-				AsyncContactImageLoader.this.mHandler.post(new Runnable() {
-					
-					@Override
-					public void run() { // Run in the UI-thread
-						mImageCache.put(number, new SoftReference<Drawable>(d));
-						imageCallback.imageLoaded(d, number);
-					}
-				});
-			}
-		});
-		return mDefaultDrawable;
+
+	private Drawable loadDrawable(String query, int queryType) {
+		Drawable d;
+		switch (queryType) {
+			case QUERY_TYPE_LOOKUP_KEY:
+				d = loadImageForContact(query);
+			case QUERY_TYPE_PHONE_NUMBER:
+				d = loadImageForNumber(query);
+				break;
+			default:
+				d = null;
+		};
+		return d;
 	}
 }

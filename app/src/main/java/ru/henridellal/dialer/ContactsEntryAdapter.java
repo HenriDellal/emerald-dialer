@@ -1,19 +1,12 @@
 package ru.henridellal.dialer;
 
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.telephony.PhoneNumberUtils;
-import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
-import android.text.style.StyleSpan;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +16,6 @@ import android.widget.Filterable;
 
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.regex.Pattern;
 
 import ru.henridellal.dialer.AsyncContactImageLoader.ImageCallback;
 
@@ -48,62 +37,21 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 	public static final int FILTERING_MODE_PINYIN = 2;
 
 	private ForegroundColorSpan span;
-	private StyleSpan boldStyleSpan;
 
-	private ArrayList<RegexQueryResult> regexQueryResults;
+	private ArrayList<QueryResult> queryResults;
 	private AsyncContactImageLoader mAsyncContactImageLoader;
 	private Cursor mCursor;
 	private ContactsEntryFilter filter;
-	private Locale t9Locale;
 	private SoftReference<DialerActivity> activityRef;
 
 	private int filteringMode;
 
-	private static final int[] t9CommonPatternIds = new int[]{
-			R.string.common_regex_0, R.string.common_regex_1,
-			R.string.common_regex_2, R.string.common_regex_3,
-			R.string.common_regex_4, R.string.common_regex_5,
-			R.string.common_regex_6, R.string.common_regex_7,
-			R.string.common_regex_8, R.string.common_regex_9 };
-
-	private static final int[] t9LocalPatternIds = new int[]{
-			R.string.local_regex_0, R.string.local_regex_1,
-			R.string.local_regex_2, R.string.local_regex_3,
-			R.string.local_regex_4, R.string.local_regex_5,
-			R.string.local_regex_6, R.string.local_regex_7,
-			R.string.local_regex_8, R.string.local_regex_9 };
-
-	private Map<Character, String> t9NumberPatterns;
-
-	public Map<Character, String> getT9NumberPatterns() {
-		return t9NumberPatterns;
-	}
-
-	public void initT9NumberPatterns(Resources res) {
-		t9NumberPatterns = new HashMap<Character, String>();
-		for (char i = '0'; i <= '9'; i++) {
-			String commonPattern = res.getString(t9CommonPatternIds[Character.getNumericValue(i)]);
-			String localPattern = res.getString(t9LocalPatternIds[Character.getNumericValue(i)]);
-			String pattern = (localPattern.isEmpty()) ?
-					commonPattern : String.format("(%1s|%2s)", commonPattern, localPattern);
-			t9NumberPatterns.put(new Character(i), pattern);
-		}
-		t9NumberPatterns.put(new Character('*'), res.getString(R.string.regex_star));
-		t9NumberPatterns.put(new Character('#'), res.getString(R.string.regex_hash));
-		t9NumberPatterns.put(new Character('+'), Pattern.quote("+"));
-	}
-
-	public ContactsEntryAdapter(DialerActivity activity, AsyncContactImageLoader asyncContactImageLoader, Context t9LocaleContext, Locale t9Locale) {
+	public ContactsEntryAdapter(DialerActivity activity, AsyncContactImageLoader asyncContactImageLoader) {
 		super();
 		activityRef = new SoftReference<DialerActivity>(activity);
-		initT9NumberPatterns(null != t9LocaleContext ?
-				t9LocaleContext.getResources() :
-				activity.getResources());
-		regexQueryResults = new ArrayList<RegexQueryResult>();
+		queryResults = new ArrayList<QueryResult>();
 		mAsyncContactImageLoader = asyncContactImageLoader;
 		span = new ForegroundColorSpan(activity.getResources().getColor(R.color.green_600));
-		boldStyleSpan = new StyleSpan(Typeface.BOLD);
-		this.t9Locale = t9Locale;
 	}
 
 	public Cursor getCursor() {
@@ -127,12 +75,12 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 	
 	public void resetFilter() {
 		filter = null;
-		if (null != regexQueryResults)
-			regexQueryResults.clear();
+		if (null != queryResults)
+			queryResults.clear();
 	}
 	@Override
 	public int getCount() {
-		return (null != regexQueryResults) ? regexQueryResults.size() : 0;
+		return (null != queryResults) ? queryResults.size() : 0;
 	}
 
 	@Override
@@ -169,31 +117,15 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 		} else {
 			view = convertView;
 		}
-		final RegexQueryResult queryResult = regexQueryResults.get(position);
+		final QueryResult queryResult = queryResults.get(position);
 		final ContactsEntryCache viewCache = (ContactsEntryCache) view.getTag();
 
-		if (!TextUtils.isEmpty(queryResult.name) && queryResult.start != queryResult.end) {
-			SpannableString nameSpanned = new SpannableString(queryResult.name);
-			nameSpanned.setSpan(span, queryResult.start, queryResult.end, 0);
-			nameSpanned.setSpan(boldStyleSpan, queryResult.start, queryResult.end, 0);
-			viewCache.contactName.setText(nameSpanned);
-		} else {
-			viewCache.contactName.setText(queryResult.name);
-		}
-
-		if (null != queryResult.number && !TextUtils.isEmpty(queryResult.number)
-				&& queryResult.numberStart != queryResult.numberEnd) {
-			SpannableString numberSpanned = new SpannableString(formatNumber(queryResult.number));
-			if (queryResult.numberEnd <= numberSpanned.length())
-				numberSpanned.setSpan(span, queryResult.numberStart, queryResult.numberEnd, 0);
-			viewCache.phoneNumber.setText(numberSpanned);
-		} else {
-			viewCache.phoneNumber.setText(formatNumber(queryResult.number));
-		}
+		viewCache.contactName.setText(queryResult.getSpannedName(span));
+		viewCache.phoneNumber.setText(queryResult.getFormattedNumber(span));
 
 		ContactImageTag tag = new ContactImageTag(String.valueOf(queryResult.id), queryResult.lookupKey);
 		viewCache.contactImage.setTag(tag); // set a tag for the callback to be able to check, so we don't set the contact image of a reused view
-		Drawable d = mAsyncContactImageLoader.loadDrawableForContact(queryResult.lookupKey, new ImageCallback() {
+		Drawable d = mAsyncContactImageLoader.loadDrawable(queryResult.lookupKey, new ImageCallback() {
 			
 			@Override
 			public void imageLoaded(Drawable imageDrawable, String lookupKey) {
@@ -201,7 +133,7 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 					viewCache.contactImage.setImageDrawable(imageDrawable);
 				}
 			}
-		});
+		}, AsyncContactImageLoader.QUERY_TYPE_LOOKUP_KEY);
 		viewCache.contactImage.setImageDrawable(d);
 		viewCache.contactImage.setOnClickListener(this);
 		return view;
@@ -212,18 +144,12 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 	}
 	
 	public String getPhoneNumber(int position) {
-		mCursor.moveToPosition(regexQueryResults.get(position).position);
+		mCursor.moveToPosition(queryResults.get(position).position);
 		return mCursor.getString(COLUMN_NUMBER);
 	}
-	
-	public String formatNumber(String number) {
-		PhoneNumberUtils.normalizeNumber(number);
-		String result = PhoneNumberUtils.formatNumber(number, t9Locale.getCountry());
-		return (null != result) ? result : number;
-	}
 
-	public void update(ArrayList<RegexQueryResult> results) {
-		regexQueryResults = results;
+	public void update(ArrayList<QueryResult> results) {
+		queryResults = results;
 		notifyDataSetChanged();
 	}
 }

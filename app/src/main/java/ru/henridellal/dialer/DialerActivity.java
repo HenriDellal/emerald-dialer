@@ -129,20 +129,22 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 
 		String t9LocalePref = preferences.getString("t9_locale", "system");
 		Context t9LocaleContext = getT9LocaleContext(t9LocalePref);
-		Locale t9Locale;
 		if (null != t9LocaleContext) {
 			Resources t9Resources = t9LocaleContext.getResources();
 			for (int i = 2; i <= 9; i++) {
 				((NumpadButton)(findViewById(buttonIds[i])))
 						.setLetters(t9Resources.getString(numpadLettersIds[i-2]));
 			}
-			t9Locale = new Locale(t9LocalePref, t9LocalePref);
+			T9Manager.getInstance().setLocale(new Locale(t9LocalePref, t9LocalePref));
 		} else {
-			t9Locale = Locale.getDefault();
+			T9Manager.getInstance().setLocale(Locale.getDefault());
 		}
+		T9Manager.getInstance().initPatterns(null != t9LocaleContext ?
+				t9LocaleContext.getResources() :
+				getResources());
 
-		contactsEntryAdapter = new ContactsEntryAdapter(this, mAsyncContactImageLoader, t9LocaleContext, t9Locale);
-		if (t9Locale.getLanguage().startsWith("zh")) {
+		contactsEntryAdapter = new ContactsEntryAdapter(this, mAsyncContactImageLoader);
+		if (T9Manager.getInstance().getLanguage().startsWith("zh")) {
 			contactsEntryAdapter.setFilteringMode(ContactsEntryAdapter.FILTERING_MODE_PINYIN);
 		}
 		initPhysicalKeyboard();
@@ -223,19 +225,21 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	
 	@Override
 	public void onClick(View view) {
-		switch (view.getId()) {
-			case R.id.btn_numpad_0: addSymbolInNumber('0'); break;
-			case R.id.btn_numpad_1: addSymbolInNumber('1'); break;
-			case R.id.btn_numpad_2: addSymbolInNumber('2'); break;
-			case R.id.btn_numpad_3: addSymbolInNumber('3'); break;
-			case R.id.btn_numpad_4: addSymbolInNumber('4'); break;
-			case R.id.btn_numpad_5: addSymbolInNumber('5'); break;
-			case R.id.btn_numpad_6: addSymbolInNumber('6'); break;
-			case R.id.btn_numpad_7: addSymbolInNumber('7'); break;
-			case R.id.btn_numpad_8: addSymbolInNumber('8'); break;
-			case R.id.btn_numpad_9: addSymbolInNumber('9'); break;
-			case R.id.btn_numpad_star: addSymbolInNumber('*'); break;
-			case R.id.btn_numpad_hash: addSymbolInNumber('#'); break;
+		int id = view.getId();
+		switch (id) {
+			case R.id.btn_numpad_0:
+			case R.id.btn_numpad_1:
+			case R.id.btn_numpad_2:
+			case R.id.btn_numpad_3:
+			case R.id.btn_numpad_4:
+			case R.id.btn_numpad_5:
+			case R.id.btn_numpad_6:
+			case R.id.btn_numpad_7:
+			case R.id.btn_numpad_8:
+			case R.id.btn_numpad_9:
+			case R.id.btn_numpad_star:
+			case R.id.btn_numpad_hash:
+				addSymbolInNumber(Numpad.getSymbol(id)); break;
 			case R.id.btn_remove_number: removeSymbolInNumber(); break;
 			case R.id.btn_toggle_numpad: Numpad.toggle(this); break;
 			case R.id.btn_call: callNumber(numberField.getText().toString()); break;
@@ -479,14 +483,15 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		final String number = logEntryAdapter.getPhoneNumber(position);
 		builder.setCancelable(true);
 		builder.setTitle(number);
+		Resources res = getResources();
 		String[] commands = new String[]{
-			getResources().getString(R.string.show_info),
-			getResources().getString(R.string.make_a_call),
-			getResources().getString(R.string.send_message),
-			getResources().getString(R.string.delete_log_entry),
-			getResources().getString(R.string.copy_number)
+			res.getString(R.string.show_info),
+			res.getString(R.string.make_a_call),
+			res.getString(R.string.send_message),
+			res.getString(R.string.delete_log_entry),
+			res.getString(R.string.copy_number)
 		};
-		ArrayAdapter dialogAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, commands);
+		ArrayAdapter<String> dialogAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, commands);
 		DialogInterface.OnClickListener onDialogItemClick = new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface di, int which) {
 				switch (which) {
