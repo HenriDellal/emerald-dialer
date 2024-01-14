@@ -1,0 +1,4 @@
+- More themes (night and AMOLED)
+- RTL support
+- UI improvements
+- Refactoring

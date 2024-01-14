@@ -1,7 +1,7 @@
 # Emerald Dialer
 [![codebeat badge](https://codebeat.co/badges/6a02664d-9f84-4fee-b44a-c5212a04d047)](https://codebeat.co/projects/github-com-henridellal-emerald-dialer-master)
 
-Emerald Dialer is a lightweight T9 dialer for Android. 
+Emerald Dialer is a lightweight T9 dialer for Android 5.0+.
 
 [<img src="https://f-droid.org/badge/get-it-on.png"
       alt="Get it on F-Droid"
@@ -10,4 +10,20 @@ Emerald Dialer is a lightweight T9 dialer for Android.
 ## Features
 - T9 search;
 - Speed dial;
-- Light and dark themes.
+- 4 themes: light, dark, night, AMOLED.
+
+## Supported languages
+### Fully supported
+- English
+- Chinese (Pinyin input method)
+- German
+- Greek
+- Italian
+- Portuguese (Brazil)
+- Russian
+
+### T9 support only
+- Arabic
+- Hebrew
+- Ukrainian
+- Vietnamese
