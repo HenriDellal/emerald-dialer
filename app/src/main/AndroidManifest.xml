@@ -28,7 +28,8 @@
         <activity
             android:label="@string/app_name"
             android:name=".DialerActivity"
-            android:windowSoftInputMode="stateAlwaysHidden" >
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:exported="true">
             <intent-filter>
             	<action android:name="android.intent.action.CALL_BUTTON" />
             	<category android:name="android.intent.category.DEFAULT" />
