@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools"
+	tools:ignore="MissingTranslation">
 	<string name="app_name">Emerald Dialer</string>
 	
 	<!-- NUMPAD LETTERS -->
-	<string name="numpad_1" translatable="false"> </string>
-	<string name="numpad_2">ABC</string>
-	<string name="numpad_3">DEF</string>
-	<string name="numpad_4">GHI</string>
-	<string name="numpad_5">JKL</string>
-	<string name="numpad_6">MNO</string>
-	<string name="numpad_7">PQRS</string>
-	<string name="numpad_8">TUV</string>
-	<string name="numpad_9">WXYZ</string>
+	<string name="numpad_2_default" translatable="false">ABC</string>
+	<string name="numpad_3_default" translatable="false">DEF</string>
+	<string name="numpad_4_default" translatable="false">GHI</string>
+	<string name="numpad_5_default" translatable="false">JKL</string>
+	<string name="numpad_6_default" translatable="false">MNO</string>
+	<string name="numpad_7_default" translatable="false">PQRS</string>
+	<string name="numpad_8_default" translatable="false">TUV</string>
+	<string name="numpad_9_default" translatable="false">WXYZ</string>
+	<string name="numpad_2" />
+	<string name="numpad_3" />
+	<string name="numpad_4" />
+	<string name="numpad_5" />
+	<string name="numpad_6" />
+	<string name="numpad_7" />
+	<string name="numpad_8" />
+	<string name="numpad_9" />
 	<string name="numpad_0" translatable="false">+</string>
 	<string name="numpad_star" translatable="false">*</string>
 	<string name="numpad_hash" translatable="false">#</string>
@@ -29,16 +37,17 @@
 	<string name="common_regex_9" translatable="false">[9WXYZwxyz]</string>
 
 	<!-- Dummy RegEx, replace in values-$LOCALE/strings.xml -->
-	<string name="local_regex_0"></string>
-	<string name="local_regex_1"></string>
-	<string name="local_regex_2"></string>
-	<string name="local_regex_3"></string>
-	<string name="local_regex_4"></string>
-	<string name="local_regex_5"></string>
-	<string name="local_regex_6"></string>
-	<string name="local_regex_7"></string>
-	<string name="local_regex_8"></string>
-	<string name="local_regex_9"></string>
+	<string name="local_regex_0" />
+	<string name="local_regex_1" />
+	<string name="local_regex_2" />
+	<string name="local_regex_3" />
+	<string name="local_regex_4" />
+	<string name="local_regex_5" />
+	<string name="local_regex_6" />
+	<string name="local_regex_7" />
+	<string name="local_regex_8" />
+	<string name="local_regex_9" />
+
 	<string name="regex_star" translatable="false">\\Q*\\E</string>
 	<string name="regex_hash" translatable="false">\\Q#\\E</string>
 	

@@ -24,6 +24,7 @@ import android.preference.PreferenceManager;
 import android.provider.CallLog.Calls;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.format.DateUtils;
@@ -44,6 +45,8 @@ import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.util.Locale;
+
+import ru.henridellal.dialer.util.DateUtil;
 
 public class DialerActivity extends Activity implements View.OnClickListener, View.OnLongClickListener,
 	LoaderManager.LoaderCallbacks<Cursor>, TextWatcher, AdapterView.OnItemClickListener,
@@ -131,9 +134,11 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		Context t9LocaleContext = getT9LocaleContext(t9LocalePref);
 		if (null != t9LocaleContext) {
 			Resources t9Resources = t9LocaleContext.getResources();
+			String letters;
+
 			for (int i = 2; i <= 9; i++) {
-				((NumpadButton)(findViewById(buttonIds[i])))
-						.setLetters(t9Resources.getString(numpadLettersIds[i-2]));
+				letters = t9Resources.getString(numpadLettersIds[i - 2]);
+				((NumpadButton)(findViewById(buttonIds[i]))).setLetters(letters);
 			}
 			T9Manager.getInstance().setLocale(new Locale(t9LocalePref, t9LocalePref));
 		} else {
@@ -440,8 +445,8 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		long date = cursor.getLong(1);
 		long duration = cursor.getLong(2);
 
-		DateFormat dateInstance = DateFormat.getDateInstance(DateFormat.LONG);
-		DateFormat timeInstance = DateFormat.getTimeInstance(DateFormat.MEDIUM);
+		DateFormat dateInstance = DateFormat.getDateInstance(DateUtil.getDateFormat(date));
+		DateFormat timeInstance = DateFormat.getTimeInstance(DateFormat.SHORT);
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		String message = String.format("%1s: %2s, %3s\n%4s: %5s",
@@ -481,8 +486,13 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	private void showLogEntryDialog(final int position, final long id) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		final String number = logEntryAdapter.getPhoneNumber(position);
+		String formattedNumber = PhoneNumberUtils.formatNumber(number, Locale.getDefault().getCountry());
+		String name = logEntryAdapter.getName(position);
+		if (null != name && !name.isEmpty()) {
+			formattedNumber = String.format("%1s (%2s)", name, formattedNumber);
+		}
 		builder.setCancelable(true);
-		builder.setTitle(number);
+		builder.setTitle(formattedNumber);
 		Resources res = getResources();
 		String[] commands = new String[]{
 			res.getString(R.string.show_info),

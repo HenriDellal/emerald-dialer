@@ -5,13 +5,14 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class NumpadButton extends RelativeLayout {
 	
 	private String mChar;
-	private String mLetters;
+	private String mLetters, mLocalLetters;
 	
 	public NumpadButton(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -41,15 +42,21 @@ public class NumpadButton extends RelativeLayout {
 		try {
 			mChar = arr.getString(R.styleable.NumpadButton_number);
 			mLetters = arr.getString(R.styleable.NumpadButton_letters);
+			mLocalLetters = arr.getString(R.styleable.NumpadButton_localLetters);
 		} finally {
 			arr.recycle();
 		}
 		((TextView)findViewById(R.id.numpad_number)).setText(mChar);
 		((TextView)findViewById(R.id.numpad_letters)).setText(mLetters);
+		setLetters(mLocalLetters);
 	}
 
 	public void setLetters(String letters) {
-		mLetters = letters;
-		((TextView)findViewById(R.id.numpad_letters)).setText(mLetters);
+		mLocalLetters = letters;
+		if (null == mLocalLetters || mLocalLetters.isEmpty()) {
+			findViewById(R.id.numpad_letters_local).setVisibility(View.GONE);
+		} else {
+			((TextView) findViewById(R.id.numpad_letters_local)).setText(mLocalLetters);
+		}
 	}
 }

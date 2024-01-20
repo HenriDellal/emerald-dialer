@@ -68,17 +68,18 @@
 				<ru.henridellal.dialer.NumpadButton
 					android:id="@+id/btn_numpad_1"
 					app:number="1"
-					app:letters="@string/numpad_1"
 					android:background="@drawable/bg_generic_button" />
 				<ru.henridellal.dialer.NumpadButton
 					android:id="@+id/btn_numpad_2"
 					app:number="2"
-					app:letters="@string/numpad_2"
+					app:letters="@string/numpad_2_default"
+					app:localLetters="@string/numpad_2"
 					android:background="@drawable/bg_generic_button" />
 				<ru.henridellal.dialer.NumpadButton
 					android:id="@+id/btn_numpad_3"
 					app:number="3"
-					app:letters="@string/numpad_3"
+					app:letters="@string/numpad_3_default"
+					app:localLetters="@string/numpad_3"
 					android:background="@drawable/bg_generic_button" />
 			</TableRow>
 			<TableRow
@@ -87,17 +88,20 @@
 				<ru.henridellal.dialer.NumpadButton
 					android:id="@+id/btn_numpad_4"
 					app:number="4"
-					app:letters="@string/numpad_4"
+					app:letters="@string/numpad_4_default"
+					app:localLetters="@string/numpad_4"
 					android:background="@drawable/bg_generic_button" />
 				<ru.henridellal.dialer.NumpadButton
 					android:id="@+id/btn_numpad_5"
 					app:number="5"
-					app:letters="@string/numpad_5"
+					app:letters="@string/numpad_5_default"
+					app:localLetters="@string/numpad_5"
 					android:background="@drawable/bg_generic_button" />
 				<ru.henridellal.dialer.NumpadButton
 					android:id="@+id/btn_numpad_6"
 					app:number="6"
-					app:letters="@string/numpad_6"
+					app:letters="@string/numpad_6_default"
+					app:localLetters="@string/numpad_6"
 					android:background="@drawable/bg_generic_button" />
 			</TableRow>
 			<TableRow
@@ -106,17 +110,20 @@
 				<ru.henridellal.dialer.NumpadButton
 					android:id="@+id/btn_numpad_7"
 					app:number="7"
-					app:letters="@string/numpad_7"
+					app:letters="@string/numpad_7_default"
+					app:localLetters="@string/numpad_7"
 					android:background="@drawable/bg_generic_button" />
 				<ru.henridellal.dialer.NumpadButton
 					android:id="@+id/btn_numpad_8"
 					app:number="8"
-					app:letters="@string/numpad_8"
+					app:letters="@string/numpad_8_default"
+					app:localLetters="@string/numpad_8"
 					android:background="@drawable/bg_generic_button" />
 				<ru.henridellal.dialer.NumpadButton
 					android:id="@+id/btn_numpad_9"
 					app:number="9"
-					app:letters="@string/numpad_9"
+					app:letters="@string/numpad_9_default"
+					app:localLetters="@string/numpad_9"
 					android:background="@drawable/bg_generic_button" />
 			</TableRow>
 			<TableRow

@@ -15,22 +15,20 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.PhoneLookup;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
-import android.text.format.DateUtils;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 
-import java.lang.System;
 import java.lang.ref.SoftReference;
-import java.text.DateFormat;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
 import ru.henridellal.dialer.AsyncContactImageLoader.ImageCallback;
+import ru.henridellal.dialer.util.DateUtil;
+import ru.henridellal.dialer.util.RTLUtil;
 
 public class LogEntryAdapter extends CursorAdapter implements View.OnClickListener
 {
@@ -75,7 +73,7 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 			callTypeDrawableIds.put(entry.getKey(), tv.resourceId);
 		}
 
-		isRtlLayout = TextUtils.getLayoutDirectionFromLocale(Locale.getDefault()) == View.LAYOUT_DIRECTION_RTL;
+		isRtlLayout = RTLUtil.isRtlLayout();
 	}
 	
 	@Override
@@ -165,7 +163,6 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 		String formattedNumber = PhoneNumberUtils.formatNumber(phoneNumber, Locale.getDefault().getCountry());
 		if (isRtlLayout) {
 			formattedNumber = RTLUtil.format(formattedNumber);
-			Log.d(DialerApp.LOG_TAG, formattedNumber);
 		}
 		if (!TextUtils.isEmpty(name)) {
 			viewCache.contactName.setText(name);
@@ -178,7 +175,7 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 			viewCache.phoneNumber.setText("");
 		}
 		long date = cursor.getLong(COLUMN_DATE);
-		viewCache.callDate.setText(DateUtils.formatSameDayTime(date, System.currentTimeMillis(), DateFormat.MEDIUM, DateFormat.SHORT));
+		viewCache.callDate.setText(DateUtil.getCallDateText(date));
 	
 		int id = cursor.getInt(COLUMN_TYPE);
 		int callTypeDrawableId = 0;
@@ -208,6 +205,12 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 		Cursor cursor = getCursor();
 		cursor.moveToPosition(position);
 		return cursor.getString(COLUMN_NUMBER);
+	}
+
+	public String getName(int position) {
+		Cursor cursor = getCursor();
+		cursor.moveToPosition(position);
+		return cursor.getString(COLUMN_NAME);
 	}
 
 	private int getCallTypeDrawableId(int type) {

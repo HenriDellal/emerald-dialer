@@ -3,6 +3,7 @@
 	<declare-styleable name="NumpadButton">
 		<attr name="number" format="string"/>
 		<attr name="letters" format="string"/>
+		<attr name="localLetters" format="string"/>
 	</declare-styleable>
 	
 	<attr name="additionalTextStyle" format="reference"/>
