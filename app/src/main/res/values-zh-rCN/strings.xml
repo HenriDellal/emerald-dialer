@@ -84,7 +84,6 @@
 	<string name="theme_entry_light">浅色</string>
 	<string name="theme_entry_dark">深色</string>
 	<string name="theme_entry_night">黑夜</string>
-	<string name="theme_entry_amoled" translatable="false">AMOLED</string>
 
 	<string name="preference_t9_locale">T9 语言</string>
 	<string name="permission_not_granted">没有授予此操作需要的权限</string>
