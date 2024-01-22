@@ -46,6 +46,9 @@ import android.widget.Toast;
 import java.text.DateFormat;
 import java.util.Locale;
 
+import ru.henridellal.dialer.dialog.DeleteCallLogEntryDialog;
+import ru.henridellal.dialer.dialog.MissingContactsAppDialog;
+import ru.henridellal.dialer.util.ContactsUtil;
 import ru.henridellal.dialer.util.DateUtil;
 
 public class DialerActivity extends Activity implements View.OnClickListener, View.OnLongClickListener,
@@ -97,6 +100,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	private ListView list;
 	private LogEntryAdapter logEntryAdapter;
 	private OnCallLogScrollListener onCallLogScrollListener;
+	private PopupMenu popup;
 	private TelephonyManager telephonyManager;
 	
 	@Override
@@ -154,6 +158,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		}
 		initPhysicalKeyboard();
 		initLoaders();
+		initPopupMenu();
 	}
 
 	@Override
@@ -248,8 +253,8 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 			case R.id.btn_remove_number: removeSymbolInNumber(); break;
 			case R.id.btn_toggle_numpad: Numpad.toggle(this); break;
 			case R.id.btn_call: callNumber(numberField.getText().toString()); break;
-			case R.id.btn_add_contact: createContact(numberField.getText().toString()); break;
-			case R.id.btn_options: showPopupMenu(findViewById(R.id.btn_options)); break;
+			case R.id.btn_add_contact: ContactsUtil.createContact(this, numberField.getText().toString()); break;
+			case R.id.btn_options: popup.show(); break;
 		}
 	}
 	
@@ -364,7 +369,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	}
 
 	private void callNumber(String number) {
-		if (TextUtils.isEmpty(number) || null == number) {
+		if (null == number || TextUtils.isEmpty(number)) {
 			return;
 		}
 		
@@ -372,16 +377,6 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		Intent intent = new Intent(Intent.ACTION_CALL, uri);
 		startActivity(intent);
 		finish();
-	}
-	
-	public void createContact(String number) {
-		Intent intent = new Intent(ContactsContract.Intents.Insert.ACTION, ContactsContract.Contacts.CONTENT_URI);
-		intent.putExtra(ContactsContract.Intents.Insert.PHONE, number);
-		try {
-			startActivity(intent);
-		} catch (ActivityNotFoundException e) {
-			showMissingContactsAppDialog();
-		}
 	}
 	
 	private void dialNumber(String number) {
@@ -459,28 +454,9 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		cursor.close();
 	}
 
-	private void deleteCallLogEntry(long id) {
+	public void deleteCallLogEntry(long id) {
 		getContentResolver().delete(Calls.CONTENT_URI, Calls._ID+"=?", new String[]{((Long)id).toString()});
 		logEntryAdapter.update();
-	}
-	
-	private void deleteCallLogEntryDialog(final long id) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(getResources().getString(R.string.delete_call_log_entry_question));
-		builder.setPositiveButton(android.R.string.yes,
-			new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface di, int which) {
-					deleteCallLogEntry(id);
-				}
-			});
-		builder.setNegativeButton(android.R.string.no,
-			new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface di, int which) {
-					
-				}
-			});
-		
-		builder.create().show();
 	}
 
 	private void showLogEntryDialog(final int position, final long id) {
@@ -515,7 +491,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 						openMessagingApp(number);
 						break;
 					case 3:
-						deleteCallLogEntry(id);
+						DeleteCallLogEntryDialog.show(DialerActivity.this, id);
 						break;
 					case 4:
 						ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
@@ -526,17 +502,6 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 			}
 		};
 		builder.setAdapter(dialogAdapter, onDialogItemClick);
-		builder.create().show();
-	}
-
-	public void showMissingContactsAppDialog() {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(getResources().getString(R.string.contacts_app_is_missing));
-		builder.setPositiveButton(android.R.string.ok,
-			new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface di, int which) {
-				}
-			});
 		builder.create().show();
 	}
 	
@@ -585,11 +550,10 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		}
 	}
 	
-	private void showPopupMenu(View view) {
-		PopupMenu popup = new PopupMenu(this, view);
+	private void initPopupMenu() {
+		popup = new PopupMenu(this, findViewById(R.id.btn_options));
 		popup.setOnMenuItemClickListener(this);
 		popup.inflate(R.menu.dialer_options);
-		popup.show();
 	}
 	
 	@Override

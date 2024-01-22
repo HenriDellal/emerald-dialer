@@ -112,6 +112,7 @@ class AsyncContactImageLoader {
 		switch (queryType) {
 			case QUERY_TYPE_LOOKUP_KEY:
 				d = loadImageForContact(query);
+				break;
 			case QUERY_TYPE_PHONE_NUMBER:
 				d = loadImageForNumber(query);
 				break;

@@ -27,6 +27,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import ru.henridellal.dialer.AsyncContactImageLoader.ImageCallback;
+import ru.henridellal.dialer.util.ContactsUtil;
 import ru.henridellal.dialer.util.DateUtil;
 import ru.henridellal.dialer.util.RTLUtil;
 
@@ -58,15 +59,15 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 	private Map<Integer, Integer> callTypeDrawableIds;
 	
 	private AsyncContactImageLoader mAsyncContactImageLoader;
-	private SoftReference<DialerActivity> activityRef;
+	private SoftReference<Context> contextRef;
 	private boolean isRtlLayout;
 
-	public LogEntryAdapter(DialerActivity activity, Cursor cursor, AsyncContactImageLoader loader) {
-		super(activity, cursor, 0);
-		activityRef = new SoftReference<DialerActivity>(activity);
+	public LogEntryAdapter(Context context, Cursor cursor, AsyncContactImageLoader loader) {
+		super(context, cursor, 0);
+		contextRef = new SoftReference<Context>(context);
 		mAsyncContactImageLoader = loader;
 		TypedValue tv = new TypedValue();
-		Resources.Theme theme = activity.getTheme();
+		Resources.Theme theme = context.getTheme();
 		callTypeDrawableIds = new HashMap<Integer, Integer>();
 		for (Map.Entry<Integer, Integer> entry : callTypes.entrySet()) {
 			theme.resolveAttribute(entry.getValue(), tv, true);
@@ -85,21 +86,14 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 			}
 			Uri contactIdUri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
 			String[] projection = new String[] {(Build.VERSION.SDK_INT >= 24) ? PhoneLookup.CONTACT_ID : PhoneLookup._ID};
-			Cursor cursor = activityRef.get().getContentResolver().query(contactIdUri, projection, null, null, null);
+			Cursor cursor = contextRef.get().getContentResolver().query(contactIdUri, projection, null, null, null);
 			if (cursor == null || !cursor.moveToFirst()) {
 				unknownNumberDialog(number);
 				return;
 			}
 			String contactId = cursor.getString(0);
 			cursor.close();
-			Intent intent = new Intent(Intent.ACTION_VIEW);
-			Uri uri = Uri.withAppendedPath(Contacts.CONTENT_URI, contactId);
-			intent.setDataAndType(uri, "vnd.android.cursor.dir/contact");
-			try {
-				activityRef.get().startActivity(intent);
-			} catch (ActivityNotFoundException e) {
-				activityRef.get().showMissingContactsAppDialog();
-			}
+			ContactsUtil.view(contextRef.get(), Contacts.CONTENT_URI, contactId);
 		}
 	}
 	
@@ -108,11 +102,11 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 	}
 	
 	public void unknownNumberDialog(final String number) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(activityRef.get());
+		AlertDialog.Builder builder = new AlertDialog.Builder(contextRef.get());
 		builder.setTitle(PhoneNumberUtils.formatNumber(number, Locale.getDefault().getCountry()));
 		String[] items = new String[]
-				{activityRef.get().getResources().getString(R.string.send_message),
-				activityRef.get().getResources().getString(R.string.create_contact)};
+				{contextRef.get().getResources().getString(R.string.send_message),
+				contextRef.get().getResources().getString(R.string.create_contact)};
 		builder.setItems(items, 
 			new DialogInterface.OnClickListener() {
 				@Override
@@ -123,15 +117,11 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 							intent = new Intent(Intent.ACTION_VIEW);
 							intent.setData(Uri.parse("smsto:" + number));
 							try {
-								activityRef.get().startActivity(intent);
+								contextRef.get().startActivity(intent);
 							} catch (ActivityNotFoundException e) {}
 							break;
 						case 1:
-							try {
-								activityRef.get().createContact(number);
-							} catch (ActivityNotFoundException e) {
-								activityRef.get().showMissingContactsAppDialog();
-							}
+							ContactsUtil.createContact(contextRef.get(), number);
 							break;
 					}
 				}

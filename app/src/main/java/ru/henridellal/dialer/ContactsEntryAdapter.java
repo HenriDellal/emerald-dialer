@@ -1,10 +1,8 @@
 package ru.henridellal.dialer;
 
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
+import android.content.Context;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
@@ -18,6 +16,7 @@ import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 
 import ru.henridellal.dialer.AsyncContactImageLoader.ImageCallback;
+import ru.henridellal.dialer.util.ContactsUtil;
 
 public class ContactsEntryAdapter extends BaseAdapter implements Filterable, View.OnClickListener
 {
@@ -42,16 +41,16 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 	private AsyncContactImageLoader mAsyncContactImageLoader;
 	private Cursor mCursor;
 	private ContactsEntryFilter filter;
-	private SoftReference<DialerActivity> activityRef;
+	private SoftReference<Context> contextRef;
 
 	private int filteringMode;
 
-	public ContactsEntryAdapter(DialerActivity activity, AsyncContactImageLoader asyncContactImageLoader) {
+	public ContactsEntryAdapter(Context context, AsyncContactImageLoader asyncContactImageLoader) {
 		super();
-		activityRef = new SoftReference<DialerActivity>(activity);
+		contextRef = new SoftReference<Context>(context);
 		queryResults = new ArrayList<QueryResult>();
 		mAsyncContactImageLoader = asyncContactImageLoader;
-		span = new ForegroundColorSpan(activity.getResources().getColor(R.color.green_600));
+		span = new ForegroundColorSpan(context.getResources().getColor(R.color.green_600));
 	}
 
 	public Cursor getCursor() {
@@ -96,14 +95,7 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 	@Override
 	public void onClick(View view) {
 		if (view.getId() == R.id.contact_entry_image) {
-			Intent intent = new Intent(Intent.ACTION_VIEW);
-			Uri uri = Uri.withAppendedPath(Phone.CONTENT_URI, ((ContactImageTag)view.getTag()).contactId);
-			intent.setDataAndType(uri, "vnd.android.cursor.dir/contact");
-			try {
-				activityRef.get().startActivity(intent);
-			} catch (ActivityNotFoundException e) {
-				activityRef.get().showMissingContactsAppDialog();
-			}
+			ContactsUtil.view(contextRef.get(), Phone.CONTENT_URI, ((ContactImageTag)view.getTag()).contactId);
 		}
 	}
 	
@@ -112,7 +104,7 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 		View view;
 		
 		if (convertView == null) {
-			view = LayoutInflater.from(activityRef.get()).inflate(R.layout.contacts_entry, parent, false);
+			view = LayoutInflater.from(contextRef.get()).inflate(R.layout.contacts_entry, parent, false);
 			view.setTag(new ContactsEntryCache(view));
 		} else {
 			view = convertView;
