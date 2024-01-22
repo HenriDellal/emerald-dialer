@@ -2,3 +2,5 @@
 - RTL support
 - UI improvements
 - Refactoring
+- Set maximum SDK version to 34 (Android 14)
+- Add adaptive and dynamic colors icon
