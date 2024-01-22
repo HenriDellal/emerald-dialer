@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<color name="ic_launcher_background">#8DC44E</color>
+
 	<color name="call_button">#8cc34c</color>
 	<color name="call_button_dark">#AED582</color>
 	<color name="generic_button_ripple">#ddd</color>
