@@ -53,10 +53,12 @@ public class NumpadButton extends RelativeLayout {
 
 	public void setLetters(String letters) {
 		mLocalLetters = letters;
+		TextView numpadLettersLocalView = (TextView) findViewById(R.id.numpad_letters_local);
 		if (null == mLocalLetters || mLocalLetters.isEmpty()) {
-			findViewById(R.id.numpad_letters_local).setVisibility(View.GONE);
+			numpadLettersLocalView.setVisibility(View.GONE);
 		} else {
-			((TextView) findViewById(R.id.numpad_letters_local)).setText(mLocalLetters);
+			numpadLettersLocalView.setVisibility(View.VISIBLE);
+			numpadLettersLocalView.setText(mLocalLetters);
 		}
 	}
 }

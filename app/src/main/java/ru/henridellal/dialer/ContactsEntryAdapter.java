@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import ru.henridellal.dialer.AsyncContactImageLoader.ImageCallback;
 import ru.henridellal.dialer.util.ContactsUtil;
+import ru.henridellal.dialer.util.RTLUtil;
 
 public class ContactsEntryAdapter extends BaseAdapter implements Filterable, View.OnClickListener
 {
@@ -43,6 +44,7 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 	private ContactsEntryFilter filter;
 	private SoftReference<Context> contextRef;
 
+	private boolean isRtlLayout;
 	private int filteringMode;
 
 	public ContactsEntryAdapter(Context context, AsyncContactImageLoader asyncContactImageLoader) {
@@ -51,6 +53,8 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 		queryResults = new ArrayList<QueryResult>();
 		mAsyncContactImageLoader = asyncContactImageLoader;
 		span = new ForegroundColorSpan(context.getResources().getColor(R.color.green_600));
+
+		isRtlLayout = RTLUtil.isRtlLayout();
 	}
 
 	public Cursor getCursor() {
@@ -113,7 +117,11 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 		final ContactsEntryCache viewCache = (ContactsEntryCache) view.getTag();
 
 		viewCache.contactName.setText(queryResult.getSpannedName(span));
-		viewCache.phoneNumber.setText(queryResult.getFormattedNumber(span));
+		CharSequence formattedNumber = queryResult.getFormattedNumber(span);
+		if (isRtlLayout) {
+			formattedNumber = RTLUtil.formatSpannedText(formattedNumber);
+		}
+		viewCache.phoneNumber.setText(formattedNumber);
 
 		ContactImageTag tag = new ContactImageTag(String.valueOf(queryResult.id), queryResult.lookupKey);
 		viewCache.contactImage.setTag(tag); // set a tag for the callback to be able to check, so we don't set the contact image of a reused view

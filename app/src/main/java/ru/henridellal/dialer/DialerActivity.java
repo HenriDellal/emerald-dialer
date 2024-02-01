@@ -188,7 +188,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	private Context getT9LocaleContext(String t9LocalePref) {
 		Context t9LocaleContext = null;
 		if (!t9LocalePref.equals("system")) {
-			Configuration t9Configuration = getResources().getConfiguration();
+			Configuration t9Configuration = new Configuration(getResources().getConfiguration());
 			t9Configuration.setLocale(new Locale(t9LocalePref, t9LocalePref));
 			t9LocaleContext = createConfigurationContext(t9Configuration);
 		}
