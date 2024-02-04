@@ -36,6 +36,7 @@
 	<string name="theme_entry_night">黑夜</string>
 
 	<string name="preference_t9_locale">T9 语言</string>
+	<string name="preference_contact_sources">联系人来源</string>
 	<string name="permission_not_granted">没有授予此操作需要的权限</string>
 
 </resources>
