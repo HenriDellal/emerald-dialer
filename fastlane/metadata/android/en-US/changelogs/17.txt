@@ -1,0 +1,12 @@
+New in 1.0.16
+- Fix RTL layout problems;
+- Contacts filtering by source (phone, sim, apps);
+- Fix crashing if some permissions are missing.
+
+New in 1.0.15
+- More themes (night and AMOLED)
+- RTL support
+- UI improvements
+- Refactoring
+- Set maximum SDK version to 34 (Android 14)
+- Add adaptive and dynamic colors icon
