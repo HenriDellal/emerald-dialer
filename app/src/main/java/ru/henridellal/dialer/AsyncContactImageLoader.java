@@ -13,6 +13,8 @@ import android.os.Looper;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.PhoneLookup;
 
+import ru.henridellal.dialer.util.ThemingUtil;
+
 class AsyncContactImageLoader {
 	public interface ImageCallback {
 		void imageLoaded(Drawable imageDrawable, String phoneNumber);
@@ -42,9 +44,9 @@ class AsyncContactImageLoader {
 	private final Handler mHandler;
 	private final BackgroundImageLoader mBackgroundImageLoader;
 
-	public AsyncContactImageLoader(Context context, Drawable defaultDrawable) {
+	public AsyncContactImageLoader(Context context) {
 		mContext = context;
-		mDefaultDrawable = defaultDrawable;
+		mDefaultDrawable = ThemingUtil.getDefaultContactDrawable(context);
 		mImageCache = new HashMap<String, SoftReference<Drawable>>(IMAGECACHE_INITIAL_CAPACITY);
 		mHandler = new Handler();
 		mBackgroundImageLoader = new BackgroundImageLoader();

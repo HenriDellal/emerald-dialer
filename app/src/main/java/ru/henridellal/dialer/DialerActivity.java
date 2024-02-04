@@ -81,13 +81,6 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	private static final int CALL_LOG_MODE = 0;
 	private static final int CONTACTS_MODE = 1;
 	private static final String BUNDLE_KEY_NUMBER = "number";
-	private static final String[] PERMISSIONS = {
-		Manifest.permission.CALL_PHONE,
-		Manifest.permission.READ_CALL_LOG,
-		Manifest.permission.READ_CONTACTS,
-		Manifest.permission.READ_PHONE_STATE,
-		Manifest.permission.WRITE_CALL_LOG
-	};
 	private static final String[] CALL_INFORMATION_PROJECTION = {
 		Calls._ID,
 		Calls.DATE,
@@ -126,13 +119,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		numberField.addTextChangedListener(this);
 		list = (ListView) findViewById(R.id.log_entries_list);
 		onCallLogScrollListener = new OnCallLogScrollListener(this);
-		TypedValue outValue = new TypedValue();
-		getTheme().resolveAttribute(R.attr.drawableContactImage, outValue, true);
-		int defaultContactImageId = outValue.resourceId;
 
-		mAsyncContactImageLoader = new AsyncContactImageLoader(this, getResources().getDrawable(defaultContactImageId, getTheme()));
-		logEntryAdapter = new LogEntryAdapter(this, null, mAsyncContactImageLoader);
-		list.setAdapter(logEntryAdapter);
 		list.setOnItemClickListener(this);
 		list.setOnItemLongClickListener(this);
 
@@ -154,12 +141,22 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 				t9LocaleContext.getResources() :
 				getResources());
 
-		contactsEntryAdapter = new ContactsEntryAdapter(this, mAsyncContactImageLoader);
-		if (T9Manager.getInstance().getLanguage().startsWith("zh")) {
-			contactsEntryAdapter.setFilteringMode(ContactsEntryAdapter.FILTERING_MODE_PINYIN);
+		LoaderManager loaderManager = getLoaderManager();
+		if (PermissionManager.isPermissionGranted(this, Manifest.permission.READ_CONTACTS)) {
+			mAsyncContactImageLoader = new AsyncContactImageLoader(this);
+			contactsEntryAdapter = new ContactsEntryAdapter(this, mAsyncContactImageLoader);
+			if (T9Manager.getInstance().getLanguage().startsWith("zh")) {
+				contactsEntryAdapter.setFilteringMode(ContactsEntryAdapter.FILTERING_MODE_PINYIN);
+			}
+			initContactsLoader(loaderManager);
+		}
+
+		if (PermissionManager.isPermissionGranted(this, Manifest.permission.READ_CALL_LOG)) {
+			logEntryAdapter = new LogEntryAdapter(this, null, mAsyncContactImageLoader);
+			list.setAdapter(logEntryAdapter);
+			initCallLogLoader(loaderManager);
 		}
 		initPhysicalKeyboard();
-		initLoaders();
 		initPopupMenu();
 	}
 
@@ -177,13 +174,8 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	}
 
 	private void checkPermissions() {
-		if (Build.VERSION.SDK_INT >= 23 && !hasRequiredPermissions()) {
-			requestPermissions(PERMISSIONS, 0);
-			for (int i = 0; i < 5; i++) {
-				if (checkSelfPermission(PERMISSIONS[i]) != PackageManager.PERMISSION_GRANTED) {
-					finish();
-				}
-			}
+		if (Build.VERSION.SDK_INT >= 23 && !PermissionManager.hasRequiredPermissions(this)) {
+			requestPermissions(PermissionManager.PERMISSIONS, 0);
 		}
 	}
 
@@ -210,11 +202,13 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		}
 	}
 
-	private void initLoaders() {
-		LoaderManager manager = getLoaderManager();
+	private void initCallLogLoader(LoaderManager manager) {
 		manager.initLoader(0, null, this);
-		manager.initLoader(1, null, this);
 		manager.getLoader(0).forceLoad();
+	}
+
+	private void initContactsLoader(LoaderManager manager) {
+		manager.initLoader(1, null, this);
 		manager.getLoader(1).forceLoad();
 	}
 
@@ -281,25 +275,6 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);
-	}
-
-	@SuppressLint("NewApi")
-	private boolean hasRequiredPermissions() {
-		for (int i = 0; i < 5; i++) {
-			if (checkSelfPermission(PERMISSIONS[i]) != PackageManager.PERMISSION_GRANTED) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-		for (int i = 0; i < 5; i++) {
-			if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
-				finish();
-				break;
-			}
-		}
 	}
 	
 	private void parseIntent(Intent intent) {
@@ -374,6 +349,10 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		if (null == number || TextUtils.isEmpty(number)) {
 			return;
 		}
+		if (!PermissionManager.isPermissionGranted(this, Manifest.permission.CALL_PHONE)) {
+			Toast.makeText(this, R.string.permission_not_granted, Toast.LENGTH_LONG).show();
+			return;
+		}
 		
 		Uri uri = Uri.parse("tel:" + Uri.encode(number));
 		Intent intent = new Intent(Intent.ACTION_CALL, uri);
@@ -391,7 +370,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	}
 	
 	private void setContactsMode() {
-		if (mode == CONTACTS_MODE)
+		if (mode == CONTACTS_MODE || null == contactsEntryAdapter)
 			return;
 		
 		mode = CONTACTS_MODE;
@@ -407,8 +386,10 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	}
 	
 	public void clearCallLog() {
-		getContentResolver().delete(Calls.CONTENT_URI, null, null);
-		logEntryAdapter.update();
+		if (PermissionManager.isPermissionGranted(this, Manifest.permission.WRITE_CALL_LOG)) {
+			getContentResolver().delete(Calls.CONTENT_URI, null, null);
+			logEntryAdapter.update();
+		}
 	}
 
 	private void showDeviceId() {
@@ -457,8 +438,10 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	}
 
 	public void deleteCallLogEntry(long id) {
-		getContentResolver().delete(Calls.CONTENT_URI, Calls._ID+"=?", new String[]{((Long)id).toString()});
-		logEntryAdapter.update();
+		if (PermissionManager.isPermissionGranted(this, Manifest.permission.WRITE_CALL_LOG)) {
+			getContentResolver().delete(Calls.CONTENT_URI, Calls._ID + "=?", new String[]{((Long) id).toString()});
+			logEntryAdapter.update();
+		}
 	}
 
 	private void showLogEntryDialog(final int position, final long id) {
@@ -538,7 +521,8 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 			return;
 		} else if (TextUtils.isEmpty(s) && before > 0) {
 			setCallLogMode();
-			contactsEntryAdapter.resetFilter();
+			if (null != contactsEntryAdapter)
+				contactsEntryAdapter.resetFilter();
 			list.setSelection(0);
 		} else if (number.equals("*#06#")) {
 			showDeviceId();
@@ -546,9 +530,11 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 			String secretCode = new StringBuilder(number).substring(4, number.length()-4);
 			sendBroadcast(new Intent("android.provider.Telephony.SECRET_CODE", Uri.parse("android_secret_code://" + secretCode)));
 		} else {
-			setContactsMode();
-			contactsEntryAdapter.getFilter().filter(s);
-			list.setSelection(0);
+			if (null != contactsEntryAdapter) {
+				setContactsMode();
+				contactsEntryAdapter.getFilter().filter(s);
+				list.setSelection(0);
+			}
 		}
 	}
 	

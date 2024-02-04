@@ -30,6 +30,7 @@ import ru.henridellal.dialer.AsyncContactImageLoader.ImageCallback;
 import ru.henridellal.dialer.util.ContactsUtil;
 import ru.henridellal.dialer.util.DateUtil;
 import ru.henridellal.dialer.util.RTLUtil;
+import ru.henridellal.dialer.util.ThemingUtil;
 
 public class LogEntryAdapter extends CursorAdapter implements View.OnClickListener
 {
@@ -59,13 +60,18 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 	private Map<Integer, Integer> callTypeDrawableIds;
 	
 	private AsyncContactImageLoader mAsyncContactImageLoader;
+	private Drawable defaultContactDrawable;
 	private SoftReference<Context> contextRef;
-	private boolean isRtlLayout;
+	private boolean isRtlLayout, loadContactImages;
 
 	public LogEntryAdapter(Context context, Cursor cursor, AsyncContactImageLoader loader) {
 		super(context, cursor, 0);
 		contextRef = new SoftReference<Context>(context);
 		mAsyncContactImageLoader = loader;
+		loadContactImages = null != mAsyncContactImageLoader;
+		if (!loadContactImages) {
+			defaultContactDrawable = ThemingUtil.getDefaultContactDrawable(context);
+		}
 		TypedValue tv = new TypedValue();
 		Resources.Theme theme = context.getTheme();
 		callTypeDrawableIds = new HashMap<Integer, Integer>();
@@ -174,15 +180,17 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 			viewCache.callTypeImage.setImageDrawable(context.getResources().getDrawable(callTypeDrawableId, context.getTheme()));
 		}
 		viewCache.contactImage.setTag(phoneNumber); // set a tag for the callback to be able to check, so we don't set the contact image of a reused view
-		Drawable d = mAsyncContactImageLoader.loadDrawable(phoneNumber, new ImageCallback() {
-			
-			@Override
-			public void imageLoaded(Drawable imageDrawable, String number) {
-				if (TextUtils.equals(number, (String)viewCache.contactImage.getTag())) {
-					viewCache.contactImage.setImageDrawable(imageDrawable);
+		Drawable d = (loadContactImages) ?
+			mAsyncContactImageLoader.loadDrawable(phoneNumber, new ImageCallback() {
+
+				@Override
+				public void imageLoaded(Drawable imageDrawable, String number) {
+					if (TextUtils.equals(number, (String) viewCache.contactImage.getTag())) {
+						viewCache.contactImage.setImageDrawable(imageDrawable);
+					}
 				}
-			}
-		}, AsyncContactImageLoader.QUERY_TYPE_PHONE_NUMBER);
+			}, AsyncContactImageLoader.QUERY_TYPE_PHONE_NUMBER)
+			: defaultContactDrawable;
 		viewCache.contactImage.setImageDrawable(d);
 		if (phoneNumber.length() == 0) {
 			return;

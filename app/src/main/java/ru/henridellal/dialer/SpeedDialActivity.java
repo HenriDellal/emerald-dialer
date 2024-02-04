@@ -1,5 +1,6 @@
 package ru.henridellal.dialer;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SpeedDialActivity extends Activity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 	
@@ -71,6 +73,10 @@ public class SpeedDialActivity extends Activity implements AdapterView.OnItemCli
 							if (TextUtils.isEmpty(contactInfo) || null == contactInfo) {
 								return;
 							}
+							if (!PermissionManager.isPermissionGranted(SpeedDialActivity.this, Manifest.permission.CALL_PHONE)) {
+								Toast.makeText(SpeedDialActivity.this, R.string.permission_not_granted, Toast.LENGTH_LONG).show();
+								return;
+							}
 							
 							Uri uri = Uri.parse("tel:" + Uri.encode(contactInfo));
 							Intent intent = new Intent(Intent.ACTION_CALL, uri);
@@ -97,15 +103,17 @@ public class SpeedDialActivity extends Activity implements AdapterView.OnItemCli
 					getAdapter().update();
 				}
 			});
-		builder.setNeutralButton(R.string.pick_contact_number,
-			new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface di, int which) {
-					Intent intent = new Intent(SpeedDialActivity.this, PickContactNumberActivity.class);
-					intent.putExtra(SPEED_DIAL_SLOT, order);
-					startActivityForResult(intent, PICK_CONTACT_NUMBER);
-				}
-			});
-		
+		if (PermissionManager.isPermissionGranted(this, Manifest.permission.CALL_PHONE)) {
+			builder.setNeutralButton(R.string.pick_contact_number,
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface di, int which) {
+							Intent intent = new Intent(SpeedDialActivity.this, PickContactNumberActivity.class);
+							intent.putExtra(SPEED_DIAL_SLOT, order);
+							startActivityForResult(intent, PICK_CONTACT_NUMBER);
+						}
+					});
+		}
+
 		builder.create().show();
 	}
 	

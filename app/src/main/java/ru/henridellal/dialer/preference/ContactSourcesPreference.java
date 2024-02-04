@@ -1,5 +1,6 @@
 package ru.henridellal.dialer.preference;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -16,20 +17,24 @@ import java.util.List;
 import java.util.Set;
 
 import ru.henridellal.dialer.DialerApp;
+import ru.henridellal.dialer.PermissionManager;
 
 public class ContactSourcesPreference extends MultiSelectListPreference {
 
 	public ContactSourcesPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		CharSequence[] sources = getContactSources(context);
-		cleanCurrentValues(sources);
-		setEntries(sources);
-		setEntryValues(sources);
+		if (PermissionManager.isPermissionGranted(context, Manifest.permission.READ_CONTACTS)) {
+			CharSequence[] sources = getContactSources(context);
+			cleanCurrentValues(sources);
+			setEntries(sources);
+			setEntryValues(sources);
+		}
 	}
 
 	@Override
 	public boolean isEnabled() {
-		return getEntries().length > 1;
+		return (PermissionManager.isPermissionGranted(getContext(), Manifest.permission.READ_CONTACTS))
+				&& getEntries().length > 1;
 	}
 
 	public void cleanCurrentValues(CharSequence[] sources) {
