@@ -12,4 +12,9 @@
 		android:entryValues="@array/t9_locale_values"
 		android:title="@string/preference_t9_locale"
 		android:defaultValue="system"/>
+	<ru.henridellal.dialer.preference.ContactSourcesPreference
+		android:key="contact_sources"
+		android:title="@string/preference_contact_sources"
+		android:shouldDisableView="true"
+		/>
 </PreferenceScreen>

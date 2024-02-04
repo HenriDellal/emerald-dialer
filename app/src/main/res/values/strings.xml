@@ -87,6 +87,7 @@
 	<string name="theme_entry_amoled" translatable="false">AMOLED</string>
 
 	<string name="preference_t9_locale">T9 Language</string>
+	<string name="preference_contact_sources">Contacts\' sources</string>
 	<string name="permission_not_granted">Permission not granted for this operation</string>
 
 </resources>

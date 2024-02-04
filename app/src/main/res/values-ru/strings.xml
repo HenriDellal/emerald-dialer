@@ -50,4 +50,5 @@
 	<string name="preference_theme">Тема</string>
 	<string name="theme_entry_light">Светлая</string>
 	<string name="theme_entry_dark">Тёмная</string>
+    <string name="preference_contact_sources">Источники контактов</string>
 </resources>

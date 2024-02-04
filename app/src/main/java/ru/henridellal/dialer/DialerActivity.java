@@ -44,6 +44,7 @@ import android.Manifest;
 import android.widget.Toast;
 
 import java.text.DateFormat;
+import java.util.HashSet;
 import java.util.Locale;
 
 import ru.henridellal.dialer.dialog.DeleteCallLogEntryDialog;
@@ -101,6 +102,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	private LogEntryAdapter logEntryAdapter;
 	private OnCallLogScrollListener onCallLogScrollListener;
 	private PopupMenu popup;
+	private SharedPreferences preferences;
 	private TelephonyManager telephonyManager;
 	
 	@Override
@@ -109,7 +111,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		super.onCreate(savedInstanceState);
 		DialerApp.setTheme(this);
 		setContentView(R.layout.main);
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+		preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		if (!preferences.getBoolean("privacy_policy", false)) {
 			PrivacyPolicyDialog.show(this, preferences.edit());
 		}
@@ -614,7 +616,28 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		if (id == 0) {
 			return new CursorLoader(this, Calls.CONTENT_URI, LogEntryAdapter.PROJECTION, null, null, Calls.DEFAULT_SORT_ORDER);
 		} else {
-			return new CursorLoader(this, Phone.CONTENT_URI, ContactsEntryAdapter.PROJECTION, Phone.HAS_PHONE_NUMBER+"=1", null, Phone.DISPLAY_NAME);
+			StringBuilder selection = new StringBuilder(Phone.HAS_PHONE_NUMBER).append("=1");
+			Object[] accountTypesSources = preferences.getStringSet("contact_sources", new HashSet<String>()).toArray();
+			if (accountTypesSources.length > 0) {
+				selection.append(" AND ")
+					.append(ContactsContract.RawContacts.ACCOUNT_TYPE)
+					.append(" IN (");
+				for (int i = 0; i < accountTypesSources.length; i++) {
+					selection.append("\"")
+						.append(((CharSequence)accountTypesSources[i]))
+						.append("\"");
+					if (i != accountTypesSources.length-1) {
+						selection.append(", ");
+					}
+				}
+				selection.append(")");
+			}
+			return new CursorLoader(this,
+					Phone.CONTENT_URI,
+					ContactsEntryAdapter.PROJECTION,
+					selection.toString(),
+					null,
+					Phone.DISPLAY_NAME);
 		}
 	}
 	
