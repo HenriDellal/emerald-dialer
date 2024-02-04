@@ -1,33 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools"
 	tools:ignore="MissingTranslation">
-       <string name="app_name">Emerald Dialer</string>
-
-	<!-- NUMPAD LETTERS -->
-	<string name="numpad_2" />
-	<string name="numpad_3" />
-	<string name="numpad_4" />
-	<string name="numpad_5" />
-	<string name="numpad_6" />
-	<string name="numpad_7" />
-	<string name="numpad_8" />
-	<string name="numpad_9" />
-
-	<!-- REGEX PATTERNS -->
-
-	<!-- Dummy RegEx, replace in values-$LOCALE/strings.xml -->
-	<string name="local_regex_0" />
-	<string name="local_regex_1" />
-	<string name="local_regex_2" />
-	<string name="local_regex_3" />
-	<string name="local_regex_4" />
-	<string name="local_regex_5" />
-	<string name="local_regex_6" />
-	<string name="local_regex_7" />
-	<string name="local_regex_8" />
-	<string name="local_regex_9" />
-
-
 	<!-- CALL INFORMATION -->
 	<string name="date">日期</string>
 	<string name="duration">持续时间</string>
