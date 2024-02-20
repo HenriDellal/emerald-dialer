@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="local_regex_2">[ÆÅæå]</string>
+    <string name="local_regex_3">[ÉÈéè]</string>
+    <string name="local_regex_6">[ØÓÒÔøóòô]</string>
+    <string name="local_regex_8">[Üü]</string>
+</resources>

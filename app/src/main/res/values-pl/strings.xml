@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="local_regex_2">[ĄĆąć]</string>
+    <string name="local_regex_3">[Ęę]</string>
+    <string name="local_regex_5">[Łł]</string>
+    <string name="local_regex_6">[ÓŃóń]</string>
+    <string name="local_regex_7">[Śś]</string>
+    <string name="local_regex_9">[ŹŻźż]</string>
+</resources>
