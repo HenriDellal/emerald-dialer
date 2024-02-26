@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-	<string name="privacy_policy_title">Політика конфіденційності</string>
-	<string name="privacy_policy">\tEmerald Dialer використовує данні користувача (контакти та журнал викликів) тільки для забезпечення корректного функціюнування програми.
-\n\tEmerald Dialer не поширює данні користувача та результати їх обробки з авторами програми та іншими третіми особами.</string>
-	<string name="accept">Прийняти</string>
-</resources>
