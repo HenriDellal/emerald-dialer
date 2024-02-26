@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="glass_app_version" translatable="false">1.0.16</string>
+	<string name="glass_app_version" translatable="false">1.0.17</string>
 	<string name="glass_text" tools:ignore="MissingTranslation">Emerald Dialer (v%s)
 \n
 \nCopyright 2024 Anri Dellal
@@ -9,9 +9,9 @@
 \nLicensed under GPL-v3.0-only
 \nWant to help? Report bugs and submit suggestions via GitHub (https://www.github.com/HenriDellal/emerald-dialer/issues)
 </string>
-	<string name="glass_feedback_url" translatable="false"></string>
+	<string name="glass_feedback_url" translatable="false">https://github.com/HenriDellal/emerald-dialer/issues</string>
 	<string name="glass_source_code_url" translatable="false">https://github.com/HenriDellal/emerald-dialer</string>
-	<string name="glass_support_url" translatable="false"></string>
+	<string name="glass_support_url" translatable="false">https://github.com/HenriDellal/emerald-dialer/blob/master/DONATE.md</string>
 
 	<string-array name="glass_contributors_names" translatable="false">
 		<item>FliegendeWurst</item>
@@ -21,6 +21,7 @@
 		<item>Or Schapira</item>
 		<item>sr093906</item>
 		<item>tdafos</item>
+		<item>WallK</item>
 	</string-array>
 
 	<string-array name="glass_contributors_info">
@@ -31,6 +32,7 @@
 		<item>Hebrew T9 keymap</item>
 		<item>Chinese translation</item>
 		<item>Greek translation</item>
+		<item>Ukrainian translation</item>
 	</string-array>
 
 	<string-array name="glass_contributors_urls" translatable="false">
@@ -41,6 +43,7 @@
 		<item>https://github.com/schapira</item>
 		<item>https://github.com/sr093906</item>
 		<item>https://github.com/tdafos</item>
+		<item>https://github.com/WallK</item>
 	</string-array>
 
 	<string-array name="glass_projects_names" translatable="false">
@@ -49,6 +52,7 @@
 		<item>pinyin4j</item>
 		<item>PinyinSearch</item>
 		<item>sparta-xml</item>
+		<item>Traditional T9 (fork by sspanak)</item>
 	</string-array>
 
 	<string-array name="glass_projects_info" translatable="false">
@@ -62,6 +66,7 @@
 \nLicensed under the Apache License 2.0.</item>
 		<item>Copyright 2002 Hewlett-Packard Company.
 \nLicensed under GNU LGPL-2.1-or-later</item>
+		<item>Licensed under the Apache License 2.0.</item>
 	</string-array>
 
 	<string-array name="glass_projects_urls" translatable="false">
@@ -70,6 +75,7 @@
 		<item>http://pinyin4j.sourceforge.net/</item>
 		<item>https://github.com/handsomezhou/PinyinSearchLibrary</item>
 		<item>https://sourceforge.net/projects/sparta-xml/</item>
+		<item>https://github.com/sspanak/tt9</item>
 	</string-array>
 
 </resources>

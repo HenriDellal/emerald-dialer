@@ -22,9 +22,6 @@ Emerald Dialer is a lightweight T9 dialer for Android 5.0+.
 - Italian
 - Portuguese (Brazil)
 - Russian
-
-### T9 support only
-- Arabic
-- Hebrew
 - Ukrainian
-- Vietnamese
+
+T9 support provided for more languages, full list available in application settings.

@@ -3,7 +3,7 @@
 
 	<string name="glass_text">Emerald Dialer (v%s)
 \n
-\nCopyright 2018-2019 Anri Dellal
+\nCopyright 2024 Anri Dellal
 \n
 \nSotto licenza solo-GPL-v3.0
 \nVuoi aiutare? Segnala errori ed invia suggerimenti via GitHub (https://www.github.com/HenriDellal/emerald-dialer/issues) o invia un\'email a anridellal@gmail.com
@@ -14,6 +14,10 @@
 		<item>Traduzione italiana</item>
 		<item>Traduzione francese</item>
 		<item>Traduzione portoghese brasiliana</item>
+		<item>Hebrew T9 keymap</item>
+		<item>Traduzione cinese</item>
+		<item>Traduzione greco</item>
+		<item>Traduzione ucraino</item>
 	</string-array>
 
 </resources>

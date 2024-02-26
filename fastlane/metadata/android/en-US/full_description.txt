@@ -12,9 +12,6 @@ Supported languages:
 * Italian
 * Portuguese (Brazil)
 * Russian
-
-T9 support only:
-* Arabic
-* Hebrew
 * Ukrainian
-* Vietnamese
+
+T9 support provided for more languages
