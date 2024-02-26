@@ -27,7 +27,7 @@
 	<string name="show_info">Інформація про дзвінок</string>
 	<string name="make_a_call">Подзвонити</string>
 	<string name="copy_number">Скопіювати номер</string>
-	<string name="delete_log_entry">Видалити запис з журнало</string>
+	<string name="delete_log_entry">Видалити запис з журналу</string>
 			
 	<string name="delete_call_log_entry_question">Ви хочете видалити цей дзвінок з журналу?</string>
 	<string name="contacts_app_is_missing">Для збереження контактів потрібно встановити додаток Контакти.</string>

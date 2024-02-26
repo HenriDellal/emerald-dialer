@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="glass_thanks">Подяки</string>
-	<string name="glass_feedback">Відгук</string>
-	<string name="glass_source_code">Код</string>
+	<string name="glass_feedback">Відгукнутися</string>
+	<string name="glass_source_code">Відкритий код</string>
 	<string name="glass_support">Підтримати</string>
 	<string name="glass_section_contributors">Автори</string>
 	<string name="glass_section_projects">Проекти</string>
