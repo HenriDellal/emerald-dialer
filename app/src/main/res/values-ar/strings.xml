@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="numpad_2">ب ت ة ث</string>
-    <string name="numpad_3">ؤ ء ا</string>
+    <string name="numpad_3">ا ء ؤ ئ ى</string>
     <string name="numpad_4">س ش ص ض</string>
     <string name="numpad_5">د ذ ر ز</string>
     <string name="numpad_6">ج ح خ</string>
-    <string name="numpad_7">ن ه و ي ى ئ</string>
+    <string name="numpad_7">ن ه و ي</string>
     <string name="numpad_8">ف ق ك ل م</string>
     <string name="numpad_9">ط ظ ع غ</string>
 
     <string name="local_regex_2">[\u0628-\u062b\u0662][\u064b-\u0656]?</string>
-    <string name="local_regex_3">[\u0621-\u0627\u0663][\u064b-\u0656]?</string>
+    <string name="local_regex_3">[\u0621-\u0627\u0649\u0663][\u064b-\u0656]?</string>
     <string name="local_regex_4">[\u0633-\u0636\u0664][\u064b-\u0656]?</string>
     <string name="local_regex_5">[\u062f-\u0632\u0665][\u064b-\u0656]?</string>
     <string name="local_regex_6">[\u062c-\u062e\u0666][\u064b-\u0656]?</string>
-    <string name="local_regex_7">[\u0646-\u064a\u0667][\u064b-\u0656]?</string>
+    <string name="local_regex_7">[\u0646-\u0648\u064a\u0667][\u064b-\u0656]?</string>
     <string name="local_regex_8">[\u0641-\u0645\u0668][\u064b-\u0656]?</string>
     <string name="local_regex_9">[\u0637-\u063a\u0669][\u064b-\u0656]?</string>
 </resources>
