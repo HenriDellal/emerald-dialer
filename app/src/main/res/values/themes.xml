@@ -16,6 +16,7 @@
 		<item name="drawableCallIncoming">@drawable/ic_call_incoming</item>
 		<item name="drawableCallRejected">@drawable/ic_call_rejected</item>
 		<item name="drawableContactImage">@drawable/ic_account_box</item>
+		<item name="drawableContacts">@drawable/ic_contacts</item>
 		<item name="drawableDialpad">@drawable/ic_dialpad</item>
 		<item name="drawableIconPhone">@drawable/ic_phone</item>
 		<item name="drawableOptions">@drawable/ic_menu</item>
@@ -35,6 +36,7 @@
 		<item name="drawableCallIncoming">@drawable/ic_call_incoming_dark</item>
 		<item name="drawableCallRejected">@drawable/ic_call_rejected_dark</item>
 		<item name="drawableContactImage">@drawable/ic_account_box_dark</item>
+		<item name="drawableContacts">@drawable/ic_contacts_dark</item>
 		<item name="drawableDialpad">@drawable/ic_dialpad_dark</item>
 		<item name="drawableIconPhone">@drawable/ic_phone_dark</item>
 		<item name="drawableOptions">@drawable/ic_menu_dark</item>

@@ -24,8 +24,17 @@
 			android:layout_width="48dp"
 			android:layout_height="48dp"
 			android:padding="8dp"
+			android:visibility="invisible"
 			android:id="@+id/btn_add_contact"
 			android:src="?attr/drawableAddContact"
+			android:background="@drawable/bg_generic_button" />
+		<ImageButton
+			android:layout_alignParentLeft="true"
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			android:padding="8dp"
+			android:id="@+id/btn_open_contacts"
+			android:src="?attr/drawableContacts"
 			android:background="@drawable/bg_generic_button" />
 		<ImageButton
 			android:layout_alignParentRight="true"

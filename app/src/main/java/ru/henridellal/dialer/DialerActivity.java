@@ -46,9 +46,10 @@ import android.widget.Toast;
 import java.text.DateFormat;
 import java.util.HashSet;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import ru.henridellal.dialer.dialog.DeleteCallLogEntryDialog;
-import ru.henridellal.dialer.dialog.MissingContactsAppDialog;
 import ru.henridellal.dialer.util.ContactsUtil;
 import ru.henridellal.dialer.util.DateUtil;
 
@@ -63,6 +64,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 				R.id.btn_numpad_6, R.id.btn_numpad_7,
 				R.id.btn_numpad_8, R.id.btn_numpad_9,
 				R.id.btn_numpad_star, R.id.btn_numpad_hash,
+				R.id.btn_open_contacts,
 				R.id.btn_add_contact, R.id.btn_remove_number,
 				R.id.btn_toggle_numpad, R.id.btn_options,
 				R.id.btn_call };
@@ -86,6 +88,9 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		Calls.DATE,
 		Calls.DURATION
 	};
+
+	private static final Pattern PHONE_NUMBER_PATTERN =
+			Pattern.compile("[\\+]?\\d+ ?\\(?\\d*\\)?[ \\d.-]+");
 	
 	private int mode;
 	private AsyncContactImageLoader mAsyncContactImageLoader;
@@ -111,6 +116,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		checkPermissions();
 		numberField = (EditText)findViewById(R.id.number_field);
 		numberField.setShowSoftInputOnFocus(false);
+		numberField.setOnLongClickListener(this);
 		parseIntent(getIntent());
 		telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
 		setButtonListeners();
@@ -249,7 +255,11 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 			case R.id.btn_remove_number: removeSymbolInNumber(); break;
 			case R.id.btn_toggle_numpad: Numpad.toggle(this); break;
 			case R.id.btn_call: callNumber(numberField.getText().toString()); break;
-			case R.id.btn_add_contact: ContactsUtil.createContact(this, numberField.getText().toString()); break;
+			case R.id.btn_open_contacts: ContactsUtil.open(this); break;
+			case R.id.btn_add_contact:
+				String number = numberField.getText().toString();
+				ContactsUtil.createContact(this, number);
+				break;
 			case R.id.btn_options: popup.show(); break;
 		}
 	}
@@ -354,7 +364,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 			return;
 		}
 		
-		Uri uri = Uri.parse("tel:" + Uri.encode(number));
+		Uri uri = Uri.parse("tel:" + Uri.encode(PhoneNumberUtils.normalizeNumber(number)));
 		Intent intent = new Intent(Intent.ACTION_CALL, uri);
 		startActivity(intent);
 		finish();
@@ -367,6 +377,21 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		Numpad.show(this);
 		numberField.setText(number);
 		numberField.setCursorVisible(true);
+	}
+
+	private void pasteNumber() {
+		ClipboardManager cm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+		try {
+			String number = cm.getPrimaryClip().getItemAt(0).getText().toString().trim();
+			Matcher match = PHONE_NUMBER_PATTERN.matcher(number);
+			if (match.matches()) {
+				numberField.setText(number);
+			} else {
+				Toast.makeText(this, "Not a phone number", Toast.LENGTH_LONG).show();
+			}
+		} catch (NullPointerException npe) {
+			Toast.makeText(this, "Clipboard is empty", Toast.LENGTH_LONG).show();
+		}
 	}
 	
 	private void setContactsMode() {
@@ -520,6 +545,8 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		if (start == 0 && before == 0 && count == 0) {
 			return;
 		} else if (TextUtils.isEmpty(s) && before > 0) {
+			findViewById(R.id.btn_add_contact).setVisibility(View.INVISIBLE);
+			findViewById(R.id.btn_open_contacts).setVisibility(View.VISIBLE);
 			setCallLogMode();
 			if (null != contactsEntryAdapter)
 				contactsEntryAdapter.resetFilter();
@@ -530,6 +557,8 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 			String secretCode = new StringBuilder(number).substring(4, number.length()-4);
 			sendBroadcast(new Intent("android.provider.Telephony.SECRET_CODE", Uri.parse("android_secret_code://" + secretCode)));
 		} else {
+			findViewById(R.id.btn_add_contact).setVisibility(View.VISIBLE);
+			findViewById(R.id.btn_open_contacts).setVisibility(View.INVISIBLE);
 			if (null != contactsEntryAdapter) {
 				setContactsMode();
 				contactsEntryAdapter.getFilter().filter(s);
@@ -591,6 +620,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 			case R.id.btn_numpad_8: callNumber(SpeedDial.getNumber(this, "8")); break;
 			case R.id.btn_numpad_9: callNumber(SpeedDial.getNumber(this, "9")); break;
 			case R.id.btn_remove_number: clearNumber(); break;
+			case R.id.number_field: pasteNumber(); break;
 			default:
 				return false;
 		}

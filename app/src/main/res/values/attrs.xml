@@ -19,6 +19,7 @@
 	<attr name="drawableCallOutgoing" format="reference"/>
 	<attr name="drawableCallRejected" format="reference"/>
 	<attr name="drawableContactImage" format="reference"/>
+	<attr name="drawableContacts" format="reference"/>
 	<attr name="drawableDialpad" format="reference"/>
 	<attr name="drawableIconPhone" format="reference"/>
 	<attr name="drawableOptions" format="reference"/>
