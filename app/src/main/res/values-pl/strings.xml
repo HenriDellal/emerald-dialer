@@ -6,4 +6,23 @@
     <string name="local_regex_6">[ÓŃóń]</string>
     <string name="local_regex_7">[Śś]</string>
     <string name="local_regex_9">[ŹŻźż]</string>
+    <string name="create_contact">Utwórz nowy kontakt</string>
+    <string name="show_info">Informacje połączenia</string>
+    <string name="make_a_call">Zadzwoń</string>
+    <string name="delete_log_entry">Usuń wpis w dzienniku</string>
+    <string name="remove">Usuń</string>
+    <string name="dialer_preferences">Preferencje</string>
+    <string name="app_name">Emerald Dialer</string>
+    <string name="date">Data</string>
+    <string name="duration">Czas trwania</string>
+    <string name="send_message">Wyślij wiadomość</string>
+    <string name="copy_number">Kopiuj numer</string>
+    <string name="preference_theme">Motyw</string>
+    <string name="dialer_about">O aplikacji…</string>
+    <string name="theme_entry_light">Jasny</string>
+    <string name="theme_entry_dark">Ciemny</string>
+    <string name="theme_entry_night">Noc</string>
+    <string name="voice_mail">Wiadomość głosowa</string>
+    <string name="fast_dial">Szybkie wybieranie</string>
+    <string name="preference_t9_locale">Język T9</string>
 </resources>
