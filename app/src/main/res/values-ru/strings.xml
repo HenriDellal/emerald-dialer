@@ -50,5 +50,21 @@
 	<string name="preference_theme">Тема</string>
 	<string name="theme_entry_light">Светлая</string>
 	<string name="theme_entry_dark">Тёмная</string>
+    <string name="theme_entry_night">Ночная</string>
     <string name="preference_contact_sources">Источники контактов</string>
+
+	<!-- CALL TYPES -->
+	<string name="call_type_incoming">Входящий вызов</string>
+	<string name="call_type_missed">Пропущенный вызов</string>
+	<string name="call_type_outgoing">Исходящий вызов</string>
+	<string name="call_type_rejected">Отклонённый вызов</string>
+	<string name="call_type_other">Другое</string>
+
+	<!-- NUMBER CALL LOG ENTRIES REMOVAL DIALOG -->
+	<string name="dialog_clean_log_title">Удаление записей журнала</string>
+	<string name="dialog_clean_log_from">С:</string>
+	<string name="dialog_clean_log_to">По:</string>
+	<string name="dialog_clean_log_date">Дата:</string>
+	<string name="dialog_clean_log_pick_date">Выберите дату</string>
+
 </resources>

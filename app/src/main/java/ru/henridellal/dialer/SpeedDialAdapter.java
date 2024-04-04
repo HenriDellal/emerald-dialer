@@ -1,9 +1,6 @@
 package ru.henridellal.dialer;
 
-import android.Manifest;
 import android.content.Context;
-import android.database.Cursor;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.lang.ref.SoftReference;
+
+import ru.henridellal.dialer.util.ContactsUtil;
 
 public class SpeedDialAdapter extends BaseAdapter {
 	
@@ -54,7 +53,7 @@ public class SpeedDialAdapter extends BaseAdapter {
 			((TextView)view.findViewById(R.id.entry_title)).setText(result);
 			return view;
 		}
-		String contactName = getContactName(number);
+		String contactName = ContactsUtil.getContactName(contextRef.get(), number);
 		if (null == contactName) {
 			result = !number.equals("") ? number : contextRef.get().getResources().getString(R.string.tap_for_addition);
 		} else {
@@ -62,20 +61,6 @@ public class SpeedDialAdapter extends BaseAdapter {
 		}
 		((TextView)view.findViewById(R.id.entry_title)).setText(result);
 		return view;
-	}
-
-	private String getContactName(String number) {
-		if (!PermissionManager.isPermissionGranted(contextRef.get(), Manifest.permission.READ_CONTACTS)) return null;
-		String contactName = null;
-		Cursor cursor = contextRef.get().getContentResolver().query(Phone.CONTENT_URI, new String[]{Phone.DISPLAY_NAME}, Phone.NUMBER + "=?", new String[]{number}, null);
-		if (cursor != null) {
-			if (cursor.getCount() > 0) {
-				cursor.moveToFirst();
-				contactName = cursor.getString(0);
-				cursor.close();
-			}
-		}
-		return contactName;
 	}
 	
 	@Override

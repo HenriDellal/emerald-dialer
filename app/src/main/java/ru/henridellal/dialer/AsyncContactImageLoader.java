@@ -21,15 +21,15 @@ class AsyncContactImageLoader {
 	}
 
 	private static class BackgroundImageLoader extends Thread {
-		public Handler mHandler;
+		public final Handler mHandler;
 		
 		public BackgroundImageLoader() {
 			super();
+			mHandler = new Handler();
 		}
 		@Override
 		public void run() {
 			Looper.prepare();
-			mHandler = new Handler();
 			Looper.loop();
 		}
 	}
@@ -51,6 +51,10 @@ class AsyncContactImageLoader {
 		mHandler = new Handler();
 		mBackgroundImageLoader = new BackgroundImageLoader();
 		mBackgroundImageLoader.start();
+	}
+
+	public boolean isReady() {
+		return mBackgroundImageLoader != null && mBackgroundImageLoader.mHandler != null;
 	}
 
 	Drawable loadImageForContact(String lookupKey) {

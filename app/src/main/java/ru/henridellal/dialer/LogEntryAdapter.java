@@ -1,20 +1,15 @@
 package ru.henridellal.dialer;
 
-import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Build;
 import android.provider.CallLog.Calls;
-import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.PhoneLookup;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
+import android.text.format.DateUtils;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +22,6 @@ import java.util.Locale;
 import java.util.Map;
 
 import ru.henridellal.dialer.AsyncContactImageLoader.ImageCallback;
-import ru.henridellal.dialer.util.ContactsUtil;
 import ru.henridellal.dialer.util.DateUtil;
 import ru.henridellal.dialer.util.RTLUtil;
 import ru.henridellal.dialer.util.ThemingUtil;
@@ -35,36 +29,57 @@ import ru.henridellal.dialer.util.ThemingUtil;
 public class LogEntryAdapter extends CursorAdapter implements View.OnClickListener
 {
 	public static final String[] PROJECTION = {
-		Calls._ID,
-		Calls.CACHED_NAME,
-		Calls.NUMBER,
-		Calls.DATE,
-		Calls.TYPE
+			Calls._ID,
+			Calls.DATE,
+			Calls.TYPE,
+			Calls.CACHED_NAME,
+			Calls.NUMBER
 	};
-	private static final int COLUMN_NAME = 1;
-	private static final int COLUMN_NUMBER = 2;
-	private static final int COLUMN_DATE = 3;
-	private static final int COLUMN_TYPE = 4;
 
+	public static final String[] PROJECTION_FOR_NUMBER = {
+			Calls._ID,
+			Calls.DATE,
+			Calls.TYPE,
+			Calls.DURATION
+	};
+
+	private static final int LOG_ENTRY_LAYOUT_ID = R.layout.contact_log_entry;
+	private static final int PHONE_NUMBER_LOG_ENTRY_LAYOUT_ID = R.layout.phone_number_log_entry;
+
+	public static final int COLUMN_DATE = 1;
+	public static final int COLUMN_TYPE = 2;
+	public static final int COLUMN_NAME = 3;
+	public static final int COLUMN_NUMBER = 4;
+
+	public static final int COLUMN_DURATION = 3;
 	private static Map<Integer, Integer> callTypes = new HashMap<Integer, Integer>();
+	private static Map<Integer, Integer> callTypeStrings = new HashMap<Integer, Integer>();
 
 	static {
 		callTypes.put(Calls.INCOMING_TYPE, R.attr.drawableCallIncoming);
+		callTypeStrings.put(Calls.INCOMING_TYPE, R.string.call_type_incoming);
 		callTypes.put(Calls.MISSED_TYPE, R.attr.drawableCallMissed);
+		callTypeStrings.put(Calls.MISSED_TYPE, R.string.call_type_missed);
 		callTypes.put(Calls.OUTGOING_TYPE, R.attr.drawableCallOutgoing);
+		callTypeStrings.put(Calls.OUTGOING_TYPE, R.string.call_type_outgoing);
 		if (Build.VERSION.SDK_INT >= 24) {
 			callTypes.put(Calls.REJECTED_TYPE, R.attr.drawableCallRejected);
+			callTypeStrings.put(Calls.REJECTED_TYPE, R.string.call_type_rejected);
 		}
 	}
-
 	private Map<Integer, Integer> callTypeDrawableIds;
 	
 	private AsyncContactImageLoader mAsyncContactImageLoader;
 	private Drawable defaultContactDrawable;
 	private SoftReference<Context> contextRef;
-	private boolean isRtlLayout, loadContactImages;
+	private boolean isRtlLayout, isSingleNumberLog, loadContactImages;
 
-	public LogEntryAdapter(Context context, Cursor cursor, AsyncContactImageLoader loader) {
+	public LogEntryAdapter(
+			Context context,
+			Cursor cursor,
+			AsyncContactImageLoader loader,
+			boolean isSingleNumberLog
+	) {
 		super(context, cursor, 0);
 		contextRef = new SoftReference<Context>(context);
 		mAsyncContactImageLoader = loader;
@@ -81,6 +96,7 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 		}
 
 		isRtlLayout = RTLUtil.isRtlLayout();
+		this.isSingleNumberLog = isSingleNumberLog;
 	}
 	
 	@Override
@@ -90,16 +106,10 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 			if (null == number) {
 				return;
 			}
-			Uri contactIdUri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
-			String[] projection = new String[] {(Build.VERSION.SDK_INT >= 24) ? PhoneLookup.CONTACT_ID : PhoneLookup._ID};
-			Cursor cursor = contextRef.get().getContentResolver().query(contactIdUri, projection, null, null, null);
-			if (cursor == null || !cursor.moveToFirst()) {
-				unknownNumberDialog(number);
-				return;
-			}
-			String contactId = cursor.getString(0);
-			cursor.close();
-			ContactsUtil.view(contextRef.get(), Contacts.CONTENT_URI, contactId);
+			Intent intent = new Intent(contextRef.get(), PhoneNumberActivity.class);
+			intent.putExtra(IntentExtras.PHONE_NUMBER, number);
+
+			contextRef.get().startActivity(intent);
 		}
 	}
 	
@@ -107,46 +117,65 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 		notifyDataSetChanged();
 	}
 	
-	public void unknownNumberDialog(final String number) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(contextRef.get());
-		builder.setTitle(PhoneNumberUtils.formatNumber(number, Locale.getDefault().getCountry()));
-		String[] items = new String[]
-				{contextRef.get().getResources().getString(R.string.send_message),
-				contextRef.get().getResources().getString(R.string.create_contact)};
-		builder.setItems(items, 
-			new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(DialogInterface di, int which) {
-					Intent intent;
-					switch(which) {
-						case 0:
-							intent = new Intent(Intent.ACTION_VIEW);
-							intent.setData(Uri.parse("smsto:" + number));
-							try {
-								contextRef.get().startActivity(intent);
-							} catch (ActivityNotFoundException e) {}
-							break;
-						case 1:
-							ContactsUtil.createContact(contextRef.get(), number);
-							break;
-					}
-				}
-			});
-		builder.create().show();
-	}
-	
 	@Override
 	public View newView(Context context, Cursor cursor, ViewGroup parent) {
-		View view = LayoutInflater.from(context).inflate(R.layout.contact_log_entry, null);
-		LogEntryCache viewCache = new LogEntryCache(view);
-		view.setTag(viewCache);
-		
+		View view;
+		if (isSingleNumberLog) {
+			view = LayoutInflater.from(context).inflate(PHONE_NUMBER_LOG_ENTRY_LAYOUT_ID, null);
+			PhoneNumberLogEntryCache viewCache = new PhoneNumberLogEntryCache(view);
+			view.setTag(viewCache);
+		} else {
+			view = LayoutInflater.from(context).inflate(LOG_ENTRY_LAYOUT_ID, null);
+			CallLogEntryCache viewCache = new CallLogEntryCache(view);
+			view.setTag(viewCache);
+		}
 		return view;
 	}
 	
 	@Override
 	public void bindView(View view, Context context, Cursor cursor) {
-		final LogEntryCache viewCache = (LogEntryCache) view.getTag();
+		if (isSingleNumberLog) {
+			bindPhoneNumberLogView(view, context, cursor);
+		} else {
+			bindLogView(view, context, cursor);
+		}
+	}
+
+	private void bindPhoneNumberLogView(View view, Context context, Cursor cursor) {
+		final PhoneNumberLogEntryCache viewCache = (PhoneNumberLogEntryCache) view.getTag();
+		if (viewCache == null) {
+			return;
+		}
+
+		long date = cursor.getLong(COLUMN_DATE);
+		viewCache.callDate.setText(DateUtil.getCallDateText(context, date));
+
+		int callType = cursor.getInt(COLUMN_TYPE);
+		setCallTypeForView(context, viewCache, callType);
+
+		String detailedInfo;
+		switch (callType) {
+			case Calls.MISSED_TYPE:
+			case Calls.REJECTED_TYPE:
+				detailedInfo = context.getResources().getString(callTypeStrings.get(callType));
+				break;
+			case Calls.INCOMING_TYPE:
+			case Calls.OUTGOING_TYPE:
+				long duration = cursor.getInt(COLUMN_DURATION);
+				detailedInfo = String.format("%1s, %2s: %3s",
+						context.getResources().getString(callTypeStrings.get(callType)),
+						context.getResources().getString(R.string.duration).toLowerCase(),
+						DateUtils.formatElapsedTime(duration)
+				);
+				break;
+			default:
+				detailedInfo = context.getResources().getString(R.string.call_type_other);
+		}
+		viewCache.callDetailedInfo.setText(detailedInfo);
+	}
+
+	private void bindLogView(View view, Context context, Cursor cursor) {
+		final CallLogEntryCache viewCache = (CallLogEntryCache) view.getTag();
 		if (viewCache == null) {
 			return;
 		}
@@ -171,32 +200,15 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 			viewCache.phoneNumber.setText("");
 		}
 		long date = cursor.getLong(COLUMN_DATE);
-		viewCache.callDate.setText(DateUtil.getCallDateText(date));
-	
-		int id = cursor.getInt(COLUMN_TYPE);
-		int callTypeDrawableId = 0;
-		
-		if ((callTypeDrawableId = getCallTypeDrawableId(id)) != 0) {
-			viewCache.callTypeImage.setImageDrawable(context.getResources().getDrawable(callTypeDrawableId, context.getTheme()));
-		}
-		viewCache.contactImage.setTag(phoneNumber); // set a tag for the callback to be able to check, so we don't set the contact image of a reused view
-		Drawable d = (loadContactImages) ?
-			mAsyncContactImageLoader.loadDrawable(phoneNumber, new ImageCallback() {
+		viewCache.callDate.setText(DateUtil.getCallDateText(context, date));
+		int callType = cursor.getInt(COLUMN_TYPE);
+		setCallTypeForView(context, viewCache, callType);
 
-				@Override
-				public void imageLoaded(Drawable imageDrawable, String number) {
-					if (TextUtils.equals(number, (String) viewCache.contactImage.getTag())) {
-						viewCache.contactImage.setImageDrawable(imageDrawable);
-					}
-				}
-			}, AsyncContactImageLoader.QUERY_TYPE_PHONE_NUMBER)
-			: defaultContactDrawable;
-		viewCache.contactImage.setImageDrawable(d);
-		if (phoneNumber.length() == 0) {
-			return;
+		viewCache.contactImage.setTag(phoneNumber); // set a tag for the callback to be able to check, so we don't set the contact image of a reused view
+		viewCache.contactImage.setImageDrawable(getContactImageDrawable(phoneNumber, viewCache));
+		if (phoneNumber.length() != 0) {
+			viewCache.contactImage.setOnClickListener(this);
 		}
-		viewCache.contactImage.setOnClickListener(this);
-		
 	}
 	
 	public String getPhoneNumber(int position) {
@@ -214,5 +226,27 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 	private int getCallTypeDrawableId(int type) {
 		return (callTypeDrawableIds.containsKey(type)) ?
 			callTypeDrawableIds.get(type) : 0;
+	}
+
+	public void setCallTypeForView(Context context, LogEntryCache viewCache, int callType) {
+		int callTypeDrawableId = getCallTypeDrawableId(callType);
+
+		if (callTypeDrawableId != 0) {
+			viewCache.callTypeImage.setImageDrawable(context.getResources().getDrawable(callTypeDrawableId, context.getTheme()));
+		}
+	}
+
+	private Drawable getContactImageDrawable(String phoneNumber, final CallLogEntryCache viewCache) {
+		return (loadContactImages) ?
+				mAsyncContactImageLoader.loadDrawable(phoneNumber, new ImageCallback() {
+
+					@Override
+					public void imageLoaded(Drawable imageDrawable, String number) {
+						if (TextUtils.equals(number, (String) viewCache.contactImage.getTag())) {
+							viewCache.contactImage.setImageDrawable(imageDrawable);
+						}
+					}
+				}, AsyncContactImageLoader.QUERY_TYPE_PHONE_NUMBER)
+				: defaultContactDrawable;
 	}
 }

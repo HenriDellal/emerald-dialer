@@ -1,21 +1,19 @@
 package ru.henridellal.dialer;
 
-import android.annotation.SuppressLint;
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
-import android.content.ActivityNotFoundException;
-import android.content.ClipboardManager;
 import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
-import android.content.pm.PackageManager;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -27,11 +25,10 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
-import android.text.format.DateUtils;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.TypedValue;
+import android.text.format.DateUtils;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,7 +37,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupMenu;
-import android.Manifest;
 import android.widget.Toast;
 
 import java.text.DateFormat;
@@ -158,7 +154,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		}
 
 		if (PermissionManager.isPermissionGranted(this, Manifest.permission.READ_CALL_LOG)) {
-			logEntryAdapter = new LogEntryAdapter(this, null, mAsyncContactImageLoader);
+			logEntryAdapter = new LogEntryAdapter(this, null, mAsyncContactImageLoader, false);
 			list.setAdapter(logEntryAdapter);
 			initCallLogLoader(loaderManager);
 		}
@@ -269,8 +265,8 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
 			Object focusedViewTag = getCurrentFocus().getTag();
 			String number;
-			if (focusedViewTag instanceof LogEntryCache) {
-				LogEntryCache tag = (LogEntryCache) focusedViewTag;
+			if (focusedViewTag instanceof CallLogEntryCache) {
+				CallLogEntryCache tag = (CallLogEntryCache) focusedViewTag;
 				number = tag.phoneNumber.getText().toString();
 				if (number.length() == 0) {
 					number = tag.contactName.getText().toString();

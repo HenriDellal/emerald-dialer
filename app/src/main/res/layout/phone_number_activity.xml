@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:id="@+id/top_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/call_button"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/contact_image"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="8dp" />
+
+        <TextView
+            android:id="@+id/main_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/contact_image"
+            android:layout_toStartOf="@id/btn_cleanup"
+            android:layout_toEndOf="@id/contact_image"
+            android:textSize="24sp"
+            android:lines="1"
+            tools:text="Alex Jones" />
+
+        <TextView
+            android:id="@+id/secondary_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/main_text"
+            android:layout_alignStart="@id/main_text"
+            android:layout_toStartOf="@id/btn_cleanup"
+            android:layout_alignParentBottom="false"
+            android:textSize="12sp"
+            android:lines="1"
+            tools:text="+7 (800) 954-35-35" />
+
+        <ImageButton
+            android:id="@+id/btn_cleanup"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp" />
+    </RelativeLayout>
+    <ListView
+        android:id="@+id/number_log"
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        android:layout_below="@id/top_panel"
+        android:layout_alignParentBottom="true"
+        android:fastScrollEnabled="true"
+        tools:listitem="@layout/phone_number_log_entry" />
+</RelativeLayout>

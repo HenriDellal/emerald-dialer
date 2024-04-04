@@ -90,4 +90,18 @@
 	<string name="preference_contact_sources">Contacts\' sources</string>
 	<string name="permission_not_granted">Permission not granted for this operation</string>
 
+	<!-- CALL TYPES -->
+    <string name="call_type_incoming">Incoming call</string>
+	<string name="call_type_missed">Missed call</string>
+	<string name="call_type_outgoing">Outgoing call</string>
+	<string name="call_type_rejected">Rejected call</string>
+	<string name="call_type_other">Other</string>
+
+    <!-- NUMBER CALL LOG ENTRIES REMOVAL DIALOG -->
+    <string name="dialog_clean_log_title">Remove log entries</string>
+    <string name="dialog_clean_log_from">From:</string>
+	<string name="dialog_clean_log_to">To:</string>
+    <string name="dialog_clean_log_date">Date:</string>
+    <string name="dialog_clean_log_pick_date">Pick date</string>
+
 </resources>

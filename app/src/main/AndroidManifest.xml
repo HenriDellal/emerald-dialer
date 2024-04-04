@@ -73,6 +73,7 @@
             </intent-filter>
             
         </activity>
+        <activity android:name=".PhoneNumberActivity" />
         <activity
         	android:name=".SpeedDialActivity">
         	
