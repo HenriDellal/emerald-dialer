@@ -1,0 +1,14 @@
+New in 1.0.18
+- Add call history per number (draft implementation)
+- Fix Arabic T9 layout
+- Add contacts button
+- Paste number on long press
+
+New in 1.0.17
+- More T9 languages;
+- Ukrainian translation (thanks to WallK)
+
+New in 1.0.16
+- Fix RTL layout problems;
+- Contacts filtering by source (phone, sim, apps);
+- Fix crashing if some permissions are missing.
