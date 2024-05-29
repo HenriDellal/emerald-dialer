@@ -10,8 +10,11 @@ Supported languages:
 * German
 * Greek
 * Italian
+* Polish
 * Portuguese (Brazil)
 * Russian
+* Spanish
+* Turkish
 * Ukrainian
 
 T9 support provided for more languages

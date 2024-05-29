@@ -1,0 +1,16 @@
+New in 1.0.19
+More translations, thanks to:
+- Eryk Michalak (Polish)
+- gallegonovato (Spanish)
+- Oğuz Ersen (Turkish)
+Updated Chinese translation, thanks to 大王叫我来巡山
+
+New in 1.0.18
+- Add call history per number (draft implementation)
+- Fix Arabic T9 layout
+- Add contacts button
+- Paste number on long press
+
+New in 1.0.17
+- More T9 languages;
+- Ukrainian translation (thanks to WallK)

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="glass_app_version" translatable="false">1.0.18</string>
+	<string name="glass_app_version" translatable="false">1.0.19</string>
 	<string name="glass_text" tools:ignore="MissingTranslation">Emerald Dialer (v%s)
 \n
 \nCopyright 2024 Anri Dellal
@@ -22,6 +22,10 @@
 		<item>sr093906</item>
 		<item>tdafos</item>
 		<item>WallK</item>
+		<item>Oğuz Ersen</item>
+		<item>大王叫我来巡山</item>
+		<item>Eryk Michalak</item>
+		<item>gallegonovato</item>
 	</string-array>
 
 	<string-array name="glass_contributors_info">
@@ -33,6 +37,10 @@
 		<item>Chinese translation</item>
 		<item>Greek translation</item>
 		<item>Ukrainian translation</item>
+		<item>Turkish translation</item>
+		<item>Chinese translation</item>
+		<item>Polish translation</item>
+		<item>Spanish translation</item>
 	</string-array>
 
 	<string-array name="glass_contributors_urls" translatable="false">
@@ -44,6 +52,10 @@
 		<item>https://github.com/sr093906</item>
 		<item>https://github.com/tdafos</item>
 		<item>https://github.com/WallK</item>
+		<item></item>
+		<item></item>
+		<item></item>
+		<item></item>
 	</string-array>
 
 	<string-array name="glass_projects_names" translatable="false">
