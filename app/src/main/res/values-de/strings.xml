@@ -4,25 +4,47 @@
 	<string name="local_regex_2">[Ää]</string>
 	<string name="local_regex_6">[Öö]</string>
 	<string name="local_regex_8">[Üü]</string>
-	
 	<string name="create_contact">Kontakt hinzufügen</string>
 	<string name="send_message">Nachricht senden</string>
 	<string name="delete_call_log_entry_question">Möchten sie diesen Eintrag wirklich löschen?</string>
-	
+
 	<!-- SPEED DIAL -->
 	<string name="tap_for_addition">Antippen zum Hinzufügen</string>
 	<string name="voice_mail">Mailbox</string>
 	<string name="remove_speed_dial_entry">Möchten sie diese Schnellwahl entfernen?</string>
 	<string name="pick_contact_number">Kontakt auswählen</string>
-	
+
 	<!-- POPUP MENU -->
 	<string name="clear_call_log">Anrufprotokoll löschen</string>
 	<string name="clear_call_log_question">Möchten sie den Verlauf wirklich löschen?</string>
 	<string name="fast_dial">Schnellwahl</string>
 	<string name="dialer_preferences">Einstellungen</string>
-	
+
 	<!-- PREFERENCES -->
 	<string name="preference_theme">Thema</string>
 	<string name="theme_entry_light">Hell</string>
 	<string name="theme_entry_dark">Dunkel</string>
+	<string name="call_type_incoming">Eingehender Anruf</string>
+	<string name="call_type_missed">Verpasster Anruf</string>
+	<string name="dialog_clean_log_title">Protokolleinträge entfernen</string>
+	<string name="dialog_clean_log_from">Von:</string>
+	<string name="dialog_clean_log_to">An:</string>
+	<string name="dialog_clean_log_date">Datum:</string>
+	<string name="date">Datum</string>
+	<string name="duration">Dauer</string>
+	<string name="show_info">Anrufinformationen</string>
+	<string name="call_type_rejected">Abgelehnter Anruf</string>
+	<string name="call_type_other">Andere</string>
+	<string name="make_a_call">Anruf</string>
+	<string name="copy_number">Nummer kopieren</string>
+	<string name="delete_log_entry">Protokolleintrag löschen</string>
+	<string name="contacts_app_is_missing">Es ist keine Kontakte-Anwendung zum Speichern von Kontakten installiert.</string>
+	<string name="remove">Entfernen</string>
+	<string name="dialer_about">Über…</string>
+	<string name="theme_entry_night">Nacht</string>
+	<string name="preference_t9_locale">T9-Sprache</string>
+	<string name="preference_contact_sources">Quellen der Kontakte</string>
+	<string name="permission_not_granted">Berechtigung für diesen Vorgang nicht erteilt</string>
+	<string name="call_type_outgoing">Ausgehender Anruf</string>
+	<string name="dialog_clean_log_pick_date">Datum auswählen</string>
 </resources>
