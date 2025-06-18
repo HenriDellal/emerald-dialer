@@ -195,7 +195,9 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		int keyboardType = getResources().getConfiguration().keyboard;
 		if (keyboardType == Configuration.KEYBOARD_QWERTY) {
 			numberField.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
-			contactsEntryAdapter.setFilteringMode(ContactsEntryAdapter.FILTERING_MODE_RAW);
+			if (contactsEntryAdapter != null) { // Added null check
+				contactsEntryAdapter.setFilteringMode(ContactsEntryAdapter.FILTERING_MODE_RAW);
+			}
 			findViewById(R.id.btn_toggle_numpad).setVisibility(View.INVISIBLE);
 			findViewById(R.id.numpad).setVisibility(View.GONE);
 		} else if (keyboardType == Configuration.KEYBOARD_12KEY) {
