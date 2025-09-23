@@ -1,0 +1,5 @@
+New in 1.0.20
+- German translation update (thanks to Ettore Atalan)
+- Show call duration in call log
+- Show SIM card used for call in call log
+- Other UI improvements

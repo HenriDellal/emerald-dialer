@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="glass_app_version" translatable="false">1.0.19</string>
+	<string name="glass_app_version" translatable="false">1.0.20</string>
 	<string name="glass_text" tools:ignore="MissingTranslation">Emerald Dialer (v%s)
 \n
-\nCopyright 2024 Anri Dellal
+\nCopyright 2025 Anri Dellal
 \n
 \nLicensed under GPL-v3.0-only
 \nWant to help? Report bugs and submit suggestions via GitHub (https://www.github.com/HenriDellal/emerald-dialer/issues)
@@ -26,6 +26,7 @@
 		<item>大王叫我来巡山</item>
 		<item>Eryk Michalak</item>
 		<item>gallegonovato</item>
+		<item>Ettore Atalan</item>
 	</string-array>
 
 	<string-array name="glass_contributors_info">
@@ -41,6 +42,7 @@
 		<item>Chinese translation</item>
 		<item>Polish translation</item>
 		<item>Spanish translation</item>
+		<item>German translation</item>
 	</string-array>
 
 	<string-array name="glass_contributors_urls" translatable="false">
@@ -52,6 +54,7 @@
 		<item>https://github.com/sr093906</item>
 		<item>https://github.com/tdafos</item>
 		<item>https://github.com/WallK</item>
+		<item></item>
 		<item></item>
 		<item></item>
 		<item></item>
