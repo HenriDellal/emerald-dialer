@@ -9,8 +9,10 @@
 	<attr name="additionalTextStyle" format="reference"/>
 	<attr name="colorCallButton" format="reference"/>
 	<attr name="colorGenericButtonRipple" format="reference"/>
+	<attr name="colorNumpadNumber" format="reference"/>
 	<attr name="colorNumpadButtonLetters" format="reference"/>
 	<attr name="colorStroke" format="reference"/>
+	<attr name="colorTitleBackground" format="reference"/>
 	<attr name="contactNameStyle" format="reference"/>
 	<attr name="drawableAddContact" format="reference"/>
 	<attr name="drawableBackspace" format="reference"/>
@@ -19,6 +21,7 @@
 	<attr name="drawableCallOutgoing" format="reference"/>
 	<attr name="drawableCallRejected" format="reference"/>
 	<attr name="drawableContactImage" format="reference"/>
+	<attr name="drawableContactImageForTitle" format="reference"/>
 	<attr name="drawableContacts" format="reference"/>
 	<attr name="drawableDialpad" format="reference"/>
 	<attr name="drawableIconPhone" format="reference"/>

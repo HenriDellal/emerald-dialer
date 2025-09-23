@@ -153,7 +153,8 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 			initContactsLoader(loaderManager);
 		}
 
-		if (PermissionManager.isPermissionGranted(this, Manifest.permission.READ_CALL_LOG)) {
+		if (PermissionManager.isPermissionGranted(this, Manifest.permission.READ_CALL_LOG) &&
+				PermissionManager.isPermissionGranted(this, Manifest.permission.READ_PHONE_STATE)) {
 			logEntryAdapter = new LogEntryAdapter(this, null, mAsyncContactImageLoader, false);
 			list.setAdapter(logEntryAdapter);
 			initCallLogLoader(loaderManager);

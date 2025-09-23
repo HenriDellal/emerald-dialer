@@ -45,8 +45,11 @@ class AsyncContactImageLoader {
 	private final BackgroundImageLoader mBackgroundImageLoader;
 
 	public AsyncContactImageLoader(Context context) {
+		this(context, R.attr.drawableContactImage);
+	}
+	public AsyncContactImageLoader(Context context, int attrId) {
 		mContext = context;
-		mDefaultDrawable = ThemingUtil.getDefaultContactDrawable(context);
+		mDefaultDrawable = ThemingUtil.getDefaultContactDrawable(context, attrId);
 		mImageCache = new HashMap<String, SoftReference<Drawable>>(IMAGECACHE_INITIAL_CAPACITY);
 		mHandler = new Handler();
 		mBackgroundImageLoader = new BackgroundImageLoader();

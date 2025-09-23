@@ -1,13 +1,19 @@
 package ru.henridellal.dialer;
 
+import static android.content.Context.TELEPHONY_SUBSCRIPTION_SERVICE;
+
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.provider.CallLog.Calls;
 import android.telephony.PhoneNumberUtils;
+import android.telephony.SubscriptionInfo;
+import android.telephony.SubscriptionManager;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.util.TypedValue;
@@ -18,6 +24,7 @@ import android.widget.CursorAdapter;
 
 import java.lang.ref.SoftReference;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -32,6 +39,8 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 			Calls._ID,
 			Calls.DATE,
 			Calls.TYPE,
+			Calls.DURATION,
+			Calls.PHONE_ACCOUNT_ID,
 			Calls.CACHED_NAME,
 			Calls.NUMBER
 	};
@@ -40,7 +49,8 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 			Calls._ID,
 			Calls.DATE,
 			Calls.TYPE,
-			Calls.DURATION
+			Calls.DURATION,
+			Calls.PHONE_ACCOUNT_ID
 	};
 
 	private static final int LOG_ENTRY_LAYOUT_ID = R.layout.contact_log_entry;
@@ -48,10 +58,11 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 
 	public static final int COLUMN_DATE = 1;
 	public static final int COLUMN_TYPE = 2;
-	public static final int COLUMN_NAME = 3;
-	public static final int COLUMN_NUMBER = 4;
-
 	public static final int COLUMN_DURATION = 3;
+	public static final int COLUMN_PHONE_ACCOUNT_ID = 4;
+	public static final int COLUMN_NAME = 5;
+	public static final int COLUMN_NUMBER = 6;
+
 	private static Map<Integer, Integer> callTypes = new HashMap<Integer, Integer>();
 	private static Map<Integer, Integer> callTypeStrings = new HashMap<Integer, Integer>();
 
@@ -73,7 +84,10 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 	private Drawable defaultContactDrawable;
 	private SoftReference<Context> contextRef;
 	private boolean isRtlLayout, isSingleNumberLog, loadContactImages;
+	private List<SubscriptionInfo> subscriptionInfoList;
+	private Map<String, BitmapDrawable> subIdToIconMap;
 
+	@SuppressLint("MissingPermission")
 	public LogEntryAdapter(
 			Context context,
 			Cursor cursor,
@@ -82,6 +96,21 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 	) {
 		super(context, cursor, 0);
 		contextRef = new SoftReference<Context>(context);
+		subIdToIconMap = new HashMap<>();
+
+		if (Build.VERSION.SDK_INT >= 22) {
+			SubscriptionManager subscriptionManager = (SubscriptionManager) context.getSystemService(TELEPHONY_SUBSCRIPTION_SERVICE);
+			subscriptionInfoList = subscriptionManager.getActiveSubscriptionInfoList();
+			if (subscriptionInfoList != null) {
+				for (SubscriptionInfo s : subscriptionInfoList) {
+					subIdToIconMap.put(
+							String.valueOf(s.getSubscriptionId()),
+							new BitmapDrawable(context.getResources(),
+									s.createIconBitmap(context))
+					);
+				}
+			}
+		}
 		mAsyncContactImageLoader = loader;
 		loadContactImages = null != mAsyncContactImageLoader;
 		if (!loadContactImages) {
@@ -141,6 +170,18 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 		}
 	}
 
+	private void setSimCardImage(Cursor cursor, LogEntryCache viewCache) {
+		if (Build.VERSION.SDK_INT >= 22) {
+			String phoneAccountId = cursor.getString(COLUMN_PHONE_ACCOUNT_ID);
+			for (String subId: subIdToIconMap.keySet()) {
+				if (phoneAccountId.startsWith(subId)) {
+					viewCache.callSimCard.setImageDrawable(subIdToIconMap.get(subId));
+					break;
+				}
+			}
+		}
+	}
+
 	private void bindPhoneNumberLogView(View view, Context context, Cursor cursor) {
 		final PhoneNumberLogEntryCache viewCache = (PhoneNumberLogEntryCache) view.getTag();
 		if (viewCache == null) {
@@ -172,6 +213,7 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 				detailedInfo = context.getResources().getString(R.string.call_type_other);
 		}
 		viewCache.callDetailedInfo.setText(detailedInfo);
+		setSimCardImage(cursor, viewCache);
 	}
 
 	private void bindLogView(View view, Context context, Cursor cursor) {
@@ -206,9 +248,19 @@ public class LogEntryAdapter extends CursorAdapter implements View.OnClickListen
 
 		viewCache.contactImage.setTag(phoneNumber); // set a tag for the callback to be able to check, so we don't set the contact image of a reused view
 		viewCache.contactImage.setImageDrawable(getContactImageDrawable(phoneNumber, viewCache));
-		if (phoneNumber.length() != 0) {
+		if (!phoneNumber.isEmpty()) {
 			viewCache.contactImage.setOnClickListener(this);
 		}
+
+		if (callType == Calls.INCOMING_TYPE || callType == Calls.OUTGOING_TYPE) {
+			viewCache.callDuration.setText(
+					DateUtils.formatElapsedTime(cursor.getInt(COLUMN_DURATION))
+			);
+		} else {
+			viewCache.callDuration.setText("");
+		}
+
+		setSimCardImage(cursor, viewCache);
 	}
 	
 	public String getPhoneNumber(int position) {

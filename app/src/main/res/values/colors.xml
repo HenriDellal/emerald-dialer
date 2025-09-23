@@ -9,9 +9,11 @@
 	<color name="call_button_ripple">#7cb33c</color>
 	
 	<color name="green_800">#2e7d32</color>
+	<color name="green_700">#388E3C</color>
 	<color name="green_600">#43a047</color>
 	<color name="light_green_600">#7cb342</color>
 	<color name="light_green_400">#66bb6a</color>
+	<color name="light_green_200">#C5E1A5</color>
 	<color name="black">#000000</color>
 	<color name="grey_3">#333</color>
 	<color name="grey_c">#CCC</color>

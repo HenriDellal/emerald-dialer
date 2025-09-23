@@ -7,7 +7,9 @@
 		<item name="colorCallButton">@color/call_button</item>
 		<item name="colorGenericButtonRipple">@color/generic_button_ripple</item>
 		<item name="colorNumpadButtonLetters">@color/grey_3</item>
+		<item name="colorNumpadNumber">@color/green_700</item>
 		<item name="colorStroke">@color/stroke_light</item>
+		<item name="colorTitleBackground">@color/call_button</item>
 		<item name="contactNameStyle">@style/ContactName.Light</item>
 		<item name="drawableAddContact">@drawable/ic_add</item>
 		<item name="drawableBackspace">@drawable/ic_backspace</item>
@@ -16,6 +18,7 @@
 		<item name="drawableCallIncoming">@drawable/ic_call_incoming</item>
 		<item name="drawableCallRejected">@drawable/ic_call_rejected</item>
 		<item name="drawableContactImage">@drawable/ic_account_box</item>
+		<item name="drawableContactImageForTitle">@drawable/ic_account_box_light</item>
 		<item name="drawableContacts">@drawable/ic_contacts</item>
 		<item name="drawableDialpad">@drawable/ic_dialpad</item>
 		<item name="drawableIconPhone">@drawable/ic_phone</item>
@@ -27,7 +30,9 @@
 		<item name="colorCallButton">@color/call_button_dark</item>
 		<item name="colorGenericButtonRipple">@color/generic_button_ripple_dark</item>
 		<item name="colorNumpadButtonLetters">@color/grey_c</item>
+		<item name="colorNumpadNumber">@color/light_green_200</item>
 		<item name="colorStroke">@color/stroke_dark</item>
+		<item name="colorTitleBackground">@color/green_700</item>
 		<item name="contactNameStyle">@style/ContactName.Dark</item>
 		<item name="drawableAddContact">@drawable/ic_add_dark</item>
 		<item name="drawableBackspace">@drawable/ic_backspace_dark</item>
@@ -36,6 +41,7 @@
 		<item name="drawableCallIncoming">@drawable/ic_call_incoming_dark</item>
 		<item name="drawableCallRejected">@drawable/ic_call_rejected_dark</item>
 		<item name="drawableContactImage">@drawable/ic_account_box_dark</item>
+		<item name="drawableContactImageForTitle">@drawable/ic_account_box_light</item>
 		<item name="drawableContacts">@drawable/ic_contacts_dark</item>
 		<item name="drawableDialpad">@drawable/ic_dialpad_dark</item>
 		<item name="drawableIconPhone">@drawable/ic_phone_dark</item>

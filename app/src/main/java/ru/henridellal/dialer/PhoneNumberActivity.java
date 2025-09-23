@@ -57,9 +57,11 @@ public class PhoneNumberActivity extends Activity implements LoaderManager.Loade
 
 	private void loadContactImage() {
 		if (PermissionManager.isPermissionGranted(this, Manifest.permission.READ_CONTACTS)) {
-			mAsyncContactImageLoader = new AsyncContactImageLoader(this);
+			mAsyncContactImageLoader = new AsyncContactImageLoader(this, R.attr.drawableContactImageForTitle);
 		} else {
-			((ImageView) findViewById(R.id.contact_image)).setImageDrawable(ThemingUtil.getDefaultContactDrawable(this));
+			((ImageView) findViewById(R.id.contact_image)).setImageDrawable(
+					ThemingUtil.getDefaultContactDrawable(this, R.attr.drawableContactImageForTitle)
+			);
 			return;
 		}
 
