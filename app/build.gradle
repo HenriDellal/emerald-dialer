@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 34
-    buildToolsVersion "34.0.0"
+    compileSdkVersion 36
+    buildToolsVersion "36.0.0"
 
     defaultConfig {
         applicationId "ru.henridellal.dialer"
         minSdkVersion 21
-        targetSdkVersion 34
+        targetSdkVersion 36
     }
 
     buildTypes {
@@ -21,4 +21,9 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+    namespace 'ru.henridellal.dialer'
 }
