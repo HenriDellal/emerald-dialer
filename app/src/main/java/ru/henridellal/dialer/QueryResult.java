@@ -3,6 +3,7 @@ package ru.henridellal.dialer;
 import static ru.henridellal.dialer.ContactsEntryAdapter.COLUMN_LOOKUP_KEY;
 import static ru.henridellal.dialer.ContactsEntryAdapter.COLUMN_NAME;
 import static ru.henridellal.dialer.ContactsEntryAdapter.COLUMN_NUMBER;
+import static ru.henridellal.dialer.ContactsEntryAdapter.COLUMN_TYPE;
 
 import android.database.Cursor;
 import android.graphics.Typeface;
@@ -21,6 +22,7 @@ public class QueryResult implements Comparable<QueryResult> {
 	public final String lookupKey;
 	public final String name;
 	public final String number;
+	public final int type;
 	public int numberStart;
 	public int numberEnd;
 	
@@ -32,6 +34,7 @@ public class QueryResult implements Comparable<QueryResult> {
 		this.lookupKey = getLookupKey(cursor);
 		this.name = getName(cursor);
 		this.number = getNumber(cursor);
+		this.type = getType(cursor);
 	}
 	
 	public void setNumberPlace(int numberStart, int numberEnd) {
@@ -63,7 +66,11 @@ public class QueryResult implements Comparable<QueryResult> {
 	private String getNumber(Cursor cursor) {
 		return cursor.getString(COLUMN_NUMBER);
 	}
-	
+
+	private int getType(Cursor cursor) {
+		return cursor.getInt(COLUMN_TYPE);
+	}
+
 	public CharSequence getFormattedNumber(ForegroundColorSpan span) {
 		if (null != number && !TextUtils.isEmpty(number)
 				&& numberStart != numberEnd) {

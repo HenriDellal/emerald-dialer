@@ -25,12 +25,14 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 		Phone._ID,
 		Phone.LOOKUP_KEY,
 		Phone.DISPLAY_NAME,
-		Phone.NUMBER
+		Phone.NUMBER,
+		Phone.TYPE
 	};
 	
 	public static final int COLUMN_LOOKUP_KEY = 1;
 	public static final int COLUMN_NAME = 2;
 	public static final int COLUMN_NUMBER = 3;
+	public static final int COLUMN_TYPE = 4;
 
 	public static final int FILTERING_MODE_REGEX = 0;
 	public static final int FILTERING_MODE_RAW = 1;
@@ -122,6 +124,9 @@ public class ContactsEntryAdapter extends BaseAdapter implements Filterable, Vie
 			formattedNumber = RTLUtil.formatSpannedText(formattedNumber);
 		}
 		viewCache.phoneNumber.setText(formattedNumber);
+
+		String typeLabel = ContactsUtil.getTypeLabel(contextRef.get(), queryResult.type);
+		viewCache.numberType.setText(typeLabel);
 
 		ContactImageTag tag = new ContactImageTag(String.valueOf(queryResult.id), queryResult.lookupKey);
 		viewCache.contactImage.setTag(tag); // set a tag for the callback to be able to check, so we don't set the contact image of a reused view

@@ -25,4 +25,11 @@
 		android:layout_alignStart="@id/contact_entry_name"
 		android:textSize="12sp"
 	/>
+	<TextView
+		style="?attr/additionalTextStyle"
+		android:id="@+id/contact_entry_number_type"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentEnd="true"
+		android:textSize="12sp"
+		/>
 </RelativeLayout>

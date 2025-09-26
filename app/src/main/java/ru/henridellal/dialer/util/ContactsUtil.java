@@ -55,4 +55,9 @@ public class ContactsUtil {
 		}
 		return contactName;
 	}
+
+	public static String getTypeLabel(Context c, int type) {
+		if (c == null) return "";
+		return (String) ContactsContract.CommonDataKinds.Phone.getTypeLabel(c.getResources(), type, null);
+	}
 }

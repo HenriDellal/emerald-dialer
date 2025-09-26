@@ -32,9 +32,7 @@ public class DialerPreferencesActivity extends Activity {
 				listPreference.setSummary(listPreference.getEntry());
 			}
 
-			if ("theme".equals(key) || "t9_locale".equals(key) || "contact_sources".equals(key)) {
-				restartTriggered = true;
-			}
+			restartTriggered = true;
 		}
 	}
 
