@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="privacy_policy_title">隐私政策</string>
-	<string name="privacy_policy">\tEmerald 拨号器仅使用用户提供的数据 （联系人和通话记录数据） 来提供应用程序正常运行所需的特性。
-\n\tEmerald 拨号器不与应用开发者和其他第三方分享你的数据和处理结果。</string>
+	<string name="privacy_policy">\tEmerald 拨号器仅使用用户提供的信息（联系人和通话日志数据）来提供应用程序正常运行所需的特性。 \tEmerald 拨号器不与应用开发者和其他第三方分享你的数据和数据处理结果。</string>
 	<string name="accept">接受</string>
 </resources>

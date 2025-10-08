@@ -3,10 +3,10 @@
 
 	<string name="glass_text" tools:ignore="MissingTranslation">Emerald Dialer (v%s)
 \n
-\n版权所有 2024 Anri Dellal
+\n版权所有 2025 Anri Dellal
 \n
-\n仅在 GPL-v3.0 下授权
-\n想帮忙吗？通过 GitHub 提交错误和提交建议 (https://www.github.com/HenriDellal/emerald-dialer/issues) 或发一封邮件到 anridellal@gmail.com
+\n仅在 GPL-v3.0 下许可
+\n想帮忙吗？通过 GiHub 报告 Bug 并提交建议 (https://www.github.com/HenriDellal/emerald-dialer/issues)
 </string>
 	<string-array name="glass_contributors_info">
 		<item>德语翻译</item>
@@ -14,12 +14,13 @@
 		<item>法语翻译</item>
 		<item>巴西葡萄牙语翻译</item>
 		<item>希伯来语 T9 键盘映射</item>
-		<item>简体中文翻译</item>
+		<item>中文翻译</item>
 		<item>希腊语翻译</item>
-		<item>Ukrainian translation</item>
-		<item>Turkish translation</item>
-		<item>Chinese translation</item>
-		<item>Polish translation</item>
-		<item>Spanish translation</item>
+		<item>乌克兰语翻译</item>
+		<item>土耳其语翻译</item>
+		<item>中文翻译</item>
+		<item>波兰语翻译</item>
+		<item>西班牙语翻译</item>
+		<item>德语翻译</item>
 	</string-array>
 </resources>

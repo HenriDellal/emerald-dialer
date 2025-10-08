@@ -1,45 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <!-- CALL INFORMATION -->
+<resources xmlns:tools="http://schemas.android.com/tools"
+	tools:ignore="MissingTranslation">
+	<string name="app_name">Emerald 拨号器</string>
+
+	<!-- NUMPAD LETTERS -->
+	<string name="numpad_2" />
+	<string name="numpad_3" />
+	<string name="numpad_4" />
+	<string name="numpad_5" />
+	<string name="numpad_6" />
+	<string name="numpad_7" />
+	<string name="numpad_8" />
+	<string name="numpad_9" />
+
+	<!-- REGEX PATTERNS -->
+
+	<!-- Dummy RegEx, replace in values-$LOCALE/strings.xml -->
+	<string name="本地正则表达式_0" />
+	<string name="本地正则表达式_1" />
+	<string name="本地正则表达式_2" />
+	<string name="本地正则表达式_3" />
+	<string name="本地正则表达式_4" />
+	<string name="本地正则表达式_5" />
+	<string name="本地正则表达式_6" />
+	<string name="本地正则表达式_7" />
+	<string name="本地正则表达式_8" />
+	<string name="本地正则表达式_9" />
+
+
+	<!-- CONTACTS -->
+	<string name="number_type_primary">主号</string>
+
+	<!-- CALL INFORMATION -->
 	<string name="date">日期</string>
-    <string name="duration">持续时间</string>
-    <string name="create_contact">创建新联系人</string>
-    <string name="send_message">发送一条消息</string>
-    <string name="show_info">通话信息</string>
-    <string name="make_a_call">通话</string>
-    <string name="copy_number">复制号码</string>
-    <string name="delete_log_entry">删除记录项</string>
-    <string name="delete_call_log_entry_question">你想从记录中删除这则通话吗？</string>
-    <string name="contacts_app_is_missing">没有安装联系人应用程序来保存联系人。</string>
-    <!-- SPEED DIAL -->
-	<string name="tap_for_addition">轻按新增</string>
-    <string name="voice_mail">语音邮件</string>
-    <string name="remove_speed_dial_entry">你想删除这个号码吗？</string>
-    <string name="remove">删除</string>
-    <string name="pick_contact_number">选择联系人号码</string>
-    <!-- POPUP MENU -->
-	<string name="clear_call_log">清除通话记录</string>
-    <string name="clear_call_log_question">你想清除通话记录吗？</string>
-    <string name="fast_dial">快速拨号</string>
-    <string name="dialer_preferences">首选项</string>
-    <string name="dialer_about">关于…</string>
-    <!-- PREFERENCES -->
+	<string name="duration">时长</string>
+
+	<string name="create_contact">新建联系人</string>
+	<string name="send_message">发送消息</string>
+	<string name="show_info">通话信息</string>
+	<string name="make_a_call">打电话</string>
+	<string name="copy_number">复制号码</string>
+	<string name="delete_log_entry">删除日志项</string>
+
+	<string name="delete_call_log_entry_question">要从日志中删除该通话吗？</string>
+	<string name="contacts_app_is_missing">没有安装联系人应用，无法保存联系人。</string>
+
+	<!-- SPEED DIAL -->
+	<string name="tap_for_addition">轻按添加</string>
+	<string name="voice_mail">语音邮件</string>
+	<string name="remove_speed_dial_entry">要删除该号码吗？</string>
+	<string name="remove">删除</string>
+	<string name="pick_contact_number">选择联系人号码</string>
+
+	<!-- POPUP MENU -->
+	<string name="clear_call_log">清除通话日志</string>
+	<string name="clear_call_log_question">要清除通话日志吗？</string>
+	<string name="fast_dial">快速拨号</string>
+	<string name="dialer_preferences">首选项</string>
+	<string name="dialer_about">关于…</string>
+
+	<!-- PREFERENCES -->
 	<string name="preference_theme">主题</string>
-    <string name="theme_entry_light">浅色</string>
-    <string name="theme_entry_dark">深色</string>
-    <string name="theme_entry_night">黑夜</string>
-    <string name="preference_t9_locale">T9 语言</string>
-    <string name="preference_contact_sources">联系人来源</string>
-    <string name="permission_not_granted">没有授予此操作需要的权限</string>
-    <string name="app_name">Emerald Dialer</string>
-    <string name="call_type_outgoing">去电</string>
-    <string name="call_type_rejected">拒绝的通话</string>
-    <string name="dialog_clean_log_title">删除日志条目</string>
-    <string name="dialog_clean_log_from">来自：</string>
-    <string name="dialog_clean_log_to">去往：</string>
-    <string name="call_type_incoming">来电</string>
-    <string name="call_type_missed">未接来电</string>
-    <string name="call_type_other">其他</string>
+	<string name="theme_entry_light">浅色</string>
+	<string name="theme_entry_dark">深色</string>
+	<string name="theme_entry_night">夜晚</string>
+
+	<string name="preference_t9_locale">T9 语言</string>
+	<string name="preference_contact_sources">联系人来源</string>
+	<string name="permission_not_granted">未授予此操作的权限</string>
+
+	<string name="show_sim_labels">显示 SIM 卡标签</string>
+
+	<!-- CALL TYPES -->
+        <string name="call_type_incoming">来电</string>
+	<string name="call_type_missed">未接电话</string>
+	<string name="call_type_outgoing">去电</string>
+	<string name="call_type_rejected">拒绝通话</string>
+	<string name="call_type_other">其他</string>
+
+    <!-- NUMBER CALL LOG ENTRIES REMOVAL DIALOG -->
+    <string name="dialog_clean_log_title">删除日志项</string>
+    <string name="dialog_clean_log_from">从：</string>
+    <string name="dialog_clean_log_to">到：</string>
     <string name="dialog_clean_log_date">日期：</string>
     <string name="dialog_clean_log_pick_date">挑选日期</string>
+
+	<!-- FIRST LAUNCH SCREEN -->
+        <string name="permission_request">要使用应用程序的全部功能，请提供下列权限</string>
+	<string name="permission_title_required">必需</string>
+	<string name="permission_make_calls">打电话</string>
+	<string name="permission_title_optional">可选</string>
+	<string name="permission_call_log">访问通话日志：查看通话日志并删除项目</string>
+	<string name="permission_contacts">访问联系人： 用于搜索联系人。 某些情形下，即使未提供该权限，通话日志也可能显示联系人姓名。</string>
+	<string name="btn_provide_permissions">提供权限</string>
+        <string name="btn_finish_init">继续</string>
+
 </resources>
