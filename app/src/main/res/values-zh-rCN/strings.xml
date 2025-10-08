@@ -67,12 +67,12 @@
 
 	<string name="preference_t9_locale">T9 语言</string>
 	<string name="preference_contact_sources">联系人来源</string>
-	<string name="permission_not_granted">未授予此操作的权限</string>
+	<string name="permission_not_granted">未授予此操作所需的权限</string>
 
 	<string name="show_sim_labels">显示 SIM 卡标签</string>
 
 	<!-- CALL TYPES -->
-        <string name="call_type_incoming">来电</string>
+    <string name="call_type_incoming">来电</string>
 	<string name="call_type_missed">未接电话</string>
 	<string name="call_type_outgoing">去电</string>
 	<string name="call_type_rejected">拒绝通话</string>
@@ -86,13 +86,13 @@
     <string name="dialog_clean_log_pick_date">挑选日期</string>
 
 	<!-- FIRST LAUNCH SCREEN -->
-        <string name="permission_request">要使用应用程序的全部功能，请提供下列权限</string>
+    <string name="permission_request">要使用应用程序的全部功能，请提供下列权限</string>
 	<string name="permission_title_required">必需</string>
 	<string name="permission_make_calls">打电话</string>
 	<string name="permission_title_optional">可选</string>
 	<string name="permission_call_log">访问通话日志：查看通话日志并删除项目</string>
 	<string name="permission_contacts">访问联系人： 用于搜索联系人。 某些情形下，即使未提供该权限，通话日志也可能显示联系人姓名。</string>
 	<string name="btn_provide_permissions">提供权限</string>
-        <string name="btn_finish_init">继续</string>
+    <string name="btn_finish_init">继续</string>
 
 </resources>
