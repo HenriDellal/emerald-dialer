@@ -3,31 +3,6 @@
 	tools:ignore="MissingTranslation">
 	<string name="app_name">Emerald 拨号器</string>
 
-	<!-- NUMPAD LETTERS -->
-	<string name="numpad_2" />
-	<string name="numpad_3" />
-	<string name="numpad_4" />
-	<string name="numpad_5" />
-	<string name="numpad_6" />
-	<string name="numpad_7" />
-	<string name="numpad_8" />
-	<string name="numpad_9" />
-
-	<!-- REGEX PATTERNS -->
-
-	<!-- Dummy RegEx, replace in values-$LOCALE/strings.xml -->
-	<string name="本地正则表达式_0" />
-	<string name="本地正则表达式_1" />
-	<string name="本地正则表达式_2" />
-	<string name="本地正则表达式_3" />
-	<string name="本地正则表达式_4" />
-	<string name="本地正则表达式_5" />
-	<string name="本地正则表达式_6" />
-	<string name="本地正则表达式_7" />
-	<string name="本地正则表达式_8" />
-	<string name="本地正则表达式_9" />
-
-
 	<!-- CONTACTS -->
 	<string name="number_type_primary">主号</string>
 
