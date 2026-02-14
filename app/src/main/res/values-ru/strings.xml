@@ -57,6 +57,7 @@
 	<string name="preference_t9_locale">Язык T9</string>
 	<string name="preference_contact_sources">Источники контактов</string>
 
+	<string name="permission_not_granted">Не предоставлено разрешение для выполнения операции</string>
 	<string name="show_sim_labels">Показывать ярлыки SIM</string>
 
 	<!-- CALL TYPES -->
@@ -82,5 +83,8 @@
 	<string name="permission_contacts">Доступ к контактам: используется для поиска контактов. При некоторых условиях журнал звонков может отображать имена контактов даже без предоставления этого разрешения.</string>
 	<string name="btn_provide_permissions">Предоставить разрешения</string>
 	<string name="btn_finish_init">Продолжить</string>
+
+	<!-- MISC -->
+	<string name="imei_not_permitted">IMEI/MEID недоступны для сторонних приложений.</string>
 
 </resources>
