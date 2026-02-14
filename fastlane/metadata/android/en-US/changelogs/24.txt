@@ -1,0 +1,14 @@
+New in 1.0.23
+- Fix bug (pressing contact image now leads to contact's page, not full list of contacts)
+- Simplified Chinese translation update (thanks to sr093906)
+- Russian translation update
+
+New in 1.0.22
+- Simplified Chinese translation update (thanks to sr093906)
+- Multiple bug fixes
+
+New in 1.0.21
+- Initial screen with permission request
+- Add preference to hide SIM labels
+- Other UI changes
+- Russian translation update
