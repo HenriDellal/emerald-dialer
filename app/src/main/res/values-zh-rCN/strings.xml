@@ -70,4 +70,7 @@
 	<string name="btn_provide_permissions">提供权限</string>
     <string name="btn_finish_init">继续</string>
 
+	<!-- MISC -->
+	<string name="imei_not_permitted">IMEI/MEID 对第三方应用不可用。</string>
+
 </resources>
